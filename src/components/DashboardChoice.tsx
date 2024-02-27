@@ -1,6 +1,5 @@
-import { Label } from '@radix-ui/react-dropdown-menu';
+// import { Label } from '@radix-ui/rgap/ct-dropdown-menu';
 import { Card, CardDescription, CardTitle } from './ui/card';
-import { Link } from '@remix-run/react';
 
 interface ISocialNetwork {
   lastTimeRecieved: string;
@@ -26,11 +25,11 @@ function DashboardChoice({
   Agencies,
 }: IDashboardChoice) {
   return (
-    <Link to={location}>
-      <Label className="bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4 active:border-slate-950">
+    <a href={location}>
+      <p className="flex flex-col items-center justify-between rounded-md border-2 bg-popover p-4 hover:bg-accent hover:text-accent-foreground active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
         <img src={iconSrc} alt={`${location} svg`} className="mb-3 h-6 w-6" />
         {location}
-      </Label>
+      </p>
       <Card className="flex-col p-2">
         <CardTitle className="text-center underline">Social Networks</CardTitle>
         <CardDescription>
@@ -45,7 +44,7 @@ function DashboardChoice({
         </CardDescription>
         <CardDescription>Info: {Agencies?.info}</CardDescription>
       </Card>
-    </Link>
+    </a>
   );
 }
 
