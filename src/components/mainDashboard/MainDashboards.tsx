@@ -5,13 +5,12 @@ import WestBank from '@/assets/images/westBank.png';
 import WhiteGaza from '@/assets/images/white-gaza.png';
 import WhiteLebanon from '@/assets/images/white-lebanon.png';
 import WhiteWestBank from '@/assets/images/white-westBank.png';
-import DashboardChoice from '@/components/DashboardChoice';
+import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
 import {
-  Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from '@/components/ui/card';
 
 // TODO: understand how to toggle the location icons from dark to light mode
@@ -20,7 +19,7 @@ interface MainDashboardsProps {
 }
 export default function MainDashboards({ darkMode }: MainDashboardsProps) {
   return (
-    <Card>
+    <>
       <CardHeader className="flex items-center">
         <img src={confusedDuck} alt="confused duck" className="h-20 w-16" />
         <CardTitle>Error Monitor</CardTitle>
@@ -48,6 +47,6 @@ export default function MainDashboards({ darkMode }: MainDashboardsProps) {
           Agencies={undefined}
         />
       </CardContent>
-    </Card>
+    </>
   );
 }

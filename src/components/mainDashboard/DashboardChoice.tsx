@@ -1,5 +1,5 @@
-// import { Label } from '@radix-ui/rgap/ct-dropdown-menu';
-import { Card, CardDescription, CardTitle } from './ui/card';
+import { Link } from 'react-router-dom';
+import { Card, CardDescription, CardTitle } from '../ui/card';
 
 interface ISocialNetwork {
   lastTimeRecieved: string;
@@ -25,8 +25,8 @@ function DashboardChoice({
   Agencies,
 }: IDashboardChoice) {
   return (
-    <a href={location}>
-      <p className="flex flex-col items-center justify-between rounded-md border-2 bg-popover p-4 hover:bg-accent hover:text-accent-foreground active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+    <Link to={location} className="hover:bg-accent">
+      <p className="flex flex-col items-center justify-between rounded-md border-2 p-4 hover:text-accent-foreground active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
         <img src={iconSrc} alt={`${location} svg`} className="mb-3 h-6 w-6" />
         {location}
       </p>
@@ -44,7 +44,7 @@ function DashboardChoice({
         </CardDescription>
         <CardDescription>Info: {Agencies?.info}</CardDescription>
       </Card>
-    </a>
+    </Link>
   );
 }
 

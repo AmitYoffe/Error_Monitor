@@ -1,4 +1,4 @@
-import MainDashboards from '@/components/MainDashboards';
+import MainDashboards from '@/components/mainDashboard/MainDashboards';
 import { ModeToggle } from '@/components/mode-toggle';
 
 export default function Root() {
