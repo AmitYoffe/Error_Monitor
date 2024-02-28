@@ -8,7 +8,7 @@ export default function Root() {
         <ModeToggle />
       </div>
       <div className="mt-2 space-y-4">
-        <MainDashboards darkMode={false} />
+        <MainDashboards />
       </div>
     </div>
   );

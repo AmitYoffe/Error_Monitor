@@ -50,3 +50,5 @@ export function InfoTable({ data, headers }: InfoTableProps) {
     </Card>
   );
 }
+
+//TODO: add search bar for the tables
