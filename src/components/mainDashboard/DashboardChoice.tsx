@@ -18,7 +18,7 @@ interface IDashboardChoice {
   Agencies?: IAgency;
 }
 
-function DashboardChoice({
+export default function DashboardChoice({
   iconSrc,
   location,
   SocialNetworks,
@@ -48,4 +48,4 @@ function DashboardChoice({
   );
 }
 
-export default DashboardChoice;
+//TODO: Fix hover styling + center a bit the 'Info' & 'lastTimeRecieved' fields

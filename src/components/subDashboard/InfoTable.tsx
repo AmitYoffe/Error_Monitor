@@ -52,3 +52,4 @@ export function InfoTable({ data, headers }: InfoTableProps) {
 }
 
 //TODO: add search bar for the tables
+//TODO: decide on logic to show the first and second sub dashboards

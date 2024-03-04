@@ -2,13 +2,13 @@ import confusedDuck from '@/assets/images/confused-duck.png';
 import Gaza from '@/assets/images/gaza.png';
 import Lebanon from '@/assets/images/lebanon.png';
 import WestBank from '@/assets/images/westBank.png';
-import MiddleEast from '@/assets/images/middleEast.png';
+import InterArab from '@/assets/images/middleEast.png';
 import International from '@/assets/images/international.png';
 import WhiteConfusedDuck from '@/assets/images/white-confused-duck.png';
 import WhiteGaza from '@/assets/images/white-gaza.png';
 import WhiteLebanon from '@/assets/images/white-lebanon.png';
 import WhiteWestBank from '@/assets/images/white-westBank.png';
-import WhiteMiddleEast from '@/assets/images/white-middleEast.png';
+import WhiteInterArab from '@/assets/images/white-middleEast.png';
 import WhiteInternational from '@/assets/images/white-International.png';
 import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
 import {
@@ -54,8 +54,8 @@ export default function MainDashboards() {
       <div className="flex justify-center w-full">
         <CardContent className='grid grid-cols-2 gap-6 max-w-[80em] w-full'>
           <DashboardChoice
-            iconSrc={theme === 'dark' ? WhiteMiddleEast : MiddleEast}
-            location={'Middle East'}
+            iconSrc={theme === 'dark' ? WhiteInterArab : InterArab}
+            location={'Inter-Arab'}
             SocialNetworks={undefined}
             Agencies={undefined}
           />
