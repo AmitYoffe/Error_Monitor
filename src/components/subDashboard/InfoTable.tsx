@@ -9,19 +9,21 @@ import {
 import { Status } from './Status';
 import { Card } from '../ui/card';
 import { Link } from 'react-router-dom';
-
-export interface ConnectionLog {
-  logid: string;
-  time: string;
-  status: Status;
-}
+import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 
 interface InfoTableProps {
   data: Record<string, string | number>[];
   headers: string[];
+  status: Status;
 }
 
-export function InfoTable({ data, headers }: InfoTableProps) {
+export const statusIcons: Record<Status, JSX.Element> = {
+  operational: <CheckCircle2 className="text-green-400" />,
+  unstable: <AlertCircle className="text-yellow-400" />,
+  'no-connection': <XCircle className="text-red-400" />,
+};
+
+export function InfoTable({ data, headers, status }: InfoTableProps) {
   return (
     <Card>
       <Table>
@@ -43,6 +45,7 @@ export function InfoTable({ data, headers }: InfoTableProps) {
                   <Link to="testURL">{value}</Link>
                 </TableCell>
               ))}
+              <TableCell>{statusIcons[status]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

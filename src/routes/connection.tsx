@@ -17,8 +17,13 @@ export default function Connection() {
     typeof loader
   >;
 
-  const agenciesHeaders = ['Agency', 'Last Time Recieved', 'Info'];
-  const socialNetwrokHeaders = ['Social Network', 'Last Time Recieved', 'Info'];
+  const agenciesHeaders = ['Agency', 'Last Time Recieved', 'Info', 'status'];
+  const socialNetwrokHeaders = [
+    'Social Network',
+    'Last Time Recieved',
+    'Info',
+    'status',
+  ];
 
   return (
     <div className="h-screen p-4">
@@ -28,8 +33,16 @@ export default function Connection() {
       <p className="text-center text-3xl">{connection}</p>
       <div className="container mt-12 flex justify-between">
         <div className="flex flex-row gap-4">
-          <InfoTable data={connectionLogs} headers={agenciesHeaders} />
-          <InfoTable data={connectionLogs} headers={socialNetwrokHeaders} />
+          <InfoTable
+            data={connectionLogs}
+            headers={agenciesHeaders}
+            status={'operational'}
+          />
+          <InfoTable
+            data={connectionLogs}
+            headers={socialNetwrokHeaders}
+            status={'no-connection'}
+          />
         </div>
         <div className="space-y-4">
           <Status name="Facebook" status="operational" />
