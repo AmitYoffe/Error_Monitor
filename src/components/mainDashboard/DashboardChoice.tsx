@@ -26,23 +26,31 @@ export default function DashboardChoice({
 }: IDashboardChoice) {
   return (
     <Link to={location} className="hover:bg-accent">
-      <p className="flex flex-col items-center justify-between rounded-md border-2 p-4 hover:text-accent-foreground active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
-        <img src={iconSrc} alt={`${location} svg`} className="mb-3 h-6 w-6" />
-        {location}
-      </p>
       <Card className="flex-col p-2">
-        <CardTitle className="text-center underline">Social Networks</CardTitle>
-        <CardDescription>
-          Last Time Recieved: {SocialNetworks?.lastTimeRecieved}
-        </CardDescription>
-        <CardDescription>Info: {SocialNetworks?.info}</CardDescription>
-      </Card>
-      <Card className="flex-col p-2">
-        <CardTitle className="text-center underline">Agencies</CardTitle>
-        <CardDescription>
-          Last Time Recieved: {Agencies?.lastTimeRecieved}
-        </CardDescription>
-        <CardDescription>Info: {Agencies?.info}</CardDescription>
+        <p className="flex flex-col items-center justify-between rounded-md border-2 p-4 hover:text-accent-foreground active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+          <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
+          {location}
+        </p>
+        <div>
+          <CardTitle className="p-2 text-center underline">
+            Social Networks
+          </CardTitle>
+          <CardDescription className="mx-12">
+            Last Time Recieved: {SocialNetworks?.lastTimeRecieved}
+          </CardDescription>
+          <CardDescription className="mx-12">
+            Info: {SocialNetworks?.info}
+          </CardDescription>
+        </div>
+        <div>
+          <CardTitle className="p-2 text-center underline">Agencies</CardTitle>
+          <CardDescription className="mx-12">
+            Last Time Recieved: {Agencies?.lastTimeRecieved}
+          </CardDescription>
+          <CardDescription className="mx-12">
+            Info: {Agencies?.info}
+          </CardDescription>
+        </div>
       </Card>
     </Link>
   );
