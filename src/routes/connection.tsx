@@ -26,7 +26,7 @@ export default function Connection() {
   ];
 
   return (
-    <div className="h-screen p-4">
+    <div className="h-screen p-4 ">
       <Link to="/" className="absolute left-1 top-1">
         <Undo2 />
       </Link>
@@ -57,3 +57,6 @@ export default function Connection() {
 //TODO: take care of the third page (second subdashboard)
 //TODO: clicking social netwroks of sepecific region will take you to a page that consists only of the table of the dashboard of that region.
 // not 2 tables of that region.
+
+//TODO: Add a beautiful scrollbar
+// scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-custom-border-radius

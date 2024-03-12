@@ -13,5 +13,3 @@ export default function Root() {
     </div>
   );
 }
-
-//TODO: Add a beautiful scrollbar
