@@ -53,3 +53,7 @@ export default function Connection() {
     </div>
   );
 }
+
+//TODO: take care of the third page (second subdashboard)
+//TODO: clicking social netwroks of sepecific region will take you to a page that consists only of the table of the dashboard of that region.
+// not 2 tables of that region.

@@ -25,9 +25,10 @@ export default function DashboardChoice({
   Agencies,
 }: IDashboardChoice) {
   return (
-    <Link to={location} className="hover:bg-accent">
-      <Card className="flex-col p-2">
-        <p className="flex flex-col items-center justify-between rounded-md border-2 p-4 hover:text-accent-foreground active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+    <Link to={location}>
+      {/*TODO: Make the border color a variable that chnages according to the status */}
+      <Card className="flex-col p-2  hover:border-green-600">
+        <p className="flex flex-col items-center justify-between rounded-md border-2 p-4 hover:bg-accent active:border-slate-950 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
           {location}
         </p>
@@ -56,4 +57,5 @@ export default function DashboardChoice({
   );
 }
 
-//TODO: Fix hover styling + center a bit the 'Info' & 'lastTimeRecieved' fields
+//TODO: Info will now becpme 'total docs' and 'Docs form 3 days ago' (hasn't been defined yet)
+//TODO: Fix hover styling
