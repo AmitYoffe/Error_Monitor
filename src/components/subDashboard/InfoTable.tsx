@@ -26,7 +26,7 @@ export const statusIcons: Record<Status, JSX.Element> = {
 export function InfoTable({ data, headers, status }: InfoTableProps) {
   return (
     <Card>
-      <Table>
+      <Table className="">
         <TableHeader>
           <TableRow>
             {headers.map((header, index) => (

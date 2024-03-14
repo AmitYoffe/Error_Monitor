@@ -15,7 +15,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from '@/components/ui/card';
 import { useTheme } from '../theme-provider';
 
@@ -23,13 +23,15 @@ export default function MainDashboards() {
   const { theme } = useTheme();
 
   return (
-    <div className="">
-      <CardHeader className="flex items-center w-full">
-        <img src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck} alt="confused duck" className="h-20 w-16" />
+    <div>
+      <CardHeader className="flex w-full items-center pb-3 pt-1">
+        <img
+          src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
+          alt="confused duck"
+          className="h-20 w-16"
+        />
         <CardTitle>Error Monitor</CardTitle>
-        <CardDescription>
-          Lead your quest to find the errors.
-        </CardDescription>
+        <CardDescription>Lead your quest to find the errors.</CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-3 gap-6">
         <DashboardChoice
@@ -51,8 +53,8 @@ export default function MainDashboards() {
           Agencies={undefined}
         />
       </CardContent>
-      <div className="flex justify-center w-full">
-        <CardContent className='grid grid-cols-2 gap-6 max-w-[80em] w-full'>
+      <div className="flex w-full justify-center">
+        <CardContent className="grid w-full max-w-[80em] grid-cols-2 gap-6">
           <DashboardChoice
             iconSrc={theme === 'dark' ? WhiteInterArab : InterArab}
             location={'Inter-Arab'}
