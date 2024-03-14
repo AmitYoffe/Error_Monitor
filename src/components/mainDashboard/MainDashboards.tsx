@@ -24,7 +24,7 @@ export default function MainDashboards() {
 
   return (
     <div>
-      <CardHeader className="flex w-full items-center pb-3 pt-1">
+      <CardHeader className="flex w-full items-center pb- pt-1">
         <img
           src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
           alt="confused duck"

@@ -6,6 +6,8 @@ import Root from './routes/Root';
 import { ThemeProvider } from '@/components/theme-provider';
 import './index.css';
 import Connection, { loader as connectionLoader } from './routes/connection';
+import SocialNetworks from './components/subDashboard/SocialNetworks';
+import Agencies from './components/subDashboard/Agencies';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,18 @@ const router = createBrowserRouter([
   {
     path: '/:connection',
     element: <Connection />,
+    errorElement: <ErrorPage />,
+    loader: connectionLoader,
+  },
+  {
+    path: '/connection/sn/:id',
+    element: <SocialNetworks />,
+    errorElement: <ErrorPage />,
+    loader: connectionLoader,
+  },
+  {
+    path: '/connection/ag/:id',
+    element: <Agencies />,
     errorElement: <ErrorPage />,
     loader: connectionLoader,
   },
