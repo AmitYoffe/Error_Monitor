@@ -25,8 +25,8 @@ export const statusIcons: Record<Status, JSX.Element> = {
 
 export function InfoTable({ data, headers, status }: InfoTableProps) {
   return (
-    <Card>
-      <Table className="">
+    <Card className="container flex justify-center max-h-[740px]">
+      <Table>
         <TableHeader>
           <TableRow>
             {headers.map((header, index) => (
@@ -55,4 +55,5 @@ export function InfoTable({ data, headers, status }: InfoTableProps) {
 }
 
 //TODO: add search bar for the tables
-//TODO: decide on logic to show the first and second sub dashboards
+//TODO: Add a beautiful scrollbar to tables
+// scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-custom-border-radius

@@ -32,8 +32,7 @@ export default function DashboardChoice({
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
           {location}
         </p>
-        <Link to={location}>
-          {/* {location.sn} */}
+        <Link to={`${location}/sn`}>
           <Card className="flex-col p-2  hover:border-green-600">
             <CardTitle className="p-2 text-center underline">
               Social Networks
@@ -49,8 +48,7 @@ export default function DashboardChoice({
             </CardDescription>
           </Card>
         </Link>
-        <Link to={location}>
-          {/* {location.agencies} */}
+        <Link to={`${location}/ag`}>
           <Card className="flex-col p-2  hover:border-yellow-400">
             <CardTitle className="p-2 text-center underline">
               Agencies
@@ -71,4 +69,4 @@ export default function DashboardChoice({
   );
 }
 
-//TODO: Info will now becpme 'total docs' and 'Docs form 3 days ago' (hasn't been defined yet)
+//TODO: take care of the third page (second subdashboard)

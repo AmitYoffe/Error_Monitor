@@ -37,3 +37,5 @@ function Status({ name, status, link }: StatusProps) {
 }
 
 export default Status;
+
+// TODO: turn this component into the third screen + change its name

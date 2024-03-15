@@ -1,4 +1,6 @@
+import { ModeToggle } from '@/components/mode-toggle';
 import { InfoTable } from '@/components/subDashboard/InfoTable';
+import { Card } from '@/components/ui/card';
 import { AsyncReturnType } from '@/types';
 import { getLogs } from '@/utils';
 import { Undo2 } from 'lucide-react';
@@ -19,20 +21,24 @@ export default function Connection() {
   const agenciesHeaders = ['Agency', 'Last Time Recieved', 'Info', 'status'];
 
   return (
-    <div className="h-screen overflow-y-hidden p-4">
-      <Link to="/" className="absolute left-1 top-1">
+    <div className="h-screen overflow-hidden p-8">
+      <ModeToggle />
+      <Link to="/" className="absolute left-2 top-2">
         <Undo2 />
       </Link>
-      <p className="text-center text-3xl">{connection}</p>
-      <div className="container mt-12 flex justify-between">
-        <div className="flex flex-row gap-4">
-          <InfoTable
-            data={connectionLogs}
-            headers={agenciesHeaders}
-            status={'operational'}
-          />
+      <Card className='container flex flex-col p-4'>
+        <div className='flex flex-col items-start p-1'>
+          <h2 className="text-2xl font-bold tracking-tight">{connection}</h2>
+          <p className="text-muted-foreground">
+            Here&apos;s a list of your agencies!
+          </p>
         </div>
-      </div>
+        <InfoTable
+          data={connectionLogs}
+          headers={agenciesHeaders}
+          status={'operational'}
+        />
+      </Card>
     </div>
   );
 }
