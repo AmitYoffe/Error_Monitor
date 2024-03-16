@@ -54,6 +54,6 @@ export function InfoTable({ data, headers, status }: InfoTableProps) {
   );
 }
 
-//TODO: add search bar for the tables
+//TODO: make the search bar funtiional, and add it it into this componentn instead of 'social networks'
 //TODO: Add a beautiful scrollbar to tables
 // scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-custom-border-radius
