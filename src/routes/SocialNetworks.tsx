@@ -3,6 +3,7 @@ import { InfoTable } from '@/components/subDashboard/InfoTable';
 import { AsyncReturnType } from '@/types';
 import { getLogs } from '@/utils';
 import { Undo2 } from 'lucide-react';
+import { ChangeEvent, useState } from 'react';
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
@@ -26,6 +27,19 @@ export default function Connection() {
     'status',
   ];
 
+  const [search, setSearch] = useState('');
+
+  function handleInputChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void {
+    setSearch(event.target.value);
+  }
+
+  const filteredItems = connectionLogs.filter(
+    (connectionLog) =>
+      connectionLog.name && connectionLog.name.includes(search.trim()),
+  );
+
   return (
     <div className="h-screen overflow-hidden p-8">
       <ModeToggle />
@@ -34,10 +48,12 @@ export default function Connection() {
       </Link>
       <div className="flex flex-row gap-4">
         <InfoTable
-          data={connectionLogs}
+          data={filteredItems}
           headers={socialNetwrokHeaders}
           status={'no-connection'}
           connection={connection}
+          handleInputChange={handleInputChange}
+          search={search}
         />
       </div>
     </div>

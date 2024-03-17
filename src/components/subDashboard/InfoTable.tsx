@@ -7,17 +7,21 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
+import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '../ui/card';
-import { Status } from './Status';
 import { Input } from '../ui/input';
-import { Separator } from '../ui/separator';
+import { Status } from './Status';
 
 interface InfoTableProps {
   data: Record<string, string | number>[];
   headers: string[];
   status: Status;
   connection: string;
+  handleInputChange: (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  search: string;
 }
 
 export const statusIcons: Record<Status, JSX.Element> = {
@@ -31,6 +35,8 @@ export function InfoTable({
   headers,
   status,
   connection,
+  handleInputChange,
+  search,
 }: InfoTableProps) {
   const navigation = useNavigate();
 
@@ -40,19 +46,17 @@ export function InfoTable({
         <div className="flex flex-col p-2">
           <h2 className="text-2xl font-bold tracking-tight">{connection}</h2>
           <p className="text-muted-foreground">
-            Here&apos;s a list of your social networks!
+            Here's a list of your {headers[0]} items!
           </p>
         </div>
         <Input
           placeholder="search..."
-          className="w-2/12 transition-all duration-200 ease-in-out focus:w-3/12 my-auto"
-        />
-        {/*need to add something like this:
           value={search}
-          onChange={handleInputChange} */}
+          onChange={handleInputChange}
+          className="my-auto w-2/12 transition-all duration-200 ease-in-out focus:w-3/12"
+        />
       </div>
-      <Separator />
-      <Table>
+      <Table className='border-t-2'>
         <TableHeader>
           <TableRow>
             {headers.map((header, index) => (
@@ -65,7 +69,7 @@ export function InfoTable({
             <TableRow
               key={rowIndex}
               className="cursor-pointer hover:bg-accent active:border-slate-950"
-              onClick={() => navigation(`/${row.id}`)}
+              onClick={() => navigation(`${row.id}`)}
             >
               {Object.values(row).map((value, columnIndex) => (
                 <TableCell key={columnIndex}>{value}</TableCell>
@@ -79,6 +83,6 @@ export function InfoTable({
   );
 }
 
-//TODO: make the search bar funtiional, and add it it into this componentn instead of 'social networks'
-//TODO: Add a beautiful scrollbar to tables
+// TODO: make search field functional
+// TODO: Add a pretty scrollbar to table that is reactive to dark mode
 // scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-custom-border-radius

@@ -32,6 +32,8 @@ export default function Connection() {
         headers={agenciesHeaders}
         status={'operational'}
         connection={connection}
+        // search='id'
+        // handleInputChange={}
       />
     </div>
   );

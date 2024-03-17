@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
+import { useEffect, useState } from 'react';
 
 interface ISocialNetwork {
   lastTimeRecieved: string;
@@ -24,16 +25,34 @@ export default function DashboardChoice({
   SocialNetworks,
   Agencies,
 }: IDashboardChoice) {
+  const [mainBorderColor, setMainBorderColor] = useState<string>('green');
+  const [agencyBorderColor, setAgencyBorderColor] = useState<string>('green');
+  const [snBorderColor, setSnBorderColor] = useState<string>('yellow');
+
+  useEffect(() => {
+    if (snBorderColor === 'red' || agencyBorderColor === 'red') {
+      setMainBorderColor('red');
+    } else if (snBorderColor === 'yellow' || agencyBorderColor === 'yellow') {
+      setMainBorderColor('yellow');
+    } else {
+      setMainBorderColor('green');
+    }
+  }, [agencyBorderColor, snBorderColor]);
+
   return (
     <div className="h-4/5">
-      {/*TODO: Make the border color a variable that chnages according to the status */}
-      <Card className="flex-col p-2  hover:border-yellow-400">
+      {/*TODO: Make the border color a variable that changes according to the status */}
+      <Card
+        className={String.raw`flex-col p-2 hover:border-${mainBorderColor}-400`}
+      >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
           {location}
         </p>
         <Link to={`${location}/sn`}>
-          <Card className="flex-col p-2  hover:border-green-600">
+          <Card
+            className={String.raw`flex-col p-2 hover:border-${snBorderColor}-400`}
+          >
             <CardTitle className="p-2 text-center underline">
               Social Networks
             </CardTitle>
@@ -49,7 +68,9 @@ export default function DashboardChoice({
           </Card>
         </Link>
         <Link to={`${location}/ag`}>
-          <Card className="flex-col p-2  hover:border-yellow-400">
+          <Card
+            className={String.raw`flex-col p-2 hover:border-${agencyBorderColor}-400`}
+          >
             <CardTitle className="p-2 text-center underline">
               Agencies
             </CardTitle>
@@ -70,3 +91,4 @@ export default function DashboardChoice({
 }
 
 //TODO: take care of the third page (second subdashboard)
+//TODO: some function that uses setCurrentStatus according to the actual data
