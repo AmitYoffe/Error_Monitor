@@ -1,8 +1,9 @@
 import uniqid from "uniqid";
 import { ConnectionLog } from "./components/ConnectionTable";
+// ConnectionLog??
 
 export async function getLogs() {
-    const connectionLogs: ConnectionLog[] = [
+    const connectionLogs: ConnectionLog = [
         {
             logid: uniqid('id-'),
             status: 'operational',

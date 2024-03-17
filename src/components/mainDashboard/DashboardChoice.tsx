@@ -90,5 +90,4 @@ export default function DashboardChoice({
   );
 }
 
-//TODO: take care of the third page (second subdashboard)
 //TODO: some function that uses setCurrentStatus according to the actual data

@@ -34,5 +34,3 @@ export default function ErrorPage() {
     </div>
   );
 }
-
-//TODO: check if making the background of the gif clear is possible, so it will fit both to dark & light mode

@@ -1,14 +1,15 @@
+import { ThemeProvider } from '@/components/theme-provider';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './error-page';
-import Root from './routes/Root';
-import { ThemeProvider } from '@/components/theme-provider';
 import './index.css';
-import SocialNetworks from './routes/SocialNetworks';
-import Agencies from './routes/Agencies';
-import { loader as AgenciesLoader } from './routes/Agencies';
-import { loader as SocialNetworksLoader } from './routes/SocialNetworks';
+import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
+import Root from './routes/Root';
+import SecondSubDashboard from './routes/SecondSubDashboard';
+import SocialNetworks, {
+  loader as SocialNetworksLoader,
+} from './routes/SocialNetworks';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,21 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     loader: AgenciesLoader,
   },
+  {
+    path: '/:connection/sn/:id',
+    element: <SecondSubDashboard />,
+    errorElement: <ErrorPage />,
+    loader: AgenciesLoader,
+  },
+  {
+    path: '/:connection/ag/:id',
+    element: <SecondSubDashboard />,
+    errorElement: <ErrorPage />,
+    loader: AgenciesLoader,
+  },
 ]);
-// second sub dashboards should be path: '/:connection/sn/:id',
+
+// Do i really need 2 /:connection/(sn / ag)/:id
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

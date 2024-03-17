@@ -3,6 +3,7 @@ import { InfoTable } from '@/components/subDashboard/InfoTable';
 import { AsyncReturnType } from '@/types';
 import { getLogs } from '@/utils';
 import { Undo2 } from 'lucide-react';
+import { ChangeEvent, useState } from 'react';
 import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
@@ -20,7 +21,14 @@ export default function Connection() {
   >;
 
   const agenciesHeaders = ['Agency', 'Last Time Recieved', 'Info', 'status'];
+  const [search, setSearch] = useState('');
 
+  function handleInputChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void {
+    setSearch(event.target.value);
+  }
+  
   return (
     <div className="h-screen overflow-hidden p-8">
       <ModeToggle />
@@ -32,8 +40,8 @@ export default function Connection() {
         headers={agenciesHeaders}
         status={'operational'}
         connection={connection}
-        // search='id'
-        // handleInputChange={}
+        search={search}
+        handleInputChange={handleInputChange}
       />
     </div>
   );

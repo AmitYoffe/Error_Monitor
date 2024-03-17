@@ -26,7 +26,6 @@ export default function Connection() {
     'Info',
     'status',
   ];
-
   const [search, setSearch] = useState('');
 
   function handleInputChange(
@@ -34,11 +33,6 @@ export default function Connection() {
   ): void {
     setSearch(event.target.value);
   }
-
-  const filteredItems = connectionLogs.filter(
-    (connectionLog) =>
-      connectionLog.name && connectionLog.name.includes(search.trim()),
-  );
 
   return (
     <div className="h-screen overflow-hidden p-8">
@@ -48,7 +42,7 @@ export default function Connection() {
       </Link>
       <div className="flex flex-row gap-4">
         <InfoTable
-          data={filteredItems}
+          data={connectionLogs}
           headers={socialNetwrokHeaders}
           status={'no-connection'}
           connection={connection}
