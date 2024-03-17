@@ -5,9 +5,10 @@ import ErrorPage from './error-page';
 import Root from './routes/Root';
 import { ThemeProvider } from '@/components/theme-provider';
 import './index.css';
-import { loader as connectionLoader } from './routes/connection';
 import SocialNetworks from './routes/SocialNetworks';
 import Agencies from './routes/Agencies';
+import { loader as AgenciesLoader } from './routes/Agencies';
+import { loader as SocialNetworksLoader } from './routes/SocialNetworks';
 
 const router = createBrowserRouter([
   {
@@ -15,23 +16,17 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
   },
-  // {
-  //   path: '/:connection',
-  //   element: <Connection />,
-  //   errorElement: <ErrorPage />,
-  //   loader: connectionLoader,
-  // },
   {
     path: '/:connection/sn/',
     element: <SocialNetworks />,
     errorElement: <ErrorPage />,
-    loader: connectionLoader,
+    loader: SocialNetworksLoader,
   },
   {
     path: '/:connection/ag/',
     element: <Agencies />,
     errorElement: <ErrorPage />,
-    loader: connectionLoader,
+    loader: AgenciesLoader,
   },
 ]);
 // second sub dashboards should be path: '/:connection/sn/:id',
