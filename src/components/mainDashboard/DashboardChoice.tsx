@@ -41,7 +41,6 @@ export default function DashboardChoice({
 
   return (
     <div className="h-4/5">
-      {/*TODO: Make the border color a variable that changes according to the status */}
       <Card
         className={String.raw`flex-col p-2 hover:border-${mainBorderColor}-400`}
       >
