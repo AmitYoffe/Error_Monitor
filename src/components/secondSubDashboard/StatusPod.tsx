@@ -1,6 +1,5 @@
 import { Separator } from '@/components/ui/separator';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 export type SecondSubDashboard = 'operational' | 'unstable' | 'no-connection';
 
@@ -16,21 +15,17 @@ export const statusIcons: Record<StatusPodProps, JSX.Element> = {
   'no-connection': <XCircle className="text-red-400" />,
 };
 
-function StatusPod({ name, status, link }: StatusPodProps) {
-  const Component = link ? Link : 'div';
-
+function StatusPod({ name, status }: StatusPodProps) {
   return (
-    <>
-      <Component to={link || ''}>
-        <div className="flex">
-          <p className="mb-4 flex-1 text-lg">{name}</p>
-          {statusIcons[status]}
-        </div>
-        <p className="text-sm">Status: {status}</p>
-        <p className="text-sm">Last Updated: {new Date().toISOString()}</p>
-      </Component>
+    <div className="w-1/6">
+      <div className="flex">
+        <p className="mb-4 flex-1 p-1 text-lg">{name}</p>
+        {statusIcons[status]}
+      </div>
+      <p className="p-1 text-sm">Status: {status}</p>
+      <p className="p-1 text-sm">Last Updated: {new Date().toISOString()}</p>
       <Separator />
-    </>
+    </div>
   );
 }
 

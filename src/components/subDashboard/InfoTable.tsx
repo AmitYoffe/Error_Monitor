@@ -48,7 +48,7 @@ export function InfoTable({
     : data;
 
   return (
-    <Card className="container flex max-h-[820px] flex-col justify-center p-2">
+    <Card className=" container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
           <h2 className="text-2xl font-bold tracking-tight">{connection}</h2>
@@ -91,6 +91,3 @@ export function InfoTable({
     </Card>
   );
 }
-
-// TODO: Add a pretty scrollbar to table that is reactive to dark mode
-// scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent scrollbar-thumb-custom-border-radius
