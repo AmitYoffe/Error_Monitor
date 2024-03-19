@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindcssAnimate from "tailwindcss-animate";
+import tailwindScrollbar from "tailwind-scrollbar";
 export const darkMode = ["class"];
 export const content = [
   './pages/**/*.{ts,tsx}',
@@ -73,4 +75,5 @@ export const theme = {
   },
 };
 
-export const plugins = [require("tailwindcss-animate"), require('tailwind-scrollbar'),];
+// export const plugins = [require("tailwindcss-animate"), require('tailwind-scrollbar'),];
+export const plugins = [tailwindcssAnimate, tailwindScrollbar];
