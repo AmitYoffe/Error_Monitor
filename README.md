@@ -10,4 +10,4 @@ To start the project locally run the following command.
 npm run dev
 ```
 
-## Thats it! engoy
+## Thats it! enjoy
