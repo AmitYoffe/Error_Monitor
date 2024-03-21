@@ -1,10 +1,10 @@
+import BreadCrumbs from '@/components/BreadCrumbs';
 import { ModeToggle } from '@/components/mode-toggle';
 import { InfoTable } from '@/components/subDashboard/InfoTable';
 import { AsyncReturnType } from '@/types';
 import { getLogs } from '@/utils';
-import { Undo2 } from 'lucide-react';
 import { ChangeEvent, useState } from 'react';
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -28,13 +28,11 @@ export default function Connection() {
   ): void {
     setSearch(event.target.value);
   }
-  
+
   return (
     <div className="h-screen overflow-hidden p-8">
       <ModeToggle />
-      <Link to="/" className="absolute left-2 top-2">
-        <Undo2 />
-      </Link>
+      <BreadCrumbs itemName={'Agencies'} />
       <InfoTable
         data={connectionLogs}
         headers={agenciesHeaders}

@@ -1,9 +1,14 @@
+import BreadCrumbs from '@/components/BreadCrumbs';
 import StatusPod from '@/components/secondSubDashboard/StatusPod';
+import { Card } from '@/components/ui/card';
 
 function SecondSubDashboard() {
   return (
     <>
-      <StatusPod name={'Facebook'} status={'unstable'} />
+      <BreadCrumbs />
+      <div className="flex justify-center">
+        <StatusPod name={'Facebook'} status={'unstable'} />
+      </div>
     </>
   );
 }
