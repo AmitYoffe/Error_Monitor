@@ -7,14 +7,18 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useLocation } from 'react-router-dom';
 
-interface BreadCrumbsProps {
-  itemName?: string;
-}
 
-function BreadCrumbs({ itemName }: BreadCrumbsProps) {
+function BreadCrumbs() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
-  console.log(pathnames);
+  const backPath = '/' + pathnames.slice(0, -1).join('/')
+
+  let formattedPathName = pathnames[0].split('%20').join(' ');
+  if (pathnames.includes('sn')) {
+    formattedPathName = `Social Networks - ${formattedPathName}`
+  } else if (pathnames.includes('ag')) {
+    formattedPathName = `Agencies - ${formattedPathName}`
+  }
 
   return (
     <Breadcrumb className="absolute left-2 top-2">
@@ -24,16 +28,17 @@ function BreadCrumbs({ itemName }: BreadCrumbsProps) {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href={location.pathname}>
-            {itemName ? `${itemName} - ${pathnames[0]}` : pathnames[0]}
+          <BreadcrumbLink href={pathnames.length >= 3 ? backPath : undefined}>
+            {formattedPathName}
           </BreadcrumbLink>
         </BreadcrumbItem>
         {pathnames.length >= 3 ? (
           <>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={location.pathname}>
-                {pathnames[2]}
+              <BreadcrumbLink>
+                {/* Take last item of pathnames */}
+                {pathnames.slice(-1)}
               </BreadcrumbLink>
             </BreadcrumbItem>
           </>
@@ -44,5 +49,3 @@ function BreadCrumbs({ itemName }: BreadCrumbsProps) {
 }
 
 export default BreadCrumbs;
-
-//TODO: Need to add functionality with % 'west20%bank' + manage sn into social networks and so on...

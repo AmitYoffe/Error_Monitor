@@ -32,7 +32,7 @@ export default function Connection() {
   return (
     <div className="h-screen overflow-hidden p-8">
       <ModeToggle />
-      <BreadCrumbs itemName={'Agencies'} />
+      <BreadCrumbs />
       <InfoTable
         data={connectionLogs}
         headers={agenciesHeaders}

@@ -1,6 +1,5 @@
 import BreadCrumbs from '@/components/BreadCrumbs';
 import StatusPod from '@/components/secondSubDashboard/StatusPod';
-import { Card } from '@/components/ui/card';
 
 function SecondSubDashboard() {
   return (

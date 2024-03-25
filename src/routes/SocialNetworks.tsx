@@ -37,7 +37,7 @@ export default function Connection() {
   return (
     <div className="h-screen overflow-hidden p-8">
       <ModeToggle />
-      <BreadCrumbs itemName={'Social Networks'} />
+      <BreadCrumbs />
       <div className="flex flex-row gap-4">
         <InfoTable
           data={connectionLogs}
