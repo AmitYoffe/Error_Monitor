@@ -36,7 +36,6 @@ export default function Connection() {
       <InfoTable
         data={connectionLogs}
         headers={agenciesHeaders}
-        status={'operational'}
         connection={connection}
         search={search}
         handleInputChange={handleInputChange}

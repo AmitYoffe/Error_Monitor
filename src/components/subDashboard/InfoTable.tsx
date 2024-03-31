@@ -6,18 +6,17 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { ConnectionLog } from '@/utils';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { ChangeEvent, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { StatusType } from '../mainDashboard/DashboardChoice';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import { ConnectionLog } from './components/ConnectionTable';
-// import StatusPod from '../secondSubDashboard/StatusPod';
 
 interface InfoTableProps {
   data: ConnectionLog[];
   headers: string[];
-  status: string;
   connection: string;
   handleInputChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -25,7 +24,7 @@ interface InfoTableProps {
   search: string;
 }
 
-export const statusIcons: Record<StatusPod, JSX.Element> = {
+export const statusIcons: Record<StatusType, JSX.Element> = {
   operational: <CheckCircle2 className="text-green-400" />,
   unstable: <AlertCircle className="text-yellow-400" />,
   'no-connection': <XCircle className="text-red-400" />,
@@ -34,7 +33,6 @@ export const statusIcons: Record<StatusPod, JSX.Element> = {
 export function InfoTable({
   data,
   headers,
-  status,
   connection,
   handleInputChange,
   search,
@@ -90,9 +88,7 @@ export function InfoTable({
               {Object.values(row).map((value, columnIndex) => (
                 <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
               ))}
-              <TableCell>{statusIcons[status]}</TableCell>
-              {/* The status for each table cell should be checked for in here,
-              not passed down as a prop from the parent component */}
+              <TableCell>{statusIcons[row.status]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

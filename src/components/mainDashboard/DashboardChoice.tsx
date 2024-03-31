@@ -1,15 +1,19 @@
+import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
-import { useEffect, useState } from 'react';
 
-interface ISocialNetwork {
+export type StatusType = 'operational' | 'unstable' | 'no-connection';
+
+export interface ISocialNetwork {
   lastTimeRecieved: string;
   info: string;
+  status: StatusType;
 }
 
-interface IAgency {
+export interface IAgency {
   lastTimeRecieved: string;
   info: string;
+  status: StatusType;
 }
 
 interface IDashboardChoice {
@@ -25,62 +29,71 @@ export default function DashboardChoice({
   SocialNetworks,
   Agencies,
 }: IDashboardChoice) {
-  const [mainBorderColor, setMainBorderColor] = useState<string>('green');
-  const [agencyBorderColor, setAgencyBorderColor] = useState<string>('green');
-  const [snBorderColor, setSnBorderColor] = useState<string>('yellow');
+  const statusVisualizer: Record<StatusType, string> = {
+    operational: 'border-green-400',
+    unstable: 'border-yellow-400',
+    'no-connection': 'border-red-400',
+  };
+  let statusIndicatorColor = 'border-green-400';
 
-  useEffect(() => {
-    if (snBorderColor === 'red' || agencyBorderColor === 'red') {
-      setMainBorderColor('red');
-    } else if (snBorderColor === 'yellow' || agencyBorderColor === 'yellow') {
-      setMainBorderColor('yellow');
-    } else {
-      setMainBorderColor('green');
-    }
-  }, [agencyBorderColor, snBorderColor]);
+  if (
+    Agencies?.status === 'no-connection' ||
+    SocialNetworks?.status === 'no-connection'
+  ) {
+    statusIndicatorColor = statusVisualizer['no-connection'];
+  } else if (
+    Agencies?.status === 'unstable' ||
+    SocialNetworks?.status === 'unstable'
+  ) {
+    statusIndicatorColor = statusVisualizer['unstable'];
+  }
 
   return (
     <div className="h-4/5">
-      <Card
-        className={String.raw`flex-col p-2 hover:border-${mainBorderColor}-400`}
-      >
+      <Card className={cn('flex-col p-2', `hover:${statusIndicatorColor}`)}>
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
           {location}
         </p>
         <Link to={`${location}/sn`}>
           <Card
-            className={String.raw`flex-col p-2 hover:border-${snBorderColor}-400`}
+            className={cn(
+              'flex-col p-2',
+              `hover:${statusVisualizer[SocialNetworks!.status]}`,
+            )}
           >
             <CardTitle className="p-2 text-center underline">
               Social Networks
             </CardTitle>
-            <CardDescription className="mx-12">
-              Last Time Recieved: {SocialNetworks?.lastTimeRecieved}
+            <CardDescription className="mx-12 flex justify-between">
+              Last Time Recieved: <div>{SocialNetworks?.lastTimeRecieved}</div>
             </CardDescription>
-            <CardDescription className="mx-12">
-              Docs form 3 days ago: {SocialNetworks?.info}
+            <CardDescription className="mx-12 flex justify-between">
+              Docs from 3 days ago: <div>{SocialNetworks?.info}</div>
             </CardDescription>
-            <CardDescription className="mx-12">
-              Total Docs: {SocialNetworks?.info}
+            <CardDescription className="mx-12 flex justify-between">
+              Total Docs: <div>{SocialNetworks?.info}</div>
             </CardDescription>
           </Card>
         </Link>
         <Link to={`${location}/ag`}>
           <Card
-            className={String.raw`flex-col p-2 hover:border-${agencyBorderColor}-400`}
+            className={cn(
+              'flex-col p-2',
+              `hover:${statusVisualizer[Agencies!.status]}`,
+            )}
           >
             <CardTitle className="p-2 text-center underline">
               Agencies
             </CardTitle>
-            <CardDescription className="mx-12">
-              Last Time Recieved: {Agencies?.lastTimeRecieved}
+            <CardDescription className="mx-12 flex justify-between">
+              Last Time Recieved: <div>{Agencies?.lastTimeRecieved}</div>
             </CardDescription>
-            <CardDescription className="mx-12">
-              Docs form 3 days ago: {Agencies?.info}
+            <CardDescription className="mx-12 flex justify-between">
+              Docs from 3 days ago: <div>{Agencies?.info}</div>
             </CardDescription>
-            <CardDescription className="mx-12">
-              Total Docs: {Agencies?.info}
+            <CardDescription className="mx-12 flex justify-between">
+              Total Docs: <div>{Agencies?.info}</div>
             </CardDescription>
           </Card>
         </Link>
@@ -90,144 +103,3 @@ export default function DashboardChoice({
 }
 
 //TODO: some function that uses setCurrentStatus according to the actual data
-
-
-
-
-
-
-
-
-
-// import { Link } from 'react-router-dom';
-// import { Card, CardDescription, CardTitle } from '../ui/card';
-// import { useEffect, useState } from 'react';
-
-// interface ISocialNetwork {
-//   lastTimeRecieved: string;
-//   info: string;
-// }
-
-// interface IAgency {
-//   lastTimeRecieved: string;
-//   info: string;
-// }
-
-// interface IDashboardChoice {
-//   iconSrc: string;
-//   location: string;
-//   SocialNetworks?: ISocialNetwork;
-//   Agencies?: IAgency;
-// }
-
-// export default function DashboardChoice({
-//   iconSrc,
-//   location,
-//   SocialNetworks,
-//   Agencies,
-// }: IDashboardChoice) {
-//   const [mainBorderColor, setMainBorderColor] = useState<string>('green');
-//   const [agencyBorderColor, setAgencyBorderColor] = useState<string>('green');
-//   const [snBorderColor, setSnBorderColor] = useState<string>('yellow');
-
-//   const [isMainHovered, setIsMainHovered] = useState(false);
-//   const [isAgencyHovered, setIsAgencyHovered] = useState(false);
-//   const [isSnHovered, setIsSnHovered] = useState(false);
-
-//   const handleMainMouseEnter = () => {
-//     setIsMainHovered(true);
-//   };
-//   const handleMainMouseLeave = () => {
-//     setIsMainHovered(false);
-//   };
-
-//   const handleAgencyMouseEnter = () => {
-//     setIsAgencyHovered(true);
-//   };
-//   const handleAgencyMouseLeave = () => {
-//     setIsAgencyHovered(false);
-//   };
-
-//   const handleSnMouseEnter = () => {
-//     setIsSnHovered(true);
-//   };
-//   const handleSnMouseLeave = () => {
-//     setIsSnHovered(false);
-//   };
-
-//   useEffect(() => {
-//     if (isSnHovered) {
-//       setMainBorderColor(snBorderColor);
-//     } else if (isAgencyHovered) {
-//       setMainBorderColor(agencyBorderColor);
-//     } else {
-//       setMainBorderColor('green');
-//     }
-//   }, [isSnHovered, isAgencyHovered, snBorderColor, agencyBorderColor]);
-
-//   return (
-//     <div className="h-4/5">
-//       <Card
-//         className="flex-col p-2"
-//         style={{
-//           borderColor: isMainHovered ? mainBorderColor : undefined,
-//         }}
-//         onMouseEnter={handleMainMouseEnter}
-//         onMouseLeave={handleMainMouseLeave}
-//       >
-//         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
-//           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
-//           {location}
-//         </p>
-//         <Link to={`${location}/sn`}>
-//           <Card
-//             className="flex-col p-2"
-//             style={{
-//               borderColor: isSnHovered ? snBorderColor : undefined,
-//             }}
-//             onMouseEnter={handleSnMouseEnter}
-//             onMouseLeave={handleSnMouseLeave}
-//           >
-//             <CardTitle className="p-2 text-center underline">
-//               Social Networks
-//             </CardTitle>
-//             <CardDescription className="mx-12">
-//               Last Time Received: {SocialNetworks?.lastTimeRecieved}
-//             </CardDescription>
-//             <CardDescription className="mx-12">
-//               Docs from 3 days ago: {SocialNetworks?.info}
-//             </CardDescription>
-//             <CardDescription className="mx-12">
-//               Total Docs: {SocialNetworks?.info}
-//             </CardDescription>
-//           </Card>
-//         </Link>
-//         <Link to={`${location}/ag`}>
-//           <Card
-//             className="flex-col p-2"
-//             style={{
-//               borderColor: isAgencyHovered ? agencyBorderColor : undefined,
-//             }}
-//             onMouseEnter={handleAgencyMouseEnter}
-//             onMouseLeave={handleAgencyMouseLeave}
-//           >
-//             <CardTitle className="p-2 text-center underline">
-//               Agencies
-//             </CardTitle>
-//             <CardDescription className="mx-12">
-//               Last Time Received: {Agencies?.lastTimeRecieved}
-//             </CardDescription>
-//             <CardDescription className="mx-12">
-//               Docs from 3 days ago: {Agencies?.info}
-//             </CardDescription>
-//             <CardDescription className="mx-12">
-//               Total Docs: {Agencies?.info}
-//             </CardDescription>
-//           </Card>
-//         </Link>
-//       </Card>
-//     </div>
-//   );
-// }
-
-// //TODO: some function that uses setCurrentStatus according to the actual data

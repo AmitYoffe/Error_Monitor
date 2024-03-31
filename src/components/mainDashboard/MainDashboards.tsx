@@ -10,7 +10,10 @@ import WhiteLebanon from '@/assets/images/white-lebanon.png';
 import WhiteWestBank from '@/assets/images/white-westBank.png';
 import WhiteInterArab from '@/assets/images/white-middleEast.png';
 import WhiteInternational from '@/assets/images/white-International.png';
-import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
+import DashboardChoice, {
+  IAgency,
+  ISocialNetwork,
+} from '@/components/mainDashboard/DashboardChoice';
 import {
   CardContent,
   CardDescription,
@@ -19,12 +22,48 @@ import {
 } from '@/components/ui/card';
 import { useTheme } from '../theme-provider';
 
+const agenciesArr: IAgency[] = [
+  {
+    lastTimeRecieved: new Date().toISOString(),
+    info: 'no information',
+    status: 'no-connection',
+  },
+  {
+    lastTimeRecieved: new Date().toISOString(),
+    info: 'no information',
+    status: 'operational',
+  },
+  {
+    lastTimeRecieved: new Date().toISOString(),
+    info: 'no information',
+    status: 'unstable',
+  },
+];
+
+const socialNetworksArr: ISocialNetwork[] = [
+  {
+    lastTimeRecieved: new Date().toISOString(),
+    info: 'no information',
+    status: 'unstable',
+  },
+  {
+    lastTimeRecieved: new Date().toISOString(),
+    info: 'no information',
+    status: 'operational',
+  },
+  {
+    lastTimeRecieved: new Date().toISOString(),
+    info: 'no information',
+    status: 'unstable',
+  },
+];
+
 export default function MainDashboards() {
   const { theme } = useTheme();
 
   return (
     <div>
-      <CardHeader className="flex w-full items-center pb- pt-1">
+      <CardHeader className="flex w-full items-center pt-1">
         <img
           src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
           alt="confused duck"
@@ -37,20 +76,20 @@ export default function MainDashboards() {
         <DashboardChoice
           iconSrc={theme === 'dark' ? WhiteGaza : Gaza}
           location={'Gaza'}
-          SocialNetworks={undefined}
-          Agencies={undefined}
+          SocialNetworks={socialNetworksArr[0]}
+          Agencies={agenciesArr[0]}
         />
         <DashboardChoice
           iconSrc={theme === 'dark' ? WhiteLebanon : Lebanon}
           location={'Lebanon'}
-          SocialNetworks={undefined}
-          Agencies={undefined}
+          SocialNetworks={socialNetworksArr[1]}
+          Agencies={agenciesArr[1]}
         />
         <DashboardChoice
           iconSrc={theme === 'dark' ? WhiteWestBank : WestBank}
           location={'West Bank'}
-          SocialNetworks={undefined}
-          Agencies={undefined}
+          SocialNetworks={socialNetworksArr[2]}
+          Agencies={agenciesArr[2]}
         />
       </CardContent>
       <div className="flex w-full justify-center">
@@ -58,14 +97,14 @@ export default function MainDashboards() {
           <DashboardChoice
             iconSrc={theme === 'dark' ? WhiteInterArab : InterArab}
             location={'Inter-Arab'}
-            SocialNetworks={undefined}
-            Agencies={undefined}
+            SocialNetworks={socialNetworksArr[2]}
+            Agencies={agenciesArr[2]}
           />
           <DashboardChoice
             iconSrc={theme === 'dark' ? WhiteInternational : International}
             location={'International'}
-            SocialNetworks={undefined}
-            Agencies={undefined}
+            SocialNetworks={socialNetworksArr[2]}
+            Agencies={agenciesArr[2]}
           />
         </CardContent>
       </div>

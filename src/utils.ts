@@ -1,9 +1,14 @@
 import uniqid from "uniqid";
-import { ConnectionLog } from "./components/ConnectionTable";
-// ConnectionLog??
+import { StatusType } from "./components/mainDashboard/DashboardChoice";
+
+export type ConnectionLog = {
+    logid: string;
+    status: StatusType,
+    time: string,
+}
 
 export async function getLogs() {
-    const connectionLogs: ConnectionLog = [
+    const connectionLogs: ConnectionLog[] = [
         {
             logid: uniqid('id-'),
             status: 'operational',
@@ -80,6 +85,6 @@ export async function getLogs() {
             time: new Date().toISOString(),
         },
     ];
-    
+
     return connectionLogs
 }
