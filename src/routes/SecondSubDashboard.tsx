@@ -14,4 +14,5 @@ function SecondSubDashboard() {
 
 export default SecondSubDashboard;
 
-// TODO: Unserstand how to show this third screen would work
+// TODO: Understand how to show this third screen would work.
+// and do it!
