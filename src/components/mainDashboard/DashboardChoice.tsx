@@ -102,4 +102,4 @@ export default function DashboardChoice({
   );
 }
 
-//TODO: Add some logiv that will cause the parent dashboard sattuses actually update according to the logs status values
+//TODO: Add some logic that will cause the parent dashboard statuses actually update according to the logs status values

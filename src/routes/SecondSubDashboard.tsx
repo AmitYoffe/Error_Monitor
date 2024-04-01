@@ -14,5 +14,4 @@ function SecondSubDashboard() {
 
 export default SecondSubDashboard;
 
-// TODO: Understand how to show this third screen would work.
-// and do it!
+// TODO: Turn this component into something similar to infoTable 

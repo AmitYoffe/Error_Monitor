@@ -41,17 +41,16 @@ export function InfoTable({
 
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.logid && dataItem.logid.includes(search.trim()),
-      )
+      (dataItem) => dataItem.logid && dataItem.logid.includes(search.trim()),
+    )
     : data;
 
-  //TODO: add some condition to disable clicking on a row if this condition is true. for each row in the map
   const noFollowUpLink = true;
   return (
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{connection}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{`${connection} Networks`}</h2>
           <p className="text-muted-foreground">
             Here's a list of your {headers[0]} items!
           </p>
@@ -75,15 +74,14 @@ export function InfoTable({
           {filteredData.map((row, rowIndex) => (
             <TableRow
               key={rowIndex}
-              className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
-                noFollowUpLink
-                  ? 'transition-colors duration-100 active:border-red-500'
-                  : ''
-              }`}
+              className={`cursor-pointer hover:bg-accent active:border-slate-950 ${noFollowUpLink
+                ? 'transition-colors duration-100 active:border-red-500'
+                : ''
+                }`}
               onClick={() => navigation(`${row.logid}`)}
-              // onClick={
-              //   !noFollowUpLink ? () => navigation(`${row.logid}`) : undefined
-              // }
+            // onClick={
+            //   !noFollowUpLink ? () => navigation(`${row.logid}`) : undefined
+            // }
             >
               {Object.values(row).map((value, columnIndex) => (
                 <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
@@ -96,3 +94,8 @@ export function InfoTable({
     </Card>
   );
 }
+
+//TODO: Add some condition to disable clicking on a row if one of the conditions is true:
+// (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network)
+
+//TODO: Fix the columns so that the "info" column is changed into "docs_count" + "docs_count_3_days"
