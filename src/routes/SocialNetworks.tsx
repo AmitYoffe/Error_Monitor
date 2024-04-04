@@ -1,6 +1,6 @@
 import BreadCrumbs from '@/components/BreadCrumbs';
 import { ModeToggle } from '@/components/mode-toggle';
-import { InfoTable } from '@/components/subDashboard/InfoTable';
+import { NetworksTable } from '@/components/subDashboard/NetworksTable';
 import { AsyncReturnType } from '@/types';
 import { getLogs } from '@/utils';
 import { ChangeEvent, useState } from 'react';
@@ -23,8 +23,9 @@ export default function Connection() {
   const socialNetwrokHeaders = [
     'Social Network',
     'Last Time Recieved',
-    'Info',
-    'status',
+    'Total Docs',
+    'Docs From 3 Days Ago',
+    // 'status',
   ];
   const [search, setSearch] = useState('');
 
@@ -35,14 +36,13 @@ export default function Connection() {
   }
 
   return (
-    <div className="h-screen overflow-hidden p-8">
+    <div className="h-screen overflow-hidden p-9">
       <ModeToggle />
       <BreadCrumbs />
       <div className="flex flex-row gap-4">
-        <InfoTable
+        <NetworksTable
           data={connectionLogs}
           headers={socialNetwrokHeaders}
-          status={'no-connection'}
           connection={connection}
           handleInputChange={handleInputChange}
           search={search}

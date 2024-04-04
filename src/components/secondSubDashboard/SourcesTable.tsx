@@ -7,14 +7,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { ConnectionLog } from '@/utils';
-import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { ChangeEvent, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { StatusType } from '../mainDashboard/DashboardChoice';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 
-interface InfoTableProps {
+interface SourcesTableProps {
   data: ConnectionLog[];
   headers: string[];
   connection: string;
@@ -24,35 +21,26 @@ interface InfoTableProps {
   search: string;
 }
 
-export const statusIcons: Record<StatusType, JSX.Element> = {
-  operational: <CheckCircle2 className="text-green-400" />,
-  unstable: <AlertCircle className="text-yellow-400" />,
-  'no-connection': <XCircle className="text-red-400" />,
-};
-
-export function InfoTable({
+export default function SourcesTable({
   data,
   headers,
-  connection,
   handleInputChange,
   search,
-}: InfoTableProps) {
-  const navigation = useNavigate();
-
+}: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-      (dataItem) => dataItem.logid && dataItem.logid.includes(search.trim()),
-    )
+        (dataItem) => dataItem.logid && dataItem.logid.includes(search.trim()),
+      )
     : data;
 
-  const noFollowUpLink = true;
+  // TODO: Fix data[0] into something that catches the previously clicked on network
   return (
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{`${connection} Networks`}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{`${data[0].logid} Sources`}</h2>
           <p className="text-muted-foreground">
-            Here's a list of your {headers[0]} items!
+            Here's a list of your soucres!
           </p>
         </div>
         <Input
@@ -74,19 +62,12 @@ export function InfoTable({
           {filteredData.map((row, rowIndex) => (
             <TableRow
               key={rowIndex}
-              className={`cursor-pointer hover:bg-accent active:border-slate-950 ${noFollowUpLink
-                ? 'transition-colors duration-100 active:border-red-500'
-                : ''
-                }`}
-              onClick={() => navigation(`${row.logid}`)}
-            // onClick={
-            //   !noFollowUpLink ? () => navigation(`${row.logid}`) : undefined
-            // }
+              className="cursor-pointer hover:bg-accent active:border-slate-950"
             >
               {Object.values(row).map((value, columnIndex) => (
                 <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
               ))}
-              <TableCell>{statusIcons[row.status]}</TableCell>
+              {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
@@ -95,7 +76,4 @@ export function InfoTable({
   );
 }
 
-//TODO: Add some condition to disable clicking on a row if one of the conditions is true:
-// (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network)
-
-//TODO: Fix the columns so that the "info" column is changed into "docs_count" + "docs_count_3_days"
+// TODO: Finish this component
