@@ -1,7 +1,7 @@
 import BreadCrumbs from '@/components/BreadCrumbs';
 import { ModeToggle } from '@/components/mode-toggle';
 import { NetworksTable } from '@/components/subDashboard/NetworksTable';
-import { getNetworkNames } from '@/lib/netwrokUtils';
+import { getAgencyNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
 import { ChangeEvent, useState } from 'react';
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
@@ -10,8 +10,8 @@ import invariant from 'tiny-invariant';
 export async function loader({ params }: LoaderFunctionArgs) {
   const connection = params.connection;
   invariant(connection, 'connection parameter is required');
-  const networks = await getNetworkNames();
-  // console.log(networks);
+
+  const networks = await getAgencyNames(connection);
   return { connection, networks };
 }
 

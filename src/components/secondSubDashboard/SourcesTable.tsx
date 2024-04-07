@@ -6,13 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { ConnectionLog } from '@/utils';
 import { ChangeEvent, ReactNode } from 'react';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
+import { Network } from '@/types/NetworkType';
 
 interface SourcesTableProps {
-  data: ConnectionLog[];
+  data: Network[];
   headers: string[];
   connection: string;
   handleInputChange: (
@@ -29,7 +29,7 @@ export default function SourcesTable({
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.logid && dataItem.logid.includes(search.trim()),
+        // (dataItem) => dataItem. && dataItem.includes(search.trim()),
       )
     : data;
 

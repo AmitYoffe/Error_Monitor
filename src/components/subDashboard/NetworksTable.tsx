@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Network } from '@/types/NetworkType';
+import { ParsedNetwrokInfo } from '@/types/NetworkType';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { ChangeEvent, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 
 interface NetworksTableProps {
-  data: Network[];
+  data: ParsedNetwrokInfo[];
   headers: string[];
   connection: string;
   handleInputChange: (
@@ -41,11 +41,10 @@ export function NetworksTable({
 
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem && dataItem.includes(search.trim()),
+        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
       )
     : data;
 
-  const noFollowUpLink = true;
   return (
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
@@ -70,26 +69,31 @@ export function NetworksTable({
             ))}
           </TableRow>
         </TableHeader>
+        {/*  (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network) then disable clicking */}
         <TableBody>
-          {filteredData.map((row, rowIndex) => (
-            <TableRow
-              key={rowIndex}
-              className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
-                noFollowUpLink
-                  ? 'transition-colors duration-100 active:border-red-500'
-                  : ''
-              }`}
-              onClick={() => navigation(`${row.logid}`)}
-              // onClick={
-              //   !noFollowUpLink ? () => navigation(`${row.logid}`) : undefined
-              // }
-            >
-              {Object.values(row).map((value, columnIndex) => (
-                <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
-              ))}
-              {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
-            </TableRow>
-          ))}
+          {filteredData.map((row, rowIndex) => {
+            const noFollowUpLink =
+              // row.isAgency ||
+              !row.sources;
+            console.log(noFollowUpLink);
+            return (
+              <TableRow
+                key={rowIndex}
+                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
+                  noFollowUpLink
+                    ? 'transition-colors duration-100 active:border-red-500'
+                    : ''
+                }`}
+                onClick={() =>
+                  noFollowUpLink ? null : navigation(`${row.name}`)
+                }
+              >
+                {Object.values(row).map((value, columnIndex) => (
+                  <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
+                ))}
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </Card>
@@ -97,6 +101,11 @@ export function NetworksTable({
 }
 
 //TODO: Add some condition to disable clicking on a row if one of the conditions is true:
-// (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network)
+// (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network) then disable clicking
 
-//TODO: Fix the columns so that the "info" column is changed into "docs_count" + "docs_count_3_days"
+//Currently, i deleted the sources field from the getSocialNetworksNames() function. This was to prevent a bug where the objects inside
+// this field were trying to be rendered inside of the networksTable when they shouldn't
+// And because of this i can not use this field as a condition for disabling the click event for the social networks in this table. So:
+//TODO: i need to fix the getSocialNetworksNames() to return the sources field, and instead i should state exactly the headers i want
+// in this table, currently they are mapped through the headers i pass through the props. Only then i will be able to use the
+// 'sources' field as a condition. 👍

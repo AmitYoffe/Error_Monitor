@@ -1,8 +1,8 @@
 import BreadCrumbs from '@/components/BreadCrumbs';
 import { ModeToggle } from '@/components/mode-toggle';
 import { NetworksTable } from '@/components/subDashboard/NetworksTable';
+import { getSocialNetworksNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
-import { getLogs } from '@/utils';
 import { ChangeEvent, useState } from 'react';
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
@@ -10,13 +10,13 @@ import invariant from 'tiny-invariant';
 export async function loader({ params }: LoaderFunctionArgs) {
   const connection = params.connection;
   invariant(connection, 'connection parameter is required');
-  const connectionLogs = await getLogs();
 
-  return { connection, connectionLogs };
+  const networks = await getSocialNetworksNames(connection);
+  return { connection, networks };
 }
 
 export default function Connection() {
-  const { connection, connectionLogs } = useLoaderData() as AsyncReturnType<
+  const { connection, networks } = useLoaderData() as AsyncReturnType<
     typeof loader
   >;
 
@@ -41,7 +41,7 @@ export default function Connection() {
       <BreadCrumbs />
       <div className="flex flex-row gap-4">
         <NetworksTable
-          data={connectionLogs}
+          data={networks}
           headers={socialNetwrokHeaders}
           connection={connection}
           handleInputChange={handleInputChange}

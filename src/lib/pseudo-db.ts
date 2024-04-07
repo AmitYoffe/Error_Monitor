@@ -92,7 +92,7 @@ export async function getNetworks() {
           }
         }
       },
-      "gaza strip": {
+      "gaza": {
         "docs_count": 827,
         "docs_count_3_days": 0,
         "last_time": "2024-01-21T21:46:30.000Z",
@@ -1812,7 +1812,7 @@ export async function getNetworks() {
           }
         }
       },
-      "gaza strip": {
+      "gaza": {
         "docs_count": 8570228,
         "docs_count_3_days": 64480,
         "last_time": "2024-03-05T10:09:48.000Z",
@@ -4496,5 +4496,3 @@ export async function getNetworks() {
 
   return network;
 }
-
-// TODO: Use this instead of connectionLogs

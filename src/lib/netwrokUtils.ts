@@ -1,18 +1,18 @@
+import { ParsedNetwrokInfo } from "@/types/NetworkType";
 import { getNetworks } from "./pseudo-db";
 
-export async function getNetworkNames() {
+export async function getAgencyNames(location: string) {
     const networks = await getNetworks();
-    const names = Object.entries(networks.articles).map(([_, value]) => Object.entries(value.networks))
-    console.log(names);
-    // const names: string[] = [];
-    // for (const location in network.articles) {
-    //     const locationData = network.articles[location];
-    //     // Iterate over locations
-    //     for (const networkName in locationData.networks) {
-    //         // Make sure networkName is a string
-    //         names.push(networkName);
-    //     }
-    // }
+    const networkJson = networks.articles[location.toLocaleLowerCase()].networks
+    const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(([key, value]) => { return { name: key, ...value } })
 
-    return names;
+    return networkJsonArray;
+}
+
+export async function getSocialNetworksNames(location: string): Promise<ParsedNetwrokInfo[]> {
+    const networks = await getNetworks();
+    const networkJson = networks.sn[location.toLocaleLowerCase()].networks
+    const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(([key, value]) => { return { name: key, docs_count: value.docs_count, last_time: value.last_time } })
+
+    return networkJsonArray;
 }

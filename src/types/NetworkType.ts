@@ -52,3 +52,7 @@ export interface NetworkInfo {
     last_time: string;
     sources?: Sources;
 }
+
+export interface ParsedNetwrokInfo extends NetworkInfo {
+    name: string;
+}
