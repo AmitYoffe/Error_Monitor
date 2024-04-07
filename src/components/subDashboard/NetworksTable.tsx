@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/table';
 import { ParsedNetwrokInfo } from '@/types/NetworkType';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StatusType } from '../mainDashboard/DashboardChoice';
 import { Card } from '../ui/card';
@@ -64,17 +64,17 @@ export function NetworksTable({
       <Table className="border-t-2">
         <TableHeader>
           <TableRow>
-            {headers.map((header, index) => (
-              <TableHead key={index}>{header}</TableHead>
-            ))}
+            <TableHead>Network</TableHead>
+            <TableHead>Last Time Recieved</TableHead>
+            <TableHead>Total Docs</TableHead>
+            <TableHead>Docs from 3 days ago</TableHead>
+            {/* <TableHead>Status</TableHead> */}
           </TableRow>
         </TableHeader>
         {/*  (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network) then disable clicking */}
         <TableBody>
           {filteredData.map((row, rowIndex) => {
-            const noFollowUpLink =
-              // row.isAgency ||
-              !row.sources;
+            const noFollowUpLink = !row.sources;
             console.log(noFollowUpLink);
             return (
               <TableRow
@@ -88,9 +88,10 @@ export function NetworksTable({
                   noFollowUpLink ? null : navigation(`${row.name}`)
                 }
               >
-                {Object.values(row).map((value, columnIndex) => (
-                  <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
-                ))}
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.last_time}</TableCell>
+                <TableCell>{row.docs_count}</TableCell>
+                {/* <TableCell >{row.docs_count_3_days as ReactNode}</TableCell> */}
               </TableRow>
             );
           })}
@@ -99,13 +100,3 @@ export function NetworksTable({
     </Card>
   );
 }
-
-//TODO: Add some condition to disable clicking on a row if one of the conditions is true:
-// (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network) then disable clicking
-
-//Currently, i deleted the sources field from the getSocialNetworksNames() function. This was to prevent a bug where the objects inside
-// this field were trying to be rendered inside of the networksTable when they shouldn't
-// And because of this i can not use this field as a condition for disabling the click event for the social networks in this table. So:
-//TODO: i need to fix the getSocialNetworksNames() to return the sources field, and instead i should state exactly the headers i want
-// in this table, currently they are mapped through the headers i pass through the props. Only then i will be able to use the
-// 'sources' field as a condition. 👍

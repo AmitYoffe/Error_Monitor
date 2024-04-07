@@ -28,9 +28,10 @@ export default function SourcesTable({
   search,
 }: SourcesTableProps) {
   const filteredData = search
-    ? data.filter(
+    ? data
+        .filter
         // (dataItem) => dataItem. && dataItem.includes(search.trim()),
-      )
+        ()
     : data;
 
   // TODO: Fix data[0] into something that catches the previously clicked on network
@@ -53,9 +54,14 @@ export default function SourcesTable({
       <Table className="border-t-2">
         <TableHeader>
           <TableRow>
-            {headers.map((header, index) => (
+            {/* {headers.map((header, index) => (
               <TableHead key={index}>{header}</TableHead>
-            ))}
+            ))} */}
+            <TableHead>Source Name</TableHead>
+            <TableHead>Source ID</TableHead>
+            <TableHead>Last Time Recieved</TableHead>
+            <TableHead>Total Docs</TableHead>
+            <TableHead>Docs 3 Days Ago</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -67,6 +73,10 @@ export default function SourcesTable({
               {Object.values(row).map((value, columnIndex) => (
                 <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
               ))}
+              //TODO: Fix this
+              {/* <TableCell>{row.name}</TableCell>
+              <TableCell>{row.last_time}</TableCell>
+              <TableCell>{row.docs_count}</TableCell> */}
               {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
           ))}
