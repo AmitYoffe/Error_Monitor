@@ -39,8 +39,8 @@ export function NetworksTable({
 
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-      )
+      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+    )
     : data;
 
   return (
@@ -65,7 +65,7 @@ export function NetworksTable({
             <TableHead>Network</TableHead>
             <TableHead>Last Time Recieved</TableHead>
             <TableHead>Total Docs</TableHead>
-            <TableHead>Docs from 3 days ago</TableHead>
+            <TableHead>Total Docs 3 Days</TableHead>
             {/* <TableHead>Status</TableHead> */}
           </TableRow>
         </TableHeader>
@@ -76,11 +76,10 @@ export function NetworksTable({
             return (
               <TableRow
                 key={rowIndex}
-                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
-                  noFollowUpLink
+                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${noFollowUpLink
                     ? 'transition-colors duration-100 active:border-red-500'
                     : ''
-                }`}
+                  }`}
                 onClick={() =>
                   noFollowUpLink ? null : navigation(`${row.name}`)
                 }

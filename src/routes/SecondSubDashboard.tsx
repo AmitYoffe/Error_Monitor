@@ -16,9 +16,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 function SecondSubDashboard() {
-  const { connection, networks } = useLoaderData() as AsyncReturnType<
-    typeof loader
-  >;
+  const { networks } = useLoaderData() as AsyncReturnType<typeof loader>;
 
   const [search, setSearch] = useState('');
 
@@ -35,7 +33,6 @@ function SecondSubDashboard() {
       <div className="flex justify-center gap-4 overflow-hidden p-9">
         <SourcesTable
           data={networks}
-          connection={connection}
           handleInputChange={handleInputChange}
           search={search}
         />

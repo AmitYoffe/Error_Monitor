@@ -7,8 +7,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useLocation } from 'react-router-dom';
 
-
-function BreadCrumbs() {
+export default function BreadCrumbs() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   const backPath = '/' + pathnames.slice(0, -1).join('/')
@@ -48,4 +47,4 @@ function BreadCrumbs() {
   );
 }
 
-export default BreadCrumbs;
+// TODO: Capitalize first letter of the word in the part after the "pathnames.length >= 3"

@@ -13,7 +13,6 @@ import { Input } from '../ui/input';
 
 interface SourcesTableProps {
   data: ParsedNetwrokInfo[];
-  connection: string;
   handleInputChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
@@ -24,22 +23,18 @@ export default function SourcesTable({
   data,
   handleInputChange,
   search,
-  connection,
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-      )
+      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+    )
     : data;
 
   return (
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{`${connection} Sources`}</h2>
-          <p className="text-muted-foreground">
-            Here's a list of your soucres!
-          </p>
+          <h2 className="text-2xl font-bold tracking-tight">{"Sources"}</h2>
         </div>
         <Input
           placeholder="search..."
@@ -54,7 +49,7 @@ export default function SourcesTable({
             <TableHead>Source Name</TableHead>
             <TableHead>Source ID</TableHead>
             <TableHead>Last Time Recieved</TableHead>
-            <TableHead>Docs 3 Days Ago</TableHead>
+            <TableHead>Total Docs 3 Days</TableHead>
             <TableHead>Total Docs</TableHead>
           </TableRow>
         </TableHeader>
