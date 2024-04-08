@@ -20,13 +20,6 @@ export default function Connection() {
     typeof loader
   >;
 
-  const agenciesHeaders = [
-    'Agency',
-    'Last Time Recieved',
-    'Total Docs',
-    'Docs From 3 Days Ago',
-    // 'status',
-  ];
   const [search, setSearch] = useState('');
 
   function handleInputChange(
@@ -41,7 +34,6 @@ export default function Connection() {
       <BreadCrumbs />
       <NetworksTable
         data={networks}
-        headers={agenciesHeaders}
         connection={connection}
         search={search}
         handleInputChange={handleInputChange}

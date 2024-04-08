@@ -20,13 +20,6 @@ export default function Connection() {
     typeof loader
   >;
 
-  const socialNetwrokHeaders = [
-    'Social Network',
-    'Last Time Recieved',
-    'Total Docs',
-    'Docs From 3 Days Ago',
-    // 'status',
-  ];
   const [search, setSearch] = useState('');
 
   function handleInputChange(
@@ -42,7 +35,6 @@ export default function Connection() {
       <div className="flex flex-row gap-4">
         <NetworksTable
           data={networks}
-          headers={socialNetwrokHeaders}
           connection={connection}
           handleInputChange={handleInputChange}
           search={search}

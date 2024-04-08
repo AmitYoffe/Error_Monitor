@@ -1,8 +1,8 @@
 import BreadCrumbs from '@/components/BreadCrumbs';
 import { ModeToggle } from '@/components/mode-toggle';
 import SourcesTable from '@/components/secondSubDashboard/SourcesTable';
+import { getSocialNetworksNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
-import { getLogs } from '@/utils';
 import { ChangeEvent, useState } from 'react';
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
@@ -10,24 +10,15 @@ import invariant from 'tiny-invariant';
 export async function loader({ params }: LoaderFunctionArgs) {
   const connection = params.connection;
   invariant(connection, 'connection parameter is required');
-  const connectionLogs = await getLogs();
+  const networks = await getSocialNetworksNames(connection);
 
-  return { connection, connectionLogs };
+  return { connection, networks };
 }
 
 function SecondSubDashboard() {
-  const { connection, connectionLogs } = useLoaderData() as AsyncReturnType<
+  const { connection, networks } = useLoaderData() as AsyncReturnType<
     typeof loader
   >;
-
-  const sourcesHeaders = [
-    'Source name',
-    'Source ID',
-    'Last Time Recieved',
-    'Total Docs',
-    'Docs From 3 Days Ago',
-    // 'status',
-  ];
 
   const [search, setSearch] = useState('');
 
@@ -43,8 +34,7 @@ function SecondSubDashboard() {
       <ModeToggle />
       <div className="flex justify-center gap-4 overflow-hidden p-9">
         <SourcesTable
-          data={connectionLogs}
-          headers={sourcesHeaders}
+          data={networks}
           connection={connection}
           handleInputChange={handleInputChange}
           search={search}

@@ -6,14 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { ChangeEvent, ReactNode } from 'react';
+import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import { ChangeEvent } from 'react';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import { Network } from '@/types/NetworkType';
 
 interface SourcesTableProps {
-  data: Network[];
-  headers: string[];
+  data: ParsedNetwrokInfo[];
   connection: string;
   handleInputChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -23,23 +22,21 @@ interface SourcesTableProps {
 
 export default function SourcesTable({
   data,
-  headers,
   handleInputChange,
   search,
+  connection,
 }: SourcesTableProps) {
   const filteredData = search
-    ? data
-        .filter
-        // (dataItem) => dataItem. && dataItem.includes(search.trim()),
-        ()
+    ? data.filter(
+        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+      )
     : data;
 
-  // TODO: Fix data[0] into something that catches the previously clicked on network
   return (
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{`${data[0].logid} Sources`}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{`${connection} Sources`}</h2>
           <p className="text-muted-foreground">
             Here's a list of your soucres!
           </p>
@@ -54,14 +51,11 @@ export default function SourcesTable({
       <Table className="border-t-2">
         <TableHeader>
           <TableRow>
-            {/* {headers.map((header, index) => (
-              <TableHead key={index}>{header}</TableHead>
-            ))} */}
             <TableHead>Source Name</TableHead>
             <TableHead>Source ID</TableHead>
             <TableHead>Last Time Recieved</TableHead>
-            <TableHead>Total Docs</TableHead>
             <TableHead>Docs 3 Days Ago</TableHead>
+            <TableHead>Total Docs</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -70,13 +64,13 @@ export default function SourcesTable({
               key={rowIndex}
               className="cursor-pointer hover:bg-accent active:border-slate-950"
             >
-              {Object.values(row).map((value, columnIndex) => (
-                <TableCell key={columnIndex}>{value as ReactNode}</TableCell>
-              ))}
-              //TODO: Fix this
-              {/* <TableCell>{row.name}</TableCell>
+              <TableCell>{row.name}</TableCell>
+              <TableCell> {/* {row.id}*/} id</TableCell>
               <TableCell>{row.last_time}</TableCell>
-              <TableCell>{row.docs_count}</TableCell> */}
+              <TableCell>
+                {/* {row.docs_count_3_days}*/} docs_count_3_days
+              </TableCell>
+              <TableCell>{row.docs_count}</TableCell>
               {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
           ))}
@@ -85,5 +79,3 @@ export default function SourcesTable({
     </Card>
   );
 }
-
-// TODO: Finish this component

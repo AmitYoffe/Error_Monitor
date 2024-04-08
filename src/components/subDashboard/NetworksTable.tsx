@@ -16,7 +16,6 @@ import { Input } from '../ui/input';
 
 interface NetworksTableProps {
   data: ParsedNetwrokInfo[];
-  headers: string[];
   connection: string;
   handleInputChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -32,7 +31,6 @@ export const statusIcons: Record<StatusType, JSX.Element> = {
 
 export function NetworksTable({
   data,
-  headers,
   connection,
   handleInputChange,
   search,
@@ -51,7 +49,7 @@ export function NetworksTable({
         <div className="flex flex-col p-2">
           <h2 className="text-2xl font-bold tracking-tight">{`${connection} Networks`}</h2>
           <p className="text-muted-foreground">
-            Here's a list of your {headers[0]} items!
+            Here's a list of your network items!
           </p>
         </div>
         <Input
@@ -75,7 +73,6 @@ export function NetworksTable({
         <TableBody>
           {filteredData.map((row, rowIndex) => {
             const noFollowUpLink = !row.sources;
-            console.log(noFollowUpLink);
             return (
               <TableRow
                 key={rowIndex}
@@ -91,7 +88,10 @@ export function NetworksTable({
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.last_time}</TableCell>
                 <TableCell>{row.docs_count}</TableCell>
-                {/* <TableCell >{row.docs_count_3_days as ReactNode}</TableCell> */}
+                <TableCell>
+                  {/* {row.docs_count_3_days}*/} docs_count_3_days
+                </TableCell>
+                {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
               </TableRow>
             );
           })}
@@ -100,3 +100,5 @@ export function NetworksTable({
     </Card>
   );
 }
+
+// TODO: Fix the error indication for the last row, it's invisible currently
