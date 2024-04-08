@@ -17,3 +17,27 @@ export async function getSocialNetworksNames(location: string): Promise<ParsedNe
 
     return networkJsonArray;
 }
+
+//TODO: need to add a util that can let me take the key of '100064654032648' and it's object, then return it in a json similar to here
+// I need this to fill the ID column inside the sources table (third dashboard)
+
+// "gaza": {
+//     "docs_count": 8570228,
+//     "docs_count_3_days": 64480,
+//     "last_time": "2024-03-05T10:09:48.000Z",
+//     "networks": {
+//       "facebook": {
+//         "docs_count": 6893146,
+//         "last_time": "2024-03-05T10:09:48.000Z",
+//         "sources": {
+//           "100064654032648": {
+//             "docs_count": 4552074,
+//             "docs_count_3_days": 30677,
+//             "last_time": "2024-03-04T10:40:11.000Z",
+//             "entity_names": [
+//               {
+//                 "entity_name": "Al Jazeera Channel - قناة الجزيرة",
+//                 "doc_count": 4552074
+//               }
+//             ]
+//           },
