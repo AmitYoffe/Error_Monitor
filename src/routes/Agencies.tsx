@@ -1,5 +1,3 @@
-import BreadCrumbs from '@/components/BreadCrumbs';
-import { ModeToggle } from '@/components/mode-toggle';
 import { NetworksTable } from '@/components/subDashboard/NetworksTable';
 import { getAgencyNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
@@ -30,8 +28,6 @@ export default function Connection() {
 
   return (
     <div className="h-screen overflow-hidden p-9">
-      <ModeToggle />
-      <BreadCrumbs />
       <NetworksTable
         data={networks}
         connection={connection}

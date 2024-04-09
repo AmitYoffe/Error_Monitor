@@ -1,5 +1,3 @@
-import BreadCrumbs from '@/components/BreadCrumbs';
-import { ModeToggle } from '@/components/mode-toggle';
 import SourcesTable from '@/components/secondSubDashboard/SourcesTable';
 import { getSocialNetworksNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
@@ -28,8 +26,6 @@ function SecondSubDashboard() {
 
   return (
     <>
-      <BreadCrumbs />
-      <ModeToggle />
       <div className="flex justify-center gap-4 overflow-hidden p-9">
         <SourcesTable
           data={networks}

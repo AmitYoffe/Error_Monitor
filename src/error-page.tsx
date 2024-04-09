@@ -2,6 +2,7 @@ import { Link, useRouteError } from 'react-router-dom';
 import cofusedDuckGif from '@/assets/gifs/confused-duck.gif';
 import { ModeToggle } from './components/mode-toggle';
 import { Undo2 } from 'lucide-react';
+import DeveloperInfo from './components/DeveloperInfoIcon';
 
 export default function ErrorPage() {
   const error = useRouteError() as any;
@@ -10,6 +11,7 @@ export default function ErrorPage() {
   return (
     <div id="error-page" className="grid h-screen place-items-center">
       <ModeToggle />
+      <DeveloperInfo />
       <Link to="/" className="absolute left-2 top-2">
         <Undo2 />
       </Link>

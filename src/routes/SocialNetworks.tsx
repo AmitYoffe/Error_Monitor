@@ -1,5 +1,3 @@
-import BreadCrumbs from '@/components/BreadCrumbs';
-import { ModeToggle } from '@/components/mode-toggle';
 import { NetworksTable } from '@/components/subDashboard/NetworksTable';
 import { getSocialNetworksNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
@@ -30,8 +28,6 @@ export default function Connection() {
 
   return (
     <div className="h-screen overflow-hidden p-9">
-      <ModeToggle />
-      <BreadCrumbs />
       <div className="flex flex-row gap-4">
         <NetworksTable
           data={networks}

@@ -5,18 +5,20 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import capitalizeWord from '@/lib/capitalizeWord';
 import { useLocation } from 'react-router-dom';
 
 export default function BreadCrumbs() {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
-  const backPath = '/' + pathnames.slice(0, -1).join('/')
+  const capitalizedPathnames = pathnames.map(capitalizeWord);
+  const backPath = '/' + pathnames.slice(0, -1).join('/');
 
   let formattedPathName = pathnames[0].split('%20').join(' ');
   if (pathnames.includes('sn')) {
-    formattedPathName = `Social Networks - ${formattedPathName}`
+    formattedPathName = `Social Networks - ${formattedPathName}`;
   } else if (pathnames.includes('ag')) {
-    formattedPathName = `Agencies - ${formattedPathName}`
+    formattedPathName = `Agencies - ${formattedPathName}`;
   }
 
   return (
@@ -37,7 +39,7 @@ export default function BreadCrumbs() {
             <BreadcrumbItem>
               <BreadcrumbLink>
                 {/* Take last item of pathnames */}
-                {pathnames.slice(-1)}
+                {capitalizedPathnames.slice(-1)}
               </BreadcrumbLink>
             </BreadcrumbItem>
           </>
