@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import BreadCrumbs from './BreadCrumbs';
-import DeveloperInfo from './DeveloperInfoIcon';
+import PageToggle from './DevInfo/PageToggle';
 import { ModeToggle } from './mode-toggle';
 
 export default function Layout() {
@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <BreadCrumbs />
       <ModeToggle />
-      <DeveloperInfo />
+      <PageToggle />
       <Outlet />
     </>
   );
