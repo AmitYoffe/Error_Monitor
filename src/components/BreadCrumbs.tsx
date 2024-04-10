@@ -48,5 +48,3 @@ export default function BreadCrumbs() {
     </Breadcrumb>
   );
 }
-
-// TODO: Capitalize first letter of the word in the part after the "pathnames.length >= 3"
