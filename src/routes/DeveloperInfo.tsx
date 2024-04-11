@@ -10,3 +10,4 @@ export default function DeveloperInfo() {
 }
 
 // TODO: make a developer information page according to sharon's planning
+// TODO: make a header/nav bar with the all the necessary component according to the page (breadcrumbs, devInfo & dark-light mode button)
