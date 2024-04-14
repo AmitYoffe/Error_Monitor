@@ -1,14 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import BreadCrumbs from './BreadCrumbs';
-import PageToggle from './DevInfo/PageToggle';
-import { ModeToggle } from './mode-toggle';
+import Header from './Header';
 
 export default function Layout() {
   return (
     <>
-      <BreadCrumbs />
-      <ModeToggle />
-      <PageToggle />
+      <Header showBreadcrumbs={true} />
       <Outlet />
     </>
   );

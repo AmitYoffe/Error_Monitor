@@ -1,20 +1,34 @@
 import cofusedDuckGif from '@/assets/gifs/confused-duck.gif';
 import { Undo2 } from 'lucide-react';
-import { Link, useRouteError } from 'react-router-dom';
-import PageToggle from './components/DevInfo/PageToggle';
+import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
 import { ModeToggle } from './components/mode-toggle';
 
 export default function ErrorPage() {
-  const error = useRouteError() as any;
+  const error = useRouteError();
   console.error(error);
+
+  let errorMessage: string;
+
+  if (isRouteErrorResponse(error)) {
+    // error is type `ErrorResponse`
+    errorMessage = error.data || error.statusText;
+  } else if (error instanceof Error) {
+    errorMessage = error.message;
+  } else if (typeof error === 'string') {
+    errorMessage = error;
+  } else {
+    console.error(error);
+    errorMessage = 'Unknown error';
+  }
 
   return (
     <div id="error-page" className="grid h-screen place-items-center">
-      <ModeToggle />
-      <PageToggle />
       <Link to="/" className="absolute left-2 top-2">
         <Undo2 />
       </Link>
+      <div className="absolute right-2 top-2">
+        <ModeToggle />
+      </div>
       <div>
         <img
           src={cofusedDuckGif}
@@ -24,7 +38,8 @@ export default function ErrorPage() {
         <h1>Oops!</h1>
         <p>Sorry, an unexpected error has occurred.</p>
         <p>
-          <i>{error?.statusText || error.message}</i>
+          {/* <i>{error?.statusText || error.message}</i> */}
+          <i className='text-red-600'>{errorMessage}</i>
         </p>
         <Link
           to={'/'}

@@ -1,13 +1,12 @@
-import PageToggle from '@/components/DevInfo/PageToggle';
+import Header from '@/components/Header';
 
 export default function DeveloperInfo() {
   return (
     <>
-      <PageToggle />
+      <Header showBreadcrumbs={true} />
       <div>DeveloperInfo</div>
     </>
   );
 }
 
 // TODO: make a developer information page according to sharon's planning
-// TODO: make a header/nav bar with the all the necessary component according to the page (breadcrumbs, devInfo & dark-light mode button)

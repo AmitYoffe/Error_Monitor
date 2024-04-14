@@ -9,12 +9,12 @@ import capitalizeWord from '@/lib/capitalizeWord';
 import { useLocation } from 'react-router-dom';
 
 export default function BreadCrumbs() {
-  const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
+  const { pathname } = useLocation();
+  const pathnames =  pathname.split('/').filter((x) => x);
   const capitalizedPathnames = pathnames.map(capitalizeWord);
   const backPath = '/' + pathnames.slice(0, -1).join('/');
 
-  let formattedPathName = pathnames[0].split('%20').join(' ');
+  let formattedPathName = pathnames[0]?.split('%20').join(' ');
   if (pathnames.includes('sn')) {
     formattedPathName = `Social Networks - ${formattedPathName}`;
   } else if (pathnames.includes('ag')) {
@@ -22,7 +22,7 @@ export default function BreadCrumbs() {
   }
 
   return (
-    <Breadcrumb className="absolute left-2 top-2">
+    <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>

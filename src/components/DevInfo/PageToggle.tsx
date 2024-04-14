@@ -26,10 +26,8 @@ export default function PageToggle() {
   };
 
   return (
-    <div className="absolute right-40 top-1">
-      <Button variant="outline" size="icon" onClick={handleClick}>
-        {toggleIcon}
-      </Button>
-    </div>
+    <Button variant="outline" size="icon" onClick={handleClick}>
+      {toggleIcon}
+    </Button>
   );
 }
