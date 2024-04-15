@@ -4,5 +4,5 @@ export default function capitalizeWord(word: string) {
     const remainingLetters = word.slice(1)
     const capitalizedWord = capitalizedFirstLetter + remainingLetters
 
-    return capitalizedWord
+    return capitalizedWord;
 }

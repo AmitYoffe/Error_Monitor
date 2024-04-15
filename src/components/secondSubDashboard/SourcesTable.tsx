@@ -7,6 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
@@ -26,15 +27,15 @@ export default function SourcesTable({
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-    )
+        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+      )
     : data;
 
   return (
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{"Sources"}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{'Sources'}</h2>
         </div>
         <Input
           placeholder="search..."
@@ -61,7 +62,9 @@ export default function SourcesTable({
             >
               <TableCell>{row.name}</TableCell>
               <TableCell> {/* {row.id}*/} id</TableCell>
-              <TableCell>{row.last_time}</TableCell>
+              <TableCell>
+                {moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}
+              </TableCell>
               <TableCell>
                 {/* {row.docs_count_3_days}*/} docs_count_3_days
               </TableCell>

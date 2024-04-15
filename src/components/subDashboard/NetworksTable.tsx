@@ -6,14 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import capitalizeWord from '@/lib/capitalizeWord';
 import { ParsedNetwrokInfo } from '@/types/NetworkType';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
+import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StatusType } from '../mainDashboard/DashboardChoice';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import capitalizeWord from '@/lib/capitalizeWord';
 
 interface NetworksTableProps {
   data: ParsedNetwrokInfo[];
@@ -87,7 +88,9 @@ export function NetworksTable({
                 }
               >
                 <TableCell>{capitalizeWord(row.name)}</TableCell>
-                <TableCell>{row.last_time}</TableCell>
+                <TableCell>
+                  {moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}
+                </TableCell>
                 <TableCell>{row.docs_count}</TableCell>
                 <TableCell>
                   {/* {row.docs_count_3_days}*/} docs_count_3_days

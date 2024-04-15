@@ -6,11 +6,14 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import capitalizeWord from '@/lib/capitalizeWord';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function BreadCrumbs() {
+  const [showBreadcrumb, setShowBreadcrumb] = useState(false);
+
   const { pathname } = useLocation();
-  const pathnames =  pathname.split('/').filter((x) => x);
+  const pathnames = pathname.split('/').filter((x) => x);
   const capitalizedPathnames = pathnames.map(capitalizeWord);
   const backPath = '/' + pathnames.slice(0, -1).join('/');
 
@@ -21,8 +24,15 @@ export default function BreadCrumbs() {
     formattedPathName = `Agencies - ${formattedPathName}`;
   }
 
+  // Set showBreadcrumb to true after component mounts
+  useEffect(() => {
+    setShowBreadcrumb(true);
+  }, [pathname]);
+
   return (
-    <Breadcrumb>
+    <Breadcrumb
+      style={{ opacity: showBreadcrumb ? 1 : 0, transition: 'opacity 0.5s' }}
+    >
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
