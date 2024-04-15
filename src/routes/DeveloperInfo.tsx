@@ -10,3 +10,4 @@ export default function DeveloperInfo() {
 }
 
 // TODO: make a developer information page according to sharon's planning
+// TODO: try adding a gradient background according to fake statuses, this will prevent the need for a giant ramzor
