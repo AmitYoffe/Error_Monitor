@@ -25,15 +25,13 @@ function SecondSubDashboard() {
   }
 
   return (
-    <>
-      <div className="flex justify-center gap-4 overflow-hidden p-9">
-        <SourcesTable
-          data={networks}
-          handleInputChange={handleInputChange}
-          search={search}
-        />
-      </div>
-    </>
+    <div className="flex justify-center gap-4 overflow-hidden p-9">
+      <SourcesTable
+        data={networks}
+        handleInputChange={handleInputChange}
+        search={search}
+      />
+    </div>
   );
 }
 

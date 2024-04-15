@@ -27,15 +27,13 @@ export default function Connection() {
   }
 
   return (
-    <div className="h-screen overflow-hidden p-9">
-      <div className="flex flex-row gap-4">
-        <NetworksTable
-          data={networks}
-          connection={connection}
-          handleInputChange={handleInputChange}
-          search={search}
-        />
-      </div>
+    <div className="flex justify-center gap-4 overflow-hidden p-9">
+      <NetworksTable
+        data={networks}
+        connection={connection}
+        handleInputChange={handleInputChange}
+        search={search}
+      />
     </div>
   );
 }
