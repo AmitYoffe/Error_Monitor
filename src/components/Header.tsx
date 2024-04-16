@@ -17,3 +17,5 @@ export default function Header({ showBreadcrumbs }: HeaderProps) {
     </div>
   );
 }
+
+// TODO: Fix css so the header won't jump between pages

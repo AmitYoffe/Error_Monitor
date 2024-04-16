@@ -4,7 +4,7 @@ import StatusGradient from '@/components/StatusGradient';
 export default function DeveloperInfo() {
   return (
     <>
-      <StatusGradient status={'operational'} />
+      <StatusGradient status={'unstable'} />
       <Header showBreadcrumbs={true} />
       <div>DeveloperInfo</div>
     </>

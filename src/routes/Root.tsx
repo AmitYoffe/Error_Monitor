@@ -4,7 +4,7 @@ import MainDashboards from '@/components/mainDashboard/MainDashboards';
 export default function Root() {
   return (
     <div className="h-screen overflow-hidden">
-      <div className="mt-2 space-y-4">
+      <div className="space-y-4">
         <Header showBreadcrumbs={false} />
         <MainDashboards />
       </div>
