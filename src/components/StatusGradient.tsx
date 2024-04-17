@@ -7,7 +7,7 @@ interface StatusGradientProps {
 }
 
 const StatusGradient = memo(({ generalStatus }: StatusGradientProps) => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const themeColors = {
     light: {
       operational: ['#f5f7f0', '#f6ffe3'],
@@ -21,7 +21,7 @@ const StatusGradient = memo(({ generalStatus }: StatusGradientProps) => {
     },
   };
   const gradientColor =
-    theme.theme === 'light'
+    theme === 'light'
       ? themeColors.light[generalStatus]
       : themeColors.dark[generalStatus] || ['white', 'black'];
   const gradient = `linear-gradient(45deg, ${gradientColor[0]}, ${gradientColor[1]})`;
