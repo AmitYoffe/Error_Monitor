@@ -4490,9 +4490,167 @@ export async function getNetworks() {
             }
           }
         }
-      }
+      },
+      // This data didn't exist, so International Networks page caused errors
+      // "international": {
+      //   "docs_count": 888,
+      //   "docs_count_3_days": 386,
+      //   "last_time": "2024-03-05T06:50:37.000Z",
+      //   "networks": {
+      //     "twitter": {
+      //       "docs_count": 888,
+      //       "last_time": "2024-03-05T06:50:37.000Z",
+      //       "sources": {
+      //         "50586354": {
+      //           "docs_count": 351,
+      //           "docs_count_3_days": 341,
+      //           "last_time": "2024-03-05T06:50:37.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Sawt Beirut International",
+      //               "doc_count": 351
+      //             }
+      //           ]
+      //         },
+      //         "203476567": {
+      //           "docs_count": 127,
+      //           "docs_count_3_days": 5,
+      //           "last_time": "2024-03-04T10:52:50.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Lebanese Forces",
+      //               "doc_count": 127
+      //             }
+      //           ]
+      //         },
+      //         "114681544": {
+      //           "docs_count": 99,
+      //           "docs_count_3_days": 5,
+      //           "last_time": "2024-03-05T05:25:47.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Naim Halawi",
+      //               "doc_count": 99
+      //             }
+      //           ]
+      //         },
+      //         "130908154": {
+      //           "docs_count": 65,
+      //           "docs_count_3_days": 19,
+      //           "last_time": "2024-03-02T17:00:37.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "wal",
+      //               "doc_count": 65
+      //             }
+      //           ]
+      //         },
+      //         "232799028": {
+      //           "docs_count": 40,
+      //           "docs_count_3_days": 4,
+      //           "last_time": "2024-03-03T18:30:06.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Maroun Ghannam",
+      //               "doc_count": 40
+      //             }
+      //           ]
+      //         },
+      //         "59124351": {
+      //           "docs_count": 39,
+      //           "docs_count_3_days": 2,
+      //           "last_time": "2024-03-04T17:33:47.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Fouad Makhzoumi",
+      //               "doc_count": 39
+      //             }
+      //           ]
+      //         },
+      //         "26487544": {
+      //           "docs_count": 37,
+      //           "docs_count_3_days": 1,
+      //           "last_time": "2024-03-04T13:13:17.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Serge Zarka",
+      //               "doc_count": 37
+      //             }
+      //           ]
+      //         },
+      //         "247764313": {
+      //           "docs_count": 36,
+      //           "docs_count_3_days": 2,
+      //           "last_time": "2024-03-04T08:29:04.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Joe Hammoura",
+      //               "doc_count": 36
+      //             }
+      //           ]
+      //         },
+      //         "253098870": {
+      //           "docs_count": 36,
+      //           "docs_count_3_days": 1,
+      //           "last_time": "2024-03-03T07:35:35.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Paula Astih",
+      //               "doc_count": 36
+      //             }
+      //           ]
+      //         },
+      //         "186637600": {
+      //           "docs_count": 25,
+      //           "docs_count_3_days": 3,
+      //           "last_time": "2024-03-03T14:25:40.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Antoinette Abboud",
+      //               "doc_count": 25
+      //             }
+      //           ]
+      //         },
+      //         "134904577": {
+      //           "docs_count": 24,
+      //           "docs_count_3_days": 1,
+      //           "last_time": "2024-03-02T08:48:07.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Sawsan Mhanna| سوسن مهنّا",
+      //               "doc_count": 24
+      //             }
+      //           ]
+      //         },
+      //         "251815948": {
+      //           "docs_count": 6,
+      //           "docs_count_3_days": 1,
+      //           "last_time": "2024-03-04T10:49:13.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "هادي الأمين",
+      //               "doc_count": 6
+      //             }
+      //           ]
+      //         },
+      //         "74481416": {
+      //           "docs_count": 3,
+      //           "docs_count_3_days": 1,
+      //           "last_time": "2024-03-03T20:21:33.000Z",
+      //           "entity_names": [
+      //             {
+      //               "entity_name": "Sara Assaf",
+      //               "doc_count": 3
+      //             }
+      //           ]
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
     }
   }
 
   return network;
 }
+
