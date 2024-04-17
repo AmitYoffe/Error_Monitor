@@ -3,24 +3,27 @@ import { StatusType } from './mainDashboard/DashboardChoice';
 import { useTheme } from './theme-provider';
 
 interface StatusGradientProps {
-  status: StatusType;
+  generalStatus: StatusType;
 }
 
-const StatusGradient = memo(({ status }: StatusGradientProps) => {
+const StatusGradient = memo(({ generalStatus }: StatusGradientProps) => {
   const theme = useTheme();
   const themeColors = {
     light: {
-      operational: ['#f4fce3', '#dbf7a1'],
-      unstable: ['#fff5e6', '#ffc878'],
-      'no-connection': ['#ffe6e6', '#fc6868'],
+      operational: ['#f5f7f0', '#f6ffe3'],
+      unstable: ['#fcf5eb', '#fce8ca'],
+      'no-connection': ['#fcf0f0', '#fcd9d9'],
     },
     dark: {
-      operational: ['#59981A', '#3D550C'],
-      unstable: ['#d6b75a', '#c28530'],
-      'no-connection': ['#f04b4b', '#972f2f'],
-    }
+      operational: ['#222e09', '#1b2603'],
+      unstable: ['#473605', '#2e2401'],
+      'no-connection': ['#4d0f0f', '#290303'],
+    },
   };
-  const gradientColor = theme.theme === 'light' ? themeColors.light[status] : themeColors.dark[status] || ['white', 'black'];
+  const gradientColor =
+    theme.theme === 'light'
+      ? themeColors.light[generalStatus]
+      : themeColors.dark[generalStatus] || ['white', 'black'];
   const gradient = `linear-gradient(45deg, ${gradientColor[0]}, ${gradientColor[1]})`;
 
   const injectedCss = `
