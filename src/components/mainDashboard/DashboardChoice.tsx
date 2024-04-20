@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 
@@ -66,7 +67,7 @@ export default function DashboardChoice({
               Social Networks
             </CardTitle>
             <CardDescription className="mx-12 flex justify-between">
-              Last Time Recieved: <div>{SocialNetworks?.lastTimeRecieved}</div>
+              Last Time Recieved: <div>{moment(SocialNetworks?.lastTimeRecieved).format('DD/MM/YYYY - HH:mm:ss')}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
               Docs from 3 days ago: <div>{SocialNetworks?.info}</div>

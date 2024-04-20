@@ -75,7 +75,7 @@ export default function MainDashboards() {
       <CardContent className="grid grid-cols-3 gap-6">
         <DashboardChoice
           iconSrc={theme === 'dark' ? WhiteGaza : Gaza}
-          location={'Gaza'}
+          location={'Gaza Strip'}
           SocialNetworks={socialNetworksArr[0]}
           Agencies={agenciesArr[0]}
         />

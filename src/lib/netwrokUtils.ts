@@ -1,49 +1,44 @@
-import { ParsedNetwrokInfo } from "@/types/NetworkType";
-import { getNetworks } from "./pseudo-db";
+import { getLocationInfo } from './pseudo-db';
+import { ParsedNetwrokInfo } from '@/types/NetworkType';
 
 export async function getAgencyNames(location: string) {
-    const networks = await getNetworks();
-    const locationKey = location.toLocaleLowerCase();
-    const networkJson = networks.articles[locationKey].networks
-    const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(([key, value]) => { return { name: key, ...value } })
+  // Get all the info from the db
+  const locationsInfo = await getLocationInfo();
+  const locationKey = location.toLocaleLowerCase();
+  // The object inside of the locationsInfo object where it's field matches the 'location' value
+  const networkJson = locationsInfo[locationKey].article?.networks;
+  if (!networkJson || !location || !locationsInfo) {
+    throw new Error(
+      `Agencies or "Articles" data for location '${location}' not found.`,
+    );
+  }
+  // should take each object's key and add it to the object as a field, facebook {field1, field2, ...} => {facebok, field1, field2, ...}
+  const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(
+    ([key, value]) => {
+      return { name: key, ...value };
+    },
+  );
 
-    return networkJsonArray;
+  return networkJsonArray;
 }
 
-export async function getSocialNetworksNames(location: string): Promise<ParsedNetwrokInfo[]> {
-    const networks = await getNetworks();
-    const locationKey = location.toLocaleLowerCase();
-    if (!networks.sn || !networks.sn[locationKey] || !networks.sn[locationKey].networks) {
-        throw new Error(`Social networks data for location '${location}' not found.`);
-    }
-    const networkJson = networks.sn[locationKey].networks;
-    const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(([key, value]) => { return { name: key, ...value } });
+export async function getSocialNetworksNames(location: string) {
+  // Get all the info from the db
+  const locationsInfo = await getLocationInfo();
+  const locationKey = location.toLocaleLowerCase();
+  // The object inside of the locationsInfo object where it's field matches the 'location' value
+  const networkJson = locationsInfo[locationKey].sn.networks;
+  if (!networkJson || !location || !locationsInfo) {
+    throw new Error(
+      `Social networks data for location '${location}' not found.`,
+    );
+  }
+  // should take each object's key and add it to the object as a field, facebook {field1, field2, ...} => {facebok, field1, field2, ...}
+  const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(
+    ([key, value]) => {
+      return { name: key, ...value };
+    },
+  );
 
-    // const networkJsonArray: ParsedNetwrokInfo[] = Object.entries(networkJson).map(([key, value]) => { return { name: key, docs_count: value.docs_count, last_time: value.last_time } })
-
-    return networkJsonArray;
+  return networkJsonArray;
 }
-
-//TODO: need to add a util that can let me take the key of '100064654032648' and it's object, then return it in a json similar to here
-// I need this to fill the ID column inside the sources table (third dashboard)
-
-// "gaza": {
-//     "docs_count": 8570228,
-//     "docs_count_3_days": 64480,
-//     "last_time": "2024-03-05T10:09:48.000Z",
-//     "networks": {
-//       "facebook": {
-//         "docs_count": 6893146,
-//         "last_time": "2024-03-05T10:09:48.000Z",
-//         "sources": {
-//           "100064654032648": {
-//             "docs_count": 4552074,
-//             "docs_count_3_days": 30677,
-//             "last_time": "2024-03-04T10:40:11.000Z",
-//             "entity_names": [
-//               {
-//                 "entity_name": "Al Jazeera Channel - قناة الجزيرة",
-//                 "doc_count": 4552074
-//               }
-//             ]
-//           },

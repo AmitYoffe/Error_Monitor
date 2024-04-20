@@ -41,8 +41,8 @@ export function NetworksTable({
 
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-      )
+      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+    )
     : data;
 
   return (
@@ -78,23 +78,18 @@ export function NetworksTable({
             return (
               <TableRow
                 key={rowIndex}
-                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
-                  noFollowUpLink
-                    ? 'transition-colors duration-100 active:border-red-500'
-                    : ''
-                }`}
+                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${noFollowUpLink
+                  ? 'transition-colors duration-100 active:border-red-500'
+                  : ''
+                  }`}
                 onClick={() =>
                   noFollowUpLink ? null : navigation(`${row.name}`)
                 }
               >
                 <TableCell>{capitalizeWord(row.name)}</TableCell>
-                <TableCell>
-                  {moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}
-                </TableCell>
+                <TableCell>{moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}</TableCell>
                 <TableCell>{row.docs_count}</TableCell>
-                <TableCell>
-                  {/* {row.docs_count_3_days}*/} docs_count_3_days
-                </TableCell>
+                <TableCell>{row.docs_count_3_days}</TableCell>
                 {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
               </TableRow>
             );
@@ -105,4 +100,4 @@ export function NetworksTable({
   );
 }
 
-// TODO: Fix the error indication for the last row, it's invisible currently
+// TODO: Fix the error where a user can click networks without a source and go to the same page accidentally for all networks

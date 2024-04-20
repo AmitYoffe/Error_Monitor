@@ -1,58 +1,39 @@
-
-export interface Network {
-    articles: Articles;
-    sn: SocialNetworks;
-}
-
-// type LocationNames = "lebanon"
-//     | "inter-arab"
-//     | "west bank"
-//     | "international"
-//     | "gaza strip"
-//     | "pro hezbollah"
-//     | "anti hezbollah"
-
-export type Articles = {
-    [key: string]: Location;
+export type Location = {
+  [key: string]: {
+    sn: Network;
+    article?: Network;
+  };
 };
 
-export type SocialNetworks = {
-    [key: string]: Location;
+type Network = {
+  docs_count: number;
+  docs_count_3_days: number;
+  last_time: string;
+  networks: { [networkId: string]: NetworkInfo };
 };
 
-export interface DocsInfo {
-    docs_count: number;
-    docs_count_3_days?: number;
-    last_time: string;
-}
-
-export interface Location extends DocsInfo {
-    networks: Networks
-}
-
-export interface Networks {
-    [key: string]: NetworkInfo;
-}
-
-export type Sources = {
-    [key: string]: Source;
+type NetworkInfo = {
+  docs_count: number;
+  docs_count_3_days: number;
+  last_time: string;
+  sources?: { [sourceId: string]: Source | SourceWithEntity };
 };
 
-export interface Entity {
-    entity_name: string
-    doc_count: number
-}
+type Source = {
+  docs_count: number;
+  docs_count_3_days: number;
+  last_time: string;
+};
 
-export interface Source extends DocsInfo {
-    entity_names: Entity[]
-}
+type EntityName = {
+  entity_name: string;
+  doc_count: number;
+};
 
-export interface NetworkInfo {
-    docs_count: number;
-    last_time: string;
-    sources?: Sources;
-}
+type SourceWithEntity = Source & {
+  entity_names: EntityName[];
+};
 
 export interface ParsedNetwrokInfo extends NetworkInfo {
-    name: string;
+  name: string;
 }

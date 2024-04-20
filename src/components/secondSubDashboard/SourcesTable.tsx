@@ -27,8 +27,8 @@ export default function SourcesTable({
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-      )
+      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+    )
     : data;
 
   return (
@@ -65,9 +65,7 @@ export default function SourcesTable({
               <TableCell>
                 {moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}
               </TableCell>
-              <TableCell>
-                {/* {row.docs_count_3_days}*/} docs_count_3_days
-              </TableCell>
+              <TableCell>{row.docs_count_3_days}</TableCell>
               <TableCell>{row.docs_count}</TableCell>
               {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
@@ -77,3 +75,26 @@ export default function SourcesTable({
     </Card>
   );
 }
+
+//TODO
+// Be able to take the key of these objects:
+// "sources": {
+//   "1508848274303819788": {
+//     "docs_count": 1336,
+//     "docs_count_3_days": 0,
+//     "last_time": "2024-03-23T08:04:58.000Z",
+//     "entity_names": [
+//       { "entity_name": "الميادين لبنان", "doc_count": 1336 }
+//     ]
+//   },
+//   "1590243665192042496": {
+//     "docs_count": 1313,
+//     "docs_count_3_days": 0,
+//     "last_time": "2024-03-23T09:14:51.000Z",
+//     "entity_names": [
+//       { "entity_name": "قناة المنار", "doc_count": 1313 }
+//     ]
+//   },
+// }
+//
+// And use them as Source ID in this table
