@@ -27,8 +27,8 @@ export default function SourcesTable({
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-    )
+        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+      )
     : data;
 
   return (
@@ -61,7 +61,7 @@ export default function SourcesTable({
               className="cursor-pointer hover:bg-accent active:border-slate-950"
             >
               <TableCell>{row.name}</TableCell>
-              <TableCell> {/* {row.id}*/} id</TableCell>
+              <TableCell> {/*{row.id}*/} id</TableCell>
               <TableCell>
                 {moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}
               </TableCell>
