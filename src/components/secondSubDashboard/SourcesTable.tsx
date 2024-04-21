@@ -1,3 +1,4 @@
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -58,7 +59,7 @@ export default function SourcesTable({
           {filteredData.map((row, rowIndex) => (
             <TableRow
               key={rowIndex}
-              className="cursor-pointer hover:bg-accent active:border-slate-950"
+              className="cursor-pointer hover:bg-accent active:border-b-slate-950"
             >
               <TableCell>{row.name}</TableCell>
               <TableCell> {/*{row.id}*/} id</TableCell>
@@ -70,6 +71,7 @@ export default function SourcesTable({
               {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
           ))}
+          <Separator />
         </TableBody>
       </Table>
     </Card>
