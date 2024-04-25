@@ -1,4 +1,4 @@
-import { Separator } from "@/components/ui/separator";
+import { Separator } from '@/components/ui/separator';
 import {
   Table,
   TableBody,
@@ -7,14 +7,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import { ParsedSource } from '@/types/NetworkType';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 
 interface SourcesTableProps {
-  data: ParsedNetwrokInfo[];
+  data: ParsedSource[];
   handleInputChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
@@ -28,7 +28,11 @@ export default function SourcesTable({
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+        (dataItem) =>
+          dataItem.entity_names &&
+          dataItem.entity_names.map((entity) =>
+            entity.entity_name.includes(search.trim()),
+          ),
       )
     : data;
 
@@ -61,8 +65,13 @@ export default function SourcesTable({
               key={rowIndex}
               className="cursor-pointer hover:bg-accent active:border-b-slate-950"
             >
-              <TableCell>{row.name}</TableCell>
-              <TableCell> {/*{row.id}*/} id</TableCell>
+              <TableCell>
+                {row.entity_names &&
+                  row.entity_names.map((entity, index) => (
+                    <div key={index}>{entity.entity_name}</div>
+                  ))}
+              </TableCell>
+              <TableCell>{row.sourceID} id</TableCell>
               <TableCell>
                 {moment(row.last_time).format('DD/MM/YYYY - HH:mm:ss')}
               </TableCell>
@@ -71,15 +80,16 @@ export default function SourcesTable({
               {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
           ))}
-          <Separator />
+          <Separator className="max-w-fit" />
         </TableBody>
       </Table>
     </Card>
   );
 }
-
-//TODO
+//TODO: fix source name logic (entity_names.entity_name)
+//TODO:
 // Be able to take the key of these objects:
+// And use them as Source ID in this table
 // "sources": {
 //   "1508848274303819788": {
 //     "docs_count": 1336,
@@ -99,4 +109,3 @@ export default function SourcesTable({
 //   },
 // }
 //
-// And use them as Source ID in this table

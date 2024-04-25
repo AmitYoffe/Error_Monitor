@@ -1,5 +1,5 @@
 import { getLocationInfo } from './pseudo-db';
-import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import { ParsedNetwrokInfo, ParsedSource } from '@/types/NetworkType';
 
 export async function getAgencyNames(location: string) {
   // Get all the info from the db
@@ -39,28 +39,18 @@ export async function getSocialNetworksNames(location: string) {
       return { name: key, ...value };
     },
   );
+  // Do a similar process like the lines above but on the sources object instead
+  await parseSourceId(networkJsonArray);
 
+  // console.log(networkJsonArray, 'networkJsonArray');
   return networkJsonArray;
 }
 
-export async function getSourceNames(networkJsonArray: ParsedNetwrokInfo[]) {
-  // Get the entity_names.entity_name for each source inside the object
-  // "sources": {
-  //   "242987073": {
-  //     "docs_count": 18,
-  //     "docs_count_3_days": 2,
-  //     "last_time": "2024-04-17T22:29:32.000Z",
-  //     "entity_names": [
-  //       { "entity_name": "Tamim Al-Barghouti", "doc_count": 18 }
-  //     ]
-  //   },
-  //   "705371761": {
-  //     "docs_count": 5,
-  //     "docs_count_3_days": 0,
-  //     "last_time": "2024-03-31T12:51:24.000Z",
-  //     "entity_names": [{ "entity_name": "جهاد العايش", "doc_count": 5 }]
-  //   },
-  // {...},
-  // {...},
-  // }
+async function parseSourceId(networkJsonArray: ParsedNetwrokInfo[]) {
+  const sourcesJsonArray: ParsedSource[] = networkJsonArray.map((networkInfo, index) => {
+    const sourceID = index.toString(); // or any other logic to generate sourceID
+    return { ...networkInfo, sourceID };
+  });
+
+  return sourcesJsonArray
 }

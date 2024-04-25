@@ -72,10 +72,11 @@ export function NetworksTable({
             {/* <TableHead>Status</TableHead> */}
           </TableRow>
         </TableHeader>
-        {/*  (if the network is an Agency) || (if the JSON/db does not contatain the field "sources" for that network) then disable clicking */}
+        {/* if the JSON/db's field "sources" is an empty object then disable clicking */}
         <TableBody>
           {filteredData.map((row, rowIndex) => {
-            const noFollowUpLink = !row.sources;
+            const noFollowUpLink =
+              !row.sources || !Object.keys(row.sources).length;
             return (
               <TableRow
                 key={rowIndex}
@@ -98,11 +99,9 @@ export function NetworksTable({
               </TableRow>
             );
           })}
-          <Separator />
+          <Separator className="max-w-fit" />
         </TableBody>
       </Table>
     </Card>
   );
 }
-
-// TODO: Fix the error where a user can click networks without a source and go to the same page accidentally for all networks
