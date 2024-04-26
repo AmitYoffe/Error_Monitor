@@ -28,12 +28,12 @@ export default function SourcesTable({
 }: SourcesTableProps) {
   const filteredData = search
     ? data.filter(
-        (dataItem) =>
-          dataItem.entity_names &&
-          dataItem.entity_names.map((entity) =>
-            entity.entity_name.includes(search.trim()),
-          ),
-      )
+      (dataItem) =>
+        dataItem.entity_names &&
+        dataItem.entity_names.map((entity) =>
+          entity.entity_name.includes(search.trim()),
+        ),
+    )
     : data;
 
   return (
@@ -66,10 +66,12 @@ export default function SourcesTable({
               className="cursor-pointer hover:bg-accent active:border-b-slate-950"
             >
               <TableCell>
-                {row.entity_names &&
+                {row.entity_names ?
                   row.entity_names.map((entity, index) => (
                     <div key={index}>{entity.entity_name}</div>
-                  ))}
+                  ))
+                  : <div>-</div>
+                }
               </TableCell>
               <TableCell>{row.sourceID} id</TableCell>
               <TableCell>
@@ -84,6 +86,7 @@ export default function SourcesTable({
         </TableBody>
       </Table>
     </Card>
+    // <div>yes yes sources</div>
   );
 }
 //TODO: fix source name logic (entity_names.entity_name)

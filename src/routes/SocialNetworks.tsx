@@ -17,7 +17,6 @@ export default function Connection() {
   const { connection, networks } = useLoaderData() as AsyncReturnType<
     typeof loader
   >;
-
   const [search, setSearch] = useState('');
 
   function handleInputChange(

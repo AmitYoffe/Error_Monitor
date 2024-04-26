@@ -1,21 +1,26 @@
 import SourcesTable from '@/components/secondSubDashboard/SourcesTable';
-import { getSocialNetworksNames } from '@/lib/netwrokUtils';
+import { getSourcesNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
 import { ChangeEvent, useState } from 'react';
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData, useLocation } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const connection = params.connection;
   invariant(connection, 'connection parameter is required');
-  const networks = await getSocialNetworksNames(connection);
 
-  return { connection, networks };
+  const { pathname } = useLocation();
+  const pathnames = pathname.split('/').filter((x) => x);
+  // get the last part of the current user's URL, when standing on the sources page, it's value would be the current network.
+  const networkKey = pathnames.slice(-1)[0].toLocaleLowerCase();
+  const sources = await getSourcesNames(connection, networkKey);
+
+  return { connection, sources };
 }
 
-function SecondSubDashboard() {
-  const { networks } = useLoaderData() as AsyncReturnType<typeof loader>;
-
+export default function SecondSubDashboard() {
+  const { sources } = useLoaderData() as AsyncReturnType<typeof loader>;
+  console.log(sources);
   const [search, setSearch] = useState('');
 
   function handleInputChange(
@@ -27,12 +32,10 @@ function SecondSubDashboard() {
   return (
     <div className="flex justify-center gap-4 overflow-hidden p-9">
       <SourcesTable
-        data={networks}
+        data={sources}
         handleInputChange={handleInputChange}
         search={search}
       />
     </div>
   );
 }
-
-export default SecondSubDashboard;
