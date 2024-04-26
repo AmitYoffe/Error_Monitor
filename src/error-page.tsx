@@ -26,7 +26,7 @@ export default function ErrorPage() {
       <Link to="/" className="absolute left-2 top-2">
         <Undo2 />
       </Link>
-      <div className="absolute right-2 top-2">
+      <div className="absolute right-0 top-0">
         <ModeToggle />
       </div>
       <div>
@@ -38,7 +38,6 @@ export default function ErrorPage() {
         <h1>Oops!</h1>
         <p>Sorry, an unexpected error has occurred.</p>
         <p>
-          {/* <i>{error?.statusText || error.message}</i> */}
           <i className='text-red-600'>{errorMessage}</i>
         </p>
         <Link

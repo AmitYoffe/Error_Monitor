@@ -1,21 +1,8 @@
-import { cn } from '@/lib/utils';
+import { IAgency, ISocialNetwork, StatusType } from '@/types/dashboardTypes';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
-
-export type StatusType = 'operational' | 'unstable' | 'no-connection';
-
-export interface ISocialNetwork {
-  lastTimeRecieved: string;
-  info: string;
-  status: StatusType;
-}
-
-export interface IAgency {
-  lastTimeRecieved: string;
-  info: string;
-  status: StatusType;
-}
+import { useState } from 'react';
 
 interface IDashboardChoice {
   iconSrc: string;
@@ -30,12 +17,17 @@ export default function DashboardChoice({
   SocialNetworks,
   Agencies,
 }: IDashboardChoice) {
+  // States used to track hovering of certain areas of the component
+  const [agencyHovered, setAgencyHovered] = useState(false);
+  const [snHovered, setSnHovered] = useState(false);
+  const [locationHovered, setLocationHovered] = useState(false);
+
   const statusVisualizer: Record<StatusType, string> = {
-    operational: 'border-green-400',
-    unstable: 'border-yellow-400',
-    'no-connection': 'border-red-400',
+    operational: '#22c55e',
+    unstable: '#f59e0b',
+    'no-connection': '#ef4444',
   };
-  let statusIndicatorColor = 'border-green-400';
+  let statusIndicatorColor = '#22c55e';
 
   if (
     Agencies?.status === 'no-connection' ||
@@ -51,17 +43,25 @@ export default function DashboardChoice({
 
   return (
     <div className="h-4/5">
-      <Card className={cn('flex-col p-2', `hover:${statusIndicatorColor}`)}>
+      <Card className='flex-col p-2'
+        style={{
+          border: locationHovered ? `1px solid ${statusIndicatorColor}` : undefined,
+        }}
+        onMouseOver={() => setLocationHovered(true)}
+        onMouseOut={() => setLocationHovered(false)}
+      >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
           {location}
         </p>
         <Link to={`${location}/sn`}>
           <Card
-            className={cn(
-              'flex-col p-2',
-              `hover:${statusVisualizer[SocialNetworks!.status]}`,
-            )}
+            className='flex-col p-2'
+            style={{
+              border: snHovered ? `1px solid ${statusVisualizer[SocialNetworks!.status]}` : undefined,
+            }}
+            onMouseOver={() => setSnHovered(true)}
+            onMouseOut={() => setSnHovered(false)}
           >
             <CardTitle className="p-2 text-center underline">
               Social Networks
@@ -79,10 +79,12 @@ export default function DashboardChoice({
         </Link>
         <Link to={`${location}/ag`}>
           <Card
-            className={cn(
-              'flex-col p-2',
-              `hover:${statusVisualizer[Agencies!.status]}`,
-            )}
+            className='flex-col p-2'
+            style={{
+              border: agencyHovered ? `1px solid ${statusVisualizer[Agencies!.status]}` : undefined,
+            }}
+            onMouseOver={() => setAgencyHovered(true)}
+            onMouseOut={() => setAgencyHovered(false)}
           >
             <CardTitle className="p-2 text-center underline">
               Agencies
@@ -98,8 +100,8 @@ export default function DashboardChoice({
             </CardDescription>
           </Card>
         </Link>
-      </Card>
-    </div>
+      </Card >
+    </div >
   );
 }
 
