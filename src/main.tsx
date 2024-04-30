@@ -5,10 +5,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import ErrorPage from './error-page';
 import './index.css';
-import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
 import DeveloperInfo from './routes/DeveloperInfo';
 import Root from './routes/Root';
-import SecondSubDashboard from './routes/SecondSubDashboard';
+import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
+import SecondSubDashboard, {
+  loader as sourcesLoader,
+} from './routes/SecondSubDashboard';
 import SocialNetworks, {
   loader as SocialNetworksLoader,
 } from './routes/SocialNetworks';
@@ -40,21 +42,19 @@ const router = createBrowserRouter([
         loader: AgenciesLoader,
       },
       {
-        path: '/:connection/sn/:id',
+        path: '/:connection/sn/:network',
         element: <SecondSubDashboard />,
-        loader: AgenciesLoader,
+        loader: sourcesLoader,
       },
       {
-        path: '/:connection/ag/:id',
+        path: '/:connection/ag/:network',
         element: <SecondSubDashboard />,
-        loader: AgenciesLoader,
+        loader: sourcesLoader,
       },
     ],
     errorElement: <ErrorPage />,
   },
 ]);
-
-// Do i really need 2 /:connection/(sn / ag)/:id
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

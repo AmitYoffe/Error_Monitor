@@ -7,14 +7,9 @@ import invariant from 'tiny-invariant';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   // const connection = params.connection;
-  const { connection, id: networkKey } = params;
-  console.log('wakak wkakak', connection, networkKey);
+  const { connection, network: networkKey } = params;
   invariant(connection, 'connection parameter is required');
-  invariant(networkKey, 'id parameter is required');
-  // const { pathname } = useLocation();
-  // const pathnames = pathname.split('/').filter((x) => x);
-  // get the last part of the current user's URL, when standing on the sources page, it's value would be the current network.
-  // const networkKey = pathnames.slice(-1)[0].toLocaleLowerCase();
+  invariant(networkKey, 'network parameter is required');
   const sources = await getSourcesNames(
     connection,
     networkKey.toLocaleLowerCase(),
@@ -25,7 +20,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function SecondSubDashboard() {
   const { sources } = useLoaderData() as AsyncReturnType<typeof loader>;
-  console.log(sources);
   const [search, setSearch] = useState('');
 
   function handleInputChange(
