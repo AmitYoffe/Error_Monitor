@@ -26,14 +26,15 @@ export default function SourcesTable({
   handleInputChange,
   search,
 }: SourcesTableProps) {
+
   const filteredData = search
     ? data.filter(
-        (dataItem) =>
-          dataItem.entity_names &&
-          dataItem.entity_names.map((entity) =>
-            entity.entity_name.includes(search.trim()),
-          ),
-      )
+      (dataItem) =>
+        dataItem.entity_names &&
+        dataItem.entity_names.some((entity) =>
+          entity.entity_name.includes(search.trim()),
+        ),
+    )
     : data;
 
   return (
@@ -57,6 +58,7 @@ export default function SourcesTable({
             <TableHead>Last Time Recieved</TableHead>
             <TableHead>Total Docs 3 Days</TableHead>
             <TableHead>Total Docs</TableHead>
+            {/* <TableHead>Status</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -87,6 +89,5 @@ export default function SourcesTable({
         </TableBody>
       </Table>
     </Card>
-    // <div>yes yes sources</div>
   );
 }

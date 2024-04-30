@@ -12,7 +12,7 @@ import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StatusType } from '../mainDashboard/DashboardChoice';
+// import { StatusType } from '../mainDashboard/DashboardChoice';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 import { Separator } from '@/components/ui/separator';
@@ -26,11 +26,11 @@ interface NetworksTableProps {
   search: string;
 }
 
-export const statusIcons: Record<StatusType, JSX.Element> = {
-  operational: <CheckCircle2 className="text-green-400" />,
-  unstable: <AlertCircle className="text-yellow-400" />,
-  'no-connection': <XCircle className="text-red-400" />,
-};
+// export const statusIcons: Record<StatusType, JSX.Element> = {
+//   operational: <CheckCircle2 className="text-green-400" />,
+//   unstable: <AlertCircle className="text-yellow-400" />,
+//   'no-connection': <XCircle className="text-red-400" />,
+// };
 
 export function NetworksTable({
   data,
