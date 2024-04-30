@@ -50,7 +50,7 @@ export async function getSourcesNames(location: string, networkKey: string) {
   // The object inside of a specific network object where it's field matches the 'network' value from the url
   const sourcesJson =
     locationsInfo[locationKey].sn.networks[networkKey].sources;
-  if (!sourcesJson || !location || !locationsInfo) {
+  if (!sourcesJson) {
     throw new Error(`Sources data for location '${location}' not found.`);
   }
   // takes each object's key and adds it to the object as a field,

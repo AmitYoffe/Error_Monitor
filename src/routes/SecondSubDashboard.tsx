@@ -2,18 +2,23 @@ import SourcesTable from '@/components/secondSubDashboard/SourcesTable';
 import { getSourcesNames } from '@/lib/netwrokUtils';
 import { AsyncReturnType } from '@/types';
 import { ChangeEvent, useState } from 'react';
-import { LoaderFunctionArgs, useLoaderData, useLocation } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const connection = params.connection;
+  // const connection = params.connection;
+  const { connection, id: networkKey } = params;
+  console.log('wakak wkakak', connection, networkKey);
   invariant(connection, 'connection parameter is required');
-
-  const { pathname } = useLocation();
-  const pathnames = pathname.split('/').filter((x) => x);
+  invariant(networkKey, 'id parameter is required');
+  // const { pathname } = useLocation();
+  // const pathnames = pathname.split('/').filter((x) => x);
   // get the last part of the current user's URL, when standing on the sources page, it's value would be the current network.
-  const networkKey = pathnames.slice(-1)[0].toLocaleLowerCase();
-  const sources = await getSourcesNames(connection, networkKey);
+  // const networkKey = pathnames.slice(-1)[0].toLocaleLowerCase();
+  const sources = await getSourcesNames(
+    connection,
+    networkKey.toLocaleLowerCase(),
+  );
 
   return { connection, sources };
 }
