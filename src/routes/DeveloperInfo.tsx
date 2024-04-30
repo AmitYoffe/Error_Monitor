@@ -1,3 +1,4 @@
+import TrafficLight from '@/components/DevInfo/TrafficLight';
 import Header from '@/components/Header';
 import StatusGradient from '@/components/StatusGradient';
 
@@ -6,7 +7,7 @@ export default function DeveloperInfo() {
     <>
       <StatusGradient generalStatus={'unstable'} />
       <Header showBreadcrumbs={true} />
-      <div>DeveloperInfo</div>
+      <TrafficLight />
     </>
   );
 }
