@@ -26,15 +26,14 @@ export default function SourcesTable({
   handleInputChange,
   search,
 }: SourcesTableProps) {
-
   const filteredData = search
     ? data.filter(
-      (dataItem) =>
-        dataItem.entity_names &&
-        dataItem.entity_names.some((entity) =>
-          entity.entity_name.includes(search.trim()),
-        ),
-    )
+        (dataItem) =>
+          dataItem.entity_names &&
+          dataItem.entity_names.some((entity) =>
+            entity.entity_name.includes(search.trim()),
+          ),
+      )
     : data;
 
   return (
