@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { StatusType } from './mainDashboard/DashboardChoice';
 import { useTheme } from './theme-provider';
+import { StatusType } from '@/types/dashboardTypes';
 
 interface StatusGradientProps {
   generalStatus: StatusType;

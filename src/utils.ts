@@ -1,5 +1,5 @@
 import uniqid from "uniqid";
-import { StatusType } from "./components/mainDashboard/DashboardChoice";
+import { StatusType } from "./types/dashboardTypes";
 
 export type ConnectionLog = {
     logid: string;
