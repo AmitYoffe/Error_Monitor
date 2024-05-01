@@ -3,22 +3,19 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Copyleft } from 'lucide-react';
 import { Card } from '../ui/card';
+import StatusIndication from './StatusIndication';
 
 interface ITrafficLight {
   name: string;
 }
 
-export function TrafficLight({ name }: ITrafficLight) {
+export default function TrafficLight({ name }: ITrafficLight) {
   return (
     <Card className="flex justify-center">
       <Dialog>
@@ -28,32 +25,14 @@ export function TrafficLight({ name }: ITrafficLight) {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>{name}</DialogTitle>
-            <DialogDescription>
-              Anyone who has this link will be able to view this.
-            </DialogDescription>
           </DialogHeader>
-          <div className="flex items-center space-x-2">
-            <div className="grid flex-1 gap-2">
-              <Label htmlFor="link" className="sr-only">
-                Link
-              </Label>
-              <Input
-                id="link"
-                defaultValue="https://ui.shadcn.com/docs/installation"
-                readOnly
-              />
-            </div>
-            <Button type="submit" size="sm" className="px-3">
-              <span className="sr-only">Copy</span>
-              <Copyleft className="h-4 w-4" />
-            </Button>
-          </div>
-          <DialogFooter className="sm:justify-start">
+          <DialogFooter className="flex sm:justify-start">
             <DialogClose asChild>
               <Button type="button" variant="secondary">
                 Close
               </Button>
             </DialogClose>
+            <StatusIndication status={'operational'} name={'intuview'} />
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -1,4 +1,4 @@
-import { TrafficLight } from '@/components/DevInfo/TrafficLight';
+import TrafficLight from '@/components/DevInfo/TrafficLight';
 import Header from '@/components/Header';
 import StatusGradient from '@/components/StatusGradient';
 
