@@ -8543,3 +8543,23 @@ export async function getLocationInfo() {
   return locations;
 }
 
+// import { Location } from "@/types/NetworkType";
+// import invariant from "tiny-invariant";
+
+// const NetworkURL = process.env.INFO_URL;
+
+// export async function getLocationInfo(): Promise<Location> {
+//   invariant(NetworkURL, "Network URL cannot be empty");
+//   try {
+//     const response = await fetch(NetworkURL);
+//     if (!response.ok) {
+//       throw new Error(`Failed to fetch data, status ${response.status}`);
+//     }
+//     const locations: Location = await response.json();
+//     return locations;
+
+//   } catch (error) {
+//     console.error("Error fetching location info:", error);
+//     throw error; // Rethrow the error for the caller to handle
+//   }
+// }
