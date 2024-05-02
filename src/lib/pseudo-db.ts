@@ -8544,6 +8544,7 @@
 // }
 
 import { Location } from "@/types/NetworkType";
+import axios from "axios";
 import invariant from "tiny-invariant";
 
 const NetworkURL = process.env.INFO_URL;
@@ -8551,11 +8552,11 @@ const NetworkURL = process.env.INFO_URL;
 export async function getLocationInfo(): Promise<Location> {
   invariant(NetworkURL, "Network URL cannot be empty");
   try {
-    const response = await fetch(NetworkURL);
-    if (!response.ok) {
+    const response = await axios.get(NetworkURL);
+    if (!response.data) {
       throw new Error(`Failed to fetch data, status ${response.status}`);
     }
-    const locations: Location = await response.json();
+    const locations: Location = response.data;
     return locations;
 
   } catch (error) {
