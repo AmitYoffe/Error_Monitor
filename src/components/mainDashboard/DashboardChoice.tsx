@@ -90,7 +90,7 @@ export default function DashboardChoice({
               Agencies
             </CardTitle>
             <CardDescription className="mx-12 flex justify-between">
-              Last Time Recieved: <div>{Agencies?.lastTimeRecieved}</div>
+              Last Time Recieved: <div>{moment(Agencies?.lastTimeRecieved).format('DD/MM/YYYY - HH:mm:ss')}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
               Docs from 3 days ago: <div>{Agencies?.info}</div>
@@ -106,3 +106,7 @@ export default function DashboardChoice({
 }
 
 //TODO: Add some logic that will cause the parent dashboard statuses actually update according to the logs status values
+
+// TODO: Logic that will display relevant information about each location:
+// last time recieved will be of the actual last time of it's network type and so on...
+// 

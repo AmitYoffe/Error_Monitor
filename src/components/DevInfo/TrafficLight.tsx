@@ -13,6 +13,8 @@ import StatusIndication from './StatusIndication';
 
 interface ITrafficLight {
   name: string;
+  // status color
+  // error description
 }
 
 export default function TrafficLight({ name }: ITrafficLight) {
