@@ -2,7 +2,8 @@ import { IAgency, ISocialNetwork, StatusType } from '@/types/dashboardTypes';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getDocs3DaysAgo, getTotalDocs } from '@/lib/getDocs';
 
 interface IDashboardChoice {
   iconSrc: string;
@@ -21,6 +22,26 @@ export default function DashboardChoice({
   const [agencyHovered, setAgencyHovered] = useState(false);
   const [snHovered, setSnHovered] = useState(false);
   const [locationHovered, setLocationHovered] = useState(false);
+  const [totalDocs, setTotalDocs] = useState<number | string | null>(null);
+  const [docs3DaysAgo, setDocs3DaysAgo] = useState<number | string | null>(null);
+
+  useEffect(() => {
+    const fetchDocsCount = async () => {
+      try {
+        const totalDocs = await getTotalDocs(location);
+        const docs3DaysAgo = await getDocs3DaysAgo(location);
+        setTotalDocs(totalDocs);
+        setDocs3DaysAgo(docs3DaysAgo);
+      } catch (error) {
+        console.error('Error fetching docs:', error);
+        // If there's an error, set the state with 'no information'
+        setTotalDocs('no information');
+        setDocs3DaysAgo('no information');
+      }
+    };
+
+    fetchDocsCount();
+  }, [location]);
 
   const statusVisualizer: Record<StatusType, string> = {
     operational: '#22c55e',
@@ -70,10 +91,10 @@ export default function DashboardChoice({
               Last Time Recieved: <div>{moment(SocialNetworks?.lastTimeRecieved).format('DD/MM/YYYY - HH:mm:ss')}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
-              Docs from 3 days ago: <div>{SocialNetworks?.info}</div>
+              Docs from 3 days ago: <div>{docs3DaysAgo}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
-              Total Docs: <div>{SocialNetworks?.info}</div>
+              Total Docs: <div>{totalDocs}</div>
             </CardDescription>
           </Card>
         </Link>
