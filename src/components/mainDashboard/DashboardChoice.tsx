@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 import { useEffect, useState } from 'react';
-import { getDocs3DaysAgo, getTotalDocs } from '@/lib/getDocs';
+import { getDocs3DaysAgo, getTotalDocs } from '@/lib/getNetworkInfo';
 
 interface IDashboardChoice {
   iconSrc: string;

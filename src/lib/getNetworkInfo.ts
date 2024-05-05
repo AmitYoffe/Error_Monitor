@@ -5,7 +5,7 @@ export async function getTotalDocs(location: string) {
   const locationsInfo = await getLocationInfo();
   const locationKey = location.toLocaleLowerCase();
   // The docs_count field inside of the locationsInfo object where it's field matches the 'location' value
-  let networkDocsCount: string | number =
+  const networkDocsCount: string | number =
     locationsInfo[locationKey].sn.docs_count;
   if (!networkDocsCount || !location || !locationsInfo) {
     throw new Error(
@@ -21,7 +21,7 @@ export async function getDocs3DaysAgo(location: string) {
   const locationsInfo = await getLocationInfo();
   const locationKey = location.toLocaleLowerCase();
   // The docs_count field inside of the locationsInfo object where it's field matches the 'location' value
-  let network3DaysDocsCount: string | number =
+  const network3DaysDocsCount: string | number =
     locationsInfo[locationKey].sn.docs_count_3_days;
   if (!network3DaysDocsCount || !location || !locationsInfo) {
     throw new Error(
