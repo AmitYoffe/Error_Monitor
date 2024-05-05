@@ -1,6 +1,6 @@
 import { Location } from '@/types/NetworkType';
 
-export async function getLocationInfo() {
+export async function getData() {
   const locations: Location = {
     'west bank': {
       sn: {
@@ -8141,14 +8141,15 @@ export async function getLocationInfo() {
   return locations;
 }
 
-// import { Location } from "@/types/NetworkType";
-// import axios from "axios";
-// import invariant from "tiny-invariant";
+// import { Location } from '@/types/NetworkType';
+// import axios from 'axios';
+// import invariant from 'tiny-invariant';
 
-// const NetworkURL = process.env.INFO_URL;
+// // const NetworkURL = process.env.INFO_URL;
+// const NetworkURL = 'http://4.234.149.79:32019/client_monitoring';
 
-// export async function getLocationInfo(): Promise<Location> {
-//   invariant(NetworkURL, "Network URL cannot be empty");
+// export async function getData(): Promise<Location> {
+//   invariant(NetworkURL, 'Network URL cannot be empty');
 //   try {
 //     const response = await axios.get(NetworkURL);
 //     if (!response.data) {
@@ -8156,11 +8157,8 @@ export async function getLocationInfo() {
 //     }
 //     const locations: Location = response.data;
 //     return locations;
-
 //   } catch (error) {
-//     console.error("Error fetching location info:", error);
+//     console.error('Error fetching location info:', error);
 //     throw error; // Rethrow the error for the caller to handle
 //   }
 // }
-
-//TODO: change file name, and update the paths accordingly

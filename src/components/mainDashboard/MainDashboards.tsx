@@ -20,6 +20,7 @@ import {
 import { IAgency, ISocialNetwork } from '@/types/dashboardTypes';
 import { useTheme } from '../theme-provider';
 
+// TODO: get rid of these agenciesArr and socialNetworksArr. I can simply turn them into agencyStatus & snStatus consts
 const agenciesArr: IAgency[] = [
   {
     lastTimeRecieved: new Date().toISOString(),

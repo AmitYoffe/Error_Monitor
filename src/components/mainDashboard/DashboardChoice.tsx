@@ -1,9 +1,9 @@
+import { getDashboardInfo } from '@/lib/getDashboardInfo';
 import { IAgency, ISocialNetwork, StatusType } from '@/types/dashboardTypes';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
-import { useEffect, useState } from 'react';
-import { getDocs3DaysAgo, getTotalDocs } from '@/lib/getNetworkInfo';
 
 interface IDashboardChoice {
   iconSrc: string;
@@ -22,21 +22,40 @@ export default function DashboardChoice({
   const [agencyHovered, setAgencyHovered] = useState(false);
   const [snHovered, setSnHovered] = useState(false);
   const [locationHovered, setLocationHovered] = useState(false);
-  const [totalDocs, setTotalDocs] = useState<number | string | null>(null);
-  const [docs3DaysAgo, setDocs3DaysAgo] = useState<number | string | null>(null);
+
+  const [totalDocsSn, setTotalDocsSn] = useState<number | string | null>(null);
+  const [docs3DaysAgoSn, setDocs3DaysAgoSn] = useState<number | string | null>(null);
+  const [lastTimeRecievedSn, setLastTimeRecievedSn] = useState<number | string | null>(null);
+
+  const [totalDocsAgency, setTotalDocsAgency] = useState<number | string | null>(null);
+  const [docs3DaysAgoAgency, setDocs3DaysAgoAgency] = useState<number | string | null>(null);
+  const [lastTimeRecievedAgency, setLastTimeRecievedAgency] = useState<number | string | null>(null);
 
   useEffect(() => {
     const fetchDocsCount = async () => {
       try {
-        const totalDocs = await getTotalDocs(location);
-        const docs3DaysAgo = await getDocs3DaysAgo(location);
-        setTotalDocs(totalDocs);
-        setDocs3DaysAgo(docs3DaysAgo);
+        const totalDocsSn = await getDashboardInfo({ location, docInfoField: 'docs_count', networkType: 'sn' });
+        const docs3DaysAgoSn = await getDashboardInfo({ location, docInfoField: 'docs_count_3_days', networkType: 'sn' });
+        const lastTimeRecievedSn = await getDashboardInfo({ location, docInfoField: 'last_time', networkType: 'sn' });
+
+        const totalDocsAgency = await getDashboardInfo({ location, docInfoField: 'docs_count', networkType: 'article' });
+        const docs3DaysAgoAgency = await getDashboardInfo({ location, docInfoField: 'docs_count_3_days', networkType: 'article' });
+        const lastTimeRecievedAgency = await getDashboardInfo({ location, docInfoField: 'last_time', networkType: 'article' });
+        setTotalDocsSn(totalDocsSn);
+        setDocs3DaysAgoSn(docs3DaysAgoSn);
+        setLastTimeRecievedSn(lastTimeRecievedSn);
+        setTotalDocsAgency(totalDocsAgency);
+        setDocs3DaysAgoAgency(docs3DaysAgoAgency);
+        setLastTimeRecievedAgency(lastTimeRecievedAgency);
       } catch (error) {
         console.error('Error fetching docs:', error);
         // If there's an error, set the state with 'no information'
-        setTotalDocs('no information');
-        setDocs3DaysAgo('no information');
+        setTotalDocsSn('no information');
+        setDocs3DaysAgoSn('no information');
+        setLastTimeRecievedSn('no information');
+        setTotalDocsAgency('no information');
+        setDocs3DaysAgoAgency('no information');
+        setLastTimeRecievedAgency('no information');
       }
     };
 
@@ -88,13 +107,13 @@ export default function DashboardChoice({
               Social Networks
             </CardTitle>
             <CardDescription className="mx-12 flex justify-between">
-              Last Time Recieved: <div>{moment(SocialNetworks?.lastTimeRecieved).format('DD/MM/YYYY - HH:mm:ss')}</div>
+              Last Time Recieved: <div>{moment(lastTimeRecievedSn).format('DD/MM/YYYY - HH:mm:ss')}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
-              Docs from 3 days ago: <div>{docs3DaysAgo}</div>
+              Docs from 3 days ago: <div>{docs3DaysAgoSn}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
-              Total Docs: <div>{totalDocs}</div>
+              Total Docs: <div>{totalDocsSn}</div>
             </CardDescription>
           </Card>
         </Link>
@@ -111,13 +130,13 @@ export default function DashboardChoice({
               Agencies
             </CardTitle>
             <CardDescription className="mx-12 flex justify-between">
-              Last Time Recieved: <div>{moment(Agencies?.lastTimeRecieved).format('DD/MM/YYYY - HH:mm:ss')}</div>
+              Last Time Recieved: <div>{moment(lastTimeRecievedAgency).format('DD/MM/YYYY - HH:mm:ss')}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
-              Docs from 3 days ago: <div>{Agencies?.info}</div>
+              Docs from 3 days ago: <div>{docs3DaysAgoAgency}</div>
             </CardDescription>
             <CardDescription className="mx-12 flex justify-between">
-              Total Docs: <div>{Agencies?.info}</div>
+              Total Docs: <div>{totalDocsAgency}</div>
             </CardDescription>
           </Card>
         </Link>
@@ -127,7 +146,3 @@ export default function DashboardChoice({
 }
 
 //TODO: Add some logic that will cause the parent dashboard statuses actually update according to the logs status values
-
-// TODO: Logic that will display relevant information about each location:
-// last time recieved will be of the actual last time of it's network type and so on...
-// 
