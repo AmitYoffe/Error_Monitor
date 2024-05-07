@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Card } from '../ui/card';
 import NetworkChoice from './NetworkChoice';
 
-interface IDashboardChoice {
+export interface IDashboardChoice {
   iconSrc: string;
   location: string;
   SocialNetworks?: ISocialNetwork;

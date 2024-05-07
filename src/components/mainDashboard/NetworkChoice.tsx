@@ -10,6 +10,8 @@ interface NetworkChoiceProps {
   title: string;
 }
 
+
+
 export default function NetworkChoice({ location, statusColor, title, }: NetworkChoiceProps) {
   const [networkHovered, setNetworkHovered] = useState(false);
   const [totalDocs, setTotalDocs] = useState<number | string | null>(null);
@@ -24,7 +26,10 @@ export default function NetworkChoice({ location, statusColor, title, }: Network
         const totalDocs = await getDashboardInfo({ location, docInfoField: 'docs_count', networkType: 'sn' });
         const docs3DaysAgo = await getDashboardInfo({ location, docInfoField: 'docs_count_3_days', networkType: 'sn' });
         const lastTimeRecieved = await getDashboardInfo({ location, docInfoField: 'last_time', networkType: 'sn' });
-
+        // const locationInfo = await getLocationInfo("")
+        // const {totalDocs,
+        //   docs3DaysAgo,
+        //   lastTimeRecieved} = locationInfo["sn"]
         setTotalDocs(totalDocs);
         setDocs3DaysAgo(docs3DaysAgo);
         setLastTimeRecieved(lastTimeRecieved);
@@ -67,3 +72,5 @@ export default function NetworkChoice({ location, statusColor, title, }: Network
     </Link>
   )
 }
+
+// TODO: Add skeleton onload, because it takes a long time to load

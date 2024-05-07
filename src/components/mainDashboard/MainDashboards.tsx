@@ -10,7 +10,9 @@ import WhiteGaza from '@/assets/images/white-gaza.png';
 import WhiteLebanon from '@/assets/images/white-lebanon.png';
 import WhiteInterArab from '@/assets/images/white-middleEast.png';
 import WhiteWestBank from '@/assets/images/white-westBank.png';
-import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
+import DashboardChoice, {
+  IDashboardChoice,
+} from '@/components/mainDashboard/DashboardChoice';
 import {
   CardContent,
   CardDescription,
@@ -60,7 +62,40 @@ const socialNetworksArr: ISocialNetwork[] = [
 
 export default function MainDashboards() {
   const { theme } = useTheme();
+  const locationInfo: IDashboardChoice[] = [
+    {
+      iconSrc: theme === 'dark' ? WhiteGaza : Gaza,
+      location: 'Gaza Strip',
+      SocialNetworks: socialNetworksArr[0],
+      Agencies: agenciesArr[0],
+    },
+    {
+      iconSrc: theme === 'dark' ? WhiteLebanon : Lebanon,
+      location: 'Lebanon',
+      SocialNetworks: socialNetworksArr[1],
+      Agencies: agenciesArr[1],
+    },
+    {
+      iconSrc: theme === 'dark' ? WhiteWestBank : WestBank,
+      location: 'West Bank',
+      SocialNetworks: socialNetworksArr[2],
+      Agencies: agenciesArr[2],
+    },
+    {
+      iconSrc: theme === 'dark' ? WhiteInterArab : InterArab,
+      location: 'Inter-Arab',
+      SocialNetworks: socialNetworksArr[2],
+      Agencies: agenciesArr[2],
+    },
+    {
+      iconSrc: theme === 'dark' ? WhiteInternational : International,
+      location: 'International',
+      SocialNetworks: socialNetworksArr[2],
+      Agencies: agenciesArr[2],
+    },
+  ];
 
+  //TODO: Add min width and height, generally prettify
   return (
     <div>
       <CardHeader className="flex w-full items-center pt-1">
@@ -72,42 +107,22 @@ export default function MainDashboards() {
         <CardTitle>Error Monitor</CardTitle>
         <CardDescription>Lead your quest to find the errors.</CardDescription>
       </CardHeader>
-      <CardContent className="grid grid-cols-3 gap-6">
-        <DashboardChoice
-          iconSrc={theme === 'dark' ? WhiteGaza : Gaza}
-          location={'Gaza Strip'}
-          SocialNetworks={socialNetworksArr[0]}
-          Agencies={agenciesArr[0]}
-        />
-        <DashboardChoice
-          iconSrc={theme === 'dark' ? WhiteLebanon : Lebanon}
-          location={'Lebanon'}
-          SocialNetworks={socialNetworksArr[1]}
-          Agencies={agenciesArr[1]}
-        />
-        <DashboardChoice
-          iconSrc={theme === 'dark' ? WhiteWestBank : WestBank}
-          location={'West Bank'}
-          SocialNetworks={socialNetworksArr[2]}
-          Agencies={agenciesArr[2]}
-        />
+      <CardContent className="flex flex-wrap justify-center gap-4">
+        {locationInfo.map((locationInfo) => (
+          <div
+            key={locationInfo.location}
+            className="min-w-96 flex-shrink-0 basis-1/2 md:basis-1/4"
+          >
+            <DashboardChoice
+              iconSrc={locationInfo.iconSrc}
+              location={locationInfo.location}
+              SocialNetworks={locationInfo.SocialNetworks}
+              Agencies={locationInfo.Agencies}
+            />
+          </div>
+        ))}
       </CardContent>
-      <div className="flex w-full justify-center">
-        <CardContent className="grid w-full max-w-[80em] grid-cols-2 gap-6">
-          <DashboardChoice
-            iconSrc={theme === 'dark' ? WhiteInterArab : InterArab}
-            location={'Inter-Arab'}
-            SocialNetworks={socialNetworksArr[2]}
-            Agencies={agenciesArr[2]}
-          />
-          <DashboardChoice
-            iconSrc={theme === 'dark' ? WhiteInternational : International}
-            location={'International'}
-            SocialNetworks={socialNetworksArr[2]}
-            Agencies={agenciesArr[2]}
-          />
-        </CardContent>
-      </div>
+      <CardContent className="grid w-full max-w-[80em] grid-cols-2 gap-6"></CardContent>
     </div>
   );
 }

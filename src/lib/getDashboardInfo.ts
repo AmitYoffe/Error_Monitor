@@ -28,7 +28,7 @@ export async function getDashboardInfo({
     !locationsInfo[locationKey][networkType]
   ) {
     throw new Error(
-      `Social networks data for location '${location}' and network type '${networkType}' not found.`,
+      `Networks data for location '${location}' and network type '${networkType}' not found.`,
     );
   }
 
