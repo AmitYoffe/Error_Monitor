@@ -66,7 +66,7 @@ export default function SourcesTable({
               key={rowIndex}
               className="cursor-pointer hover:bg-accent active:border-b-slate-950"
             >
-              <TableCell>
+              <TableCell className='max-w-60'>
                 {row.entity_names ? (
                   row.entity_names.map((entity, index) => (
                     <div key={index}>{entity.entity_name}</div>

@@ -8164,4 +8164,4 @@ export async function getData(): Promise<Location> {
   }
 }
 
-// Added chrome extensions called: CORS Unblock
+// Added a chrome extension called: CORS Unblock
