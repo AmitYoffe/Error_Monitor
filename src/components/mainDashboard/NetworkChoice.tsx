@@ -11,9 +11,11 @@ interface NetworkChoiceProps {
   title: string;
 }
 
-
-
-export default function NetworkChoice({ location, statusColor, title, }: NetworkChoiceProps) {
+export default function NetworkChoice({
+  location,
+  statusColor,
+  title,
+}: NetworkChoiceProps) {
   const [networkHovered, setNetworkHovered] = useState(false);
   const [totalDocs, setTotalDocs] = useState<number | string | null>(null);
   const [docs3DaysAgo, setDocs3DaysAgo] = useState<number | string | null>(
@@ -24,6 +26,7 @@ export default function NetworkChoice({ location, statusColor, title, }: Network
   >(null);
 
   const urlArgument = title === 'Agencies' ? 'ag' : 'sn';
+  const networkTypeField = title === 'Agencies' ? 'article' : 'sn';
 
   useEffect(() => {
     const fetchDocsCount = async () => {
@@ -31,17 +34,17 @@ export default function NetworkChoice({ location, statusColor, title, }: Network
         const totalDocs = await getDashboardInfo({
           location,
           docInfoField: 'docs_count',
-          networkType: 'sn',
+          networkType: networkTypeField,
         });
         const docs3DaysAgo = await getDashboardInfo({
           location,
           docInfoField: 'docs_count_3_days',
-          networkType: 'sn',
+          networkType: networkTypeField,
         });
         const lastTimeRecieved = await getDashboardInfo({
           location,
           docInfoField: 'last_time',
-          networkType: 'sn',
+          networkType: networkTypeField,
         });
         // const locationInfo = await getLocationInfo("")
         // const {totalDocs,
