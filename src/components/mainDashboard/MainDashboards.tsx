@@ -18,46 +18,45 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { getLocationInfoType } from '@/lib/getLocationInfo';
-import { IAgency, ISocialNetwork } from '@/types/dashboardTypes';
 import { useTheme } from '../theme-provider';
 
 // TODO: get rid of these agenciesArr and socialNetworksArr. I'm only using their status so
 // i can simply turn them into agencyStatus & snStatus consts
-const agenciesArr: IAgency[] = [
-  {
-    lastTimeRecieved: new Date().toISOString(),
-    info: 'no information',
-    status: 'no-connection',
-  },
-  {
-    lastTimeRecieved: new Date().toISOString(),
-    info: 'no information',
-    status: 'operational',
-  },
-  {
-    lastTimeRecieved: new Date().toISOString(),
-    info: 'no information',
-    status: 'unstable',
-  },
-];
+// const agenciesArr: IAgency[] = [
+//   {
+//     lastTimeRecieved: new Date().toISOString(),
+//     info: 'no information',
+//     status: 'no-connection',
+//   },
+//   {
+//     lastTimeRecieved: new Date().toISOString(),
+//     info: 'no information',
+//     status: 'operational',
+//   },
+//   {
+//     lastTimeRecieved: new Date().toISOString(),
+//     info: 'no information',
+//     status: 'unstable',
+//   },
+// ];
 
-const socialNetworksArr: ISocialNetwork[] = [
-  {
-    lastTimeRecieved: new Date().toISOString(),
-    info: 'no information',
-    status: 'unstable',
-  },
-  {
-    lastTimeRecieved: new Date().toISOString(),
-    info: 'no information',
-    status: 'operational',
-  },
-  {
-    lastTimeRecieved: new Date().toISOString(),
-    info: 'no information',
-    status: 'unstable',
-  },
-];
+// const socialNetworksArr: ISocialNetwork[] = [
+//   {
+//     lastTimeRecieved: new Date().toISOString(),
+//     info: 'no information',
+//     status: 'unstable',
+//   },
+//   {
+//     lastTimeRecieved: new Date().toISOString(),
+//     info: 'no information',
+//     status: 'operational',
+//   },
+//   {
+//     lastTimeRecieved: new Date().toISOString(),
+//     info: 'no information',
+//     status: 'unstable',
+//   },
+// ];
 
 // export type LocationName =
 //   | 'Gaza Strip'
@@ -90,7 +89,7 @@ interface IMainDashboards {
 export default function MainDashboards({ locationsInfo }: IMainDashboards) {
   const { theme } = useTheme();
   console.log(locationsInfo);
-  
+
   const locationInfo = locationsInfo.map((location) => {
     return {
       ...location,
