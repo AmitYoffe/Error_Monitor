@@ -30,7 +30,6 @@ export async function loader() {
     };
   });
 
-  console.log(locationInfo);
   return { locationInfo };
 }
 

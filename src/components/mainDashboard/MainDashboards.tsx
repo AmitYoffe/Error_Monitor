@@ -94,39 +94,6 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
     };
   });
 
-  // const locationInfo: IDashboardChoice[] = [
-  //   {
-  //     iconSrc: theme === 'dark' ? WhiteGaza : Gaza,
-  //     location: 'Gaza Strip',
-  //     SocialNetworks: socialNetworksArr[0],
-  //     Agencies: agenciesArr[0],
-  //   },
-  //   {
-  //     iconSrc: theme === 'dark' ? WhiteLebanon : Lebanon,
-  //     location: 'Lebanon',
-  //     SocialNetworks: socialNetworksArr[1],
-  //     Agencies: agenciesArr[1],
-  //   },
-  //   {
-  //     iconSrc: theme === 'dark' ? WhiteWestBank : WestBank,
-  //     location: 'West Bank',
-  //     SocialNetworks: socialNetworksArr[2],
-  //     Agencies: agenciesArr[2],
-  //   },
-  //   {
-  //     iconSrc: theme === 'dark' ? WhiteInterArab : InterArab,
-  //     location: 'Inter-Arab',
-  //     SocialNetworks: socialNetworksArr[2],
-  //     Agencies: agenciesArr[2],
-  //   },
-  //   {
-  //     iconSrc: theme === 'dark' ? WhiteInternational : International,
-  //     location: 'International',
-  //     SocialNetworks: socialNetworksArr[2],
-  //     Agencies: agenciesArr[2],
-  //   },
-  // ];
-
   return (
     <div>
       <CardHeader className="flex w-full items-center pt-1">
@@ -148,13 +115,10 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
               iconSrc={locationInfo.iconSrc}
               locationName={locationInfo.locationName}
               networksInfo={locationInfo.networksInfo}
-              // SocialNetworks={locationInfo.SocialNetworks}
-              // Agencies={locationInfo.Agencies}
             />
           </div>
         ))}
       </CardContent>
-      <CardContent className="grid w-full max-w-[80em] grid-cols-2 gap-6"></CardContent>
     </div>
   );
 }

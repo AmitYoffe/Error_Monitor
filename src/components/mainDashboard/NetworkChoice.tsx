@@ -8,17 +8,19 @@ import { Skeleton } from '../ui/skeleton';
 interface NetworkChoiceProps {
   networkInfo: getLocationInfoType;
   statusColor: string;
-  title: string;
+  location: string;
 }
 
 export default function NetworkChoice({
   networkInfo,
   statusColor,
-  title,
+  location,
 }: NetworkChoiceProps) {
   const [networkHovered, setNetworkHovered] = useState(false);
 
-  const urlArgument = title === 'Agencies' ? 'ag' : 'sn';
+  const urlArgument = networkInfo.networkType === 'article' ? 'ag' : 'sn';
+  const networkBoxTitle =
+    networkInfo.networkType === 'article' ? 'Agencies' : 'Social Networks';
   // const networkTypeField = title === 'Agencies' ? 'article' : 'sn';
 
   return (
@@ -31,7 +33,9 @@ export default function NetworkChoice({
         onMouseOver={() => setNetworkHovered(true)}
         onMouseOut={() => setNetworkHovered(false)}
       >
-        <CardTitle className="p-2 text-center underline">{title}</CardTitle>
+        <CardTitle className="p-2 text-center underline">
+          {networkBoxTitle}
+        </CardTitle>
         <CardDescription className="mx-12 flex justify-between">
           Last Time Recieved:{' '}
           <div>

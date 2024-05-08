@@ -59,22 +59,13 @@ export default function DashboardChoice({
         </p>
         {networksInfo.map((networkInfo) => (
           <NetworkChoice
+            location={locationName}
             networkInfo={networkInfo}
-            title={'Social Networks'}
             // statusColor={statusVisualizer[SocialNetworks!.status]}
+            // Todo: they should have each their own status
             statusColor={statusVisualizer['unstable']}
           />
         ))}
-        {/* <NetworkChoice
-          location={location}
-          title={'Social Networks'}
-          statusColor={statusVisualizer[SocialNetworks!.status]}
-        />
-        <NetworkChoice
-          location={location}
-          title={'Agencies'}
-          statusColor={statusVisualizer[Agencies!.status]}
-        /> */}
       </Card>
     </div>
   );
