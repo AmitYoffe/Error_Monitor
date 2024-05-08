@@ -59,23 +59,27 @@ const socialNetworksArr: ISocialNetwork[] = [
   },
 ];
 
-export type LocationName =
-  | 'Gaza Strip'
-  | 'Lebanon'
-  | 'West Bank'
-  | 'Inter-Arab'
-  | 'International';
+// export type LocationName =
+//   | 'Gaza Strip'
+//   | 'Lebanon'
+//   | 'West Bank'
+//   | 'Inter-Arab'
+//   | 'International';
 
-const iconSrcMap: Record<LocationName, { light: string; dark: string }> = {
+const iconSrcMap: Record<string, { light: string; dark: string }> = {
   'Gaza Strip': { light: WhiteGaza, dark: Gaza },
   Lebanon: { light: WhiteLebanon, dark: Lebanon },
   'West Bank': { light: WhiteWestBank, dark: WestBank },
   'Inter-Arab': { light: WhiteInterArab, dark: InterArab },
   International: { light: WhiteInternational, dark: International },
+  default: {
+    light: WhiteInternational,
+    dark: International,
+  },
 };
 
 export type formattedLocationInfo = {
-  locationName: LocationName;
+  locationName: string;
   networksInfo: getLocationInfoType[];
 };
 
@@ -85,12 +89,17 @@ interface IMainDashboards {
 
 export default function MainDashboards({ locationsInfo }: IMainDashboards) {
   const { theme } = useTheme();
-
+  console.log(locationsInfo);
+  
   const locationInfo = locationsInfo.map((location) => {
     return {
       ...location,
       iconSrc:
-        iconSrcMap[location.locationName][theme === 'dark' ? 'light' : 'dark'],
+        iconSrcMap[
+          Object.keys(iconSrcMap).includes(location.locationName)
+            ? location.locationName
+            : 'default'
+        ][theme === 'dark' ? 'light' : 'dark'],
     };
   });
 

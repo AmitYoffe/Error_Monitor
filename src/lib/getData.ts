@@ -1,5 +1,3 @@
-// import { Location } from '@/types/NetworkType';
-
 // export async function getData() {
 //   const locations: Location = {
 //     'west bank': {

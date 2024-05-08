@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import capitalizeWord from '@/lib/capitalizeWord';
+import { capitalizeWord } from '@/lib/capitalizeWord';
 import { ParsedNetwrokInfo } from '@/types/NetworkType';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import moment from 'moment';

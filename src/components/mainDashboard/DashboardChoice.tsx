@@ -2,8 +2,9 @@ import { getLocationInfoType } from '@/lib/getLocationInfo';
 import { StatusType } from '@/types/dashboardTypes';
 import { useState } from 'react';
 import { Card } from '../ui/card';
-import { LocationName } from './MainDashboards';
+import {  } from './MainDashboards';
 import NetworkChoice from './NetworkChoice';
+import { capitalizeWord } from '@/lib/capitalizeWord';
 
 export interface IDashboardChoice {
   iconSrc: string;
@@ -59,7 +60,7 @@ export default function DashboardChoice({
         </p>
         {networksInfo.map((networkInfo) => (
           <NetworkChoice
-            location={locationName}
+            location={capitalizeWord(locationName)}
             networkInfo={networkInfo}
             // statusColor={statusVisualizer[SocialNetworks!.status]}
             // Todo: they should have each their own status
