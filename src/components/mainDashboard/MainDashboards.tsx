@@ -20,50 +20,13 @@ import {
 import { getLocationInfoType } from '@/lib/getLocationInfo';
 import { useTheme } from '../theme-provider';
 
-// TODO: get rid of these agenciesArr and socialNetworksArr. I'm only using their status so
-// i can simply turn them into agencyStatus & snStatus consts
-// const agenciesArr: IAgency[] = [
-//   {
-//     lastTimeRecieved: new Date().toISOString(),
-//     info: 'no information',
-//     status: 'no-connection',
-//   },
-//   {
-//     lastTimeRecieved: new Date().toISOString(),
-//     info: 'no information',
-//     status: 'operational',
-//   },
-//   {
-//     lastTimeRecieved: new Date().toISOString(),
-//     info: 'no information',
-//     status: 'unstable',
-//   },
-// ];
-
-// const socialNetworksArr: ISocialNetwork[] = [
-//   {
-//     lastTimeRecieved: new Date().toISOString(),
-//     info: 'no information',
-//     status: 'unstable',
-//   },
-//   {
-//     lastTimeRecieved: new Date().toISOString(),
-//     info: 'no information',
-//     status: 'operational',
-//   },
-//   {
-//     lastTimeRecieved: new Date().toISOString(),
-//     info: 'no information',
-//     status: 'unstable',
-//   },
-// ];
-
 const iconSrcMap: Record<string, { light: string; dark: string }> = {
-  'Gaza Strip': { light: WhiteGaza, dark: Gaza },
-  Lebanon: { light: WhiteLebanon, dark: Lebanon },
-  'West Bank': { light: WhiteWestBank, dark: WestBank },
-  'Inter-Arab': { light: WhiteInterArab, dark: InterArab },
-  International: { light: WhiteInternational, dark: International },
+  'gaza strip': { light: WhiteGaza, dark: Gaza },
+  lebanon: { light: WhiteLebanon, dark: Lebanon },
+  'west bank': { light: WhiteWestBank, dark: WestBank },
+  'inter-arab': { light: WhiteInterArab, dark: InterArab },
+  // 'anti hezbollah': { light: , dark:  },
+  // 'pro hezbollah': { light: , dark:  },
   default: {
     light: WhiteInternational,
     dark: International,
@@ -81,7 +44,6 @@ interface IMainDashboards {
 
 export default function MainDashboards({ locationsInfo }: IMainDashboards) {
   const { theme } = useTheme();
-  console.log(locationsInfo);
 
   const locationInfo = locationsInfo.map((location) => {
     return {
@@ -108,8 +70,7 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
       </CardHeader>
       <CardContent className="flex flex-wrap justify-center gap-4">
         {locationInfo.map((locationInfo) => (
-          <div
-            key={locationInfo.locationName}
+          <div key={locationInfo.locationName}
             className="min-w-[590px] flex-shrink-0 basis-1/2 md:basis-1/4"
           >
             <DashboardChoice

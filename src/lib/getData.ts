@@ -8144,13 +8144,12 @@ import axios from 'axios';
 import invariant from 'tiny-invariant';
 
 // Get env variable for network url
-const NetworkURL = import.meta.env.VITE_INFO_URL
+const NetworkURL = import.meta.env.VITE_INFO_URL;
 
 export async function getData(): Promise<Location> {
   invariant(NetworkURL, 'Network URL cannot be empty');
   try {
-    const response = await axios.get(NetworkURL, {
-    });
+    const response = await axios.get(NetworkURL, {});
     if (!response.data) {
       throw new Error(`Failed to fetch data, status ${response.status}`);
     }
@@ -8162,4 +8161,4 @@ export async function getData(): Promise<Location> {
   }
 }
 
-// Added a chrome extension called: CORS Unblock
+// Added a chrome extension called: "CORS Unblock" for this to work.

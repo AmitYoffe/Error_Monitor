@@ -30,8 +30,8 @@ export default function Root() {
   const { locationInfo } = useLoaderData() as AsyncReturnType<typeof loader>;
 
   return (
-    <div className="h-screen overflow-hidden">
-      <div className="space-y-4">
+    <div className="h-screen">
+      <div className="space-y-3">
         <Header showBreadcrumbs={false} />
         <MainDashboards locationsInfo={locationInfo} />
       </div>

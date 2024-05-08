@@ -1,9 +1,6 @@
 import { capitalizeWord } from '@/lib/capitalizeWord';
 import { getLocationInfoType } from '@/lib/getLocationInfo';
-import { StatusType } from '@/types/dashboardTypes';
-import { useState } from 'react';
 import { Card } from '../ui/card';
-import { } from './MainDashboards';
 import NetworkChoice from './NetworkChoice';
 
 export interface IDashboardChoice {
@@ -39,29 +36,40 @@ export default function DashboardChoice({
   //   statusIndicatorColor = statusVisualizer['unstable'];
   // }
 
+  // Ensure that the networksInfo array always contains 2 items
+  const filledNetworksInfo: getLocationInfoType[] = [
+    {
+      ...{ article: {}, sn: {} },
+      networkType: networksInfo[0]?.networkType || 'sn',
+      ...(networksInfo[0]?.networkType === 'sn' ? { article: {} } : {}),
+    },
+    {
+      ...{ article: {}, sn: {} },
+      networkType: networksInfo[1]?.networkType || 'article',
+      ...(networksInfo[1]?.networkType === 'article' ? { sn: {} } : {}),
+    },
+  ];
+
   return (
     <div className="h-4/5">
-      <Card
-        className="flex-col p-2"
-        // style={{
-        //   border: locationHovered
-        //     ? `1px solid ${statusIndicatorColor}`
-        //     : undefined,
-        // }}
-        // onMouseOver={() => setLocationHovered(true)}
-        // onMouseOut={() => setLocationHovered(false)}
+      <Card className="flex-col p-2"
+      // style={{
+      //   border: locationHovered
+      //     ? `1px solid ${statusIndicatorColor}`
+      //     : undefined,
+      // }}
+      // onMouseOver={() => setLocationHovered(true)}
+      // onMouseOut={() => setLocationHovered(false)}
       >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
-          {locationName}
+          {capitalizeWord(locationName)}
         </p>
-        {networksInfo.map((networkInfo) => (
+        {filledNetworksInfo.map((networkInfo, index) => (
           <NetworkChoice
-            location={capitalizeWord(locationName)}
+            location={locationName}
+            key={index}
             networkInfo={networkInfo}
-            // statusColor={statusVisualizer[SocialNetworks!.status]}
-            // Todo: they should have each their own status
-            // statusColor={statusVisualizer['unstable']}
           />
         ))}
       </Card>
@@ -69,4 +77,4 @@ export default function DashboardChoice({
   );
 }
 
-//TODO: Add some logic that will cause the parent dashboard statuses actually update according to the logs status values
+//TODO: Add some logic that will cause the parent dashboard statuses actually update

@@ -9,7 +9,7 @@ export default function DeveloperInfo() {
     <>
       <StatusGradient generalStatus={'unstable'} />
       <Header showBreadcrumbs={true} />
-      <CardHeader className="flex w-full items-center pt-5">
+      <CardHeader className="flex w-full items-center pt-4">
         <img
           src={shyDuck}
           alt="shy traffic cone duck"

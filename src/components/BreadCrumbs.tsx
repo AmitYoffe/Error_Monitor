@@ -17,7 +17,7 @@ export default function BreadCrumbs() {
   const capitalizedPathnames = pathnames.map(capitalizeWord);
   const backPath = '/' + pathnames.slice(0, -1).join('/');
 
-  let formattedPathName = pathnames[0]?.split('%20').join(' ');
+  let formattedPathName = capitalizeWord(pathnames[0]?.split('%20').join(' '));
   if (pathnames.includes('sn')) {
     formattedPathName = `Social Networks - ${formattedPathName}`;
   } else if (pathnames.includes('ag')) {
