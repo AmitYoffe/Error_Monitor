@@ -6,7 +6,7 @@ import Layout from './components/Layout';
 import ErrorPage from './error-page';
 import './index.css';
 import DeveloperInfo from './routes/DeveloperInfo';
-import Root from './routes/Root';
+import Root, { loader as rootLoader } from './routes/Root';
 import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
 import SecondSubDashboard, {
   loader as sourcesLoader,
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
+    loader: rootLoader,
   },
   {
     path: '/info-dev',

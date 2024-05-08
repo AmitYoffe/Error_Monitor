@@ -10,15 +10,14 @@ import WhiteGaza from '@/assets/images/white-gaza.png';
 import WhiteLebanon from '@/assets/images/white-lebanon.png';
 import WhiteInterArab from '@/assets/images/white-middleEast.png';
 import WhiteWestBank from '@/assets/images/white-westBank.png';
-import DashboardChoice, {
-  IDashboardChoice,
-} from '@/components/mainDashboard/DashboardChoice';
+import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
 import {
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { getLocationInfoType } from '@/lib/getLocationInfo';
 import { IAgency, ISocialNetwork } from '@/types/dashboardTypes';
 import { useTheme } from '../theme-provider';
 
@@ -60,40 +59,73 @@ const socialNetworksArr: ISocialNetwork[] = [
   },
 ];
 
-export default function MainDashboards() {
+export type LocationName =
+  | 'Gaza Strip'
+  | 'Lebanon'
+  | 'West Bank'
+  | 'Inter-Arab'
+  | 'International';
+
+const iconSrcMap: Record<LocationName, { light: string; dark: string }> = {
+  'Gaza Strip': { light: WhiteGaza, dark: Gaza },
+  Lebanon: { light: WhiteLebanon, dark: Lebanon },
+  'West Bank': { light: WhiteWestBank, dark: WestBank },
+  'Inter-Arab': { light: WhiteInterArab, dark: InterArab },
+  International: { light: WhiteInternational, dark: International },
+};
+
+export type formattedLocationInfo = {
+  locationName: LocationName;
+  networksInfo: getLocationInfoType[];
+};
+
+interface IMainDashboards {
+  locationsInfo: formattedLocationInfo[];
+}
+
+export default function MainDashboards({ locationsInfo }: IMainDashboards) {
   const { theme } = useTheme();
-  const locationInfo: IDashboardChoice[] = [
-    {
-      iconSrc: theme === 'dark' ? WhiteGaza : Gaza,
-      location: 'Gaza Strip',
-      SocialNetworks: socialNetworksArr[0],
-      Agencies: agenciesArr[0],
-    },
-    {
-      iconSrc: theme === 'dark' ? WhiteLebanon : Lebanon,
-      location: 'Lebanon',
-      SocialNetworks: socialNetworksArr[1],
-      Agencies: agenciesArr[1],
-    },
-    {
-      iconSrc: theme === 'dark' ? WhiteWestBank : WestBank,
-      location: 'West Bank',
-      SocialNetworks: socialNetworksArr[2],
-      Agencies: agenciesArr[2],
-    },
-    {
-      iconSrc: theme === 'dark' ? WhiteInterArab : InterArab,
-      location: 'Inter-Arab',
-      SocialNetworks: socialNetworksArr[2],
-      Agencies: agenciesArr[2],
-    },
-    {
-      iconSrc: theme === 'dark' ? WhiteInternational : International,
-      location: 'International',
-      SocialNetworks: socialNetworksArr[2],
-      Agencies: agenciesArr[2],
-    },
-  ];
+
+  const locationInfo = locationsInfo.map((location) => {
+    return {
+      ...location,
+      iconSrc:
+        iconSrcMap[location.locationName][theme === 'dark' ? 'light' : 'dark'],
+    };
+  });
+
+  // const locationInfo: IDashboardChoice[] = [
+  //   {
+  //     iconSrc: theme === 'dark' ? WhiteGaza : Gaza,
+  //     location: 'Gaza Strip',
+  //     SocialNetworks: socialNetworksArr[0],
+  //     Agencies: agenciesArr[0],
+  //   },
+  //   {
+  //     iconSrc: theme === 'dark' ? WhiteLebanon : Lebanon,
+  //     location: 'Lebanon',
+  //     SocialNetworks: socialNetworksArr[1],
+  //     Agencies: agenciesArr[1],
+  //   },
+  //   {
+  //     iconSrc: theme === 'dark' ? WhiteWestBank : WestBank,
+  //     location: 'West Bank',
+  //     SocialNetworks: socialNetworksArr[2],
+  //     Agencies: agenciesArr[2],
+  //   },
+  //   {
+  //     iconSrc: theme === 'dark' ? WhiteInterArab : InterArab,
+  //     location: 'Inter-Arab',
+  //     SocialNetworks: socialNetworksArr[2],
+  //     Agencies: agenciesArr[2],
+  //   },
+  //   {
+  //     iconSrc: theme === 'dark' ? WhiteInternational : International,
+  //     location: 'International',
+  //     SocialNetworks: socialNetworksArr[2],
+  //     Agencies: agenciesArr[2],
+  //   },
+  // ];
 
   return (
     <div>
@@ -109,14 +141,15 @@ export default function MainDashboards() {
       <CardContent className="flex flex-wrap justify-center gap-4">
         {locationInfo.map((locationInfo) => (
           <div
-            key={locationInfo.location}
+            key={locationInfo.locationName}
             className="min-w-[590px] flex-shrink-0 basis-1/2 md:basis-1/4"
           >
             <DashboardChoice
               iconSrc={locationInfo.iconSrc}
-              location={locationInfo.location}
-              SocialNetworks={locationInfo.SocialNetworks}
-              Agencies={locationInfo.Agencies}
+              locationName={locationInfo.locationName}
+              networksInfo={locationInfo.networksInfo}
+              // SocialNetworks={locationInfo.SocialNetworks}
+              // Agencies={locationInfo.Agencies}
             />
           </div>
         ))}
