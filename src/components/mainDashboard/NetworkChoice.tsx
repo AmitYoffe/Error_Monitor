@@ -11,11 +11,9 @@ interface NetworkChoiceProps {
   title: string;
 }
 
-export default function NetworkChoice({
-  location,
-  statusColor,
-  title,
-}: NetworkChoiceProps) {
+
+
+export default function NetworkChoice({ location, statusColor, title, }: NetworkChoiceProps) {
   const [networkHovered, setNetworkHovered] = useState(false);
   const [totalDocs, setTotalDocs] = useState<number | string | null>(null);
   const [docs3DaysAgo, setDocs3DaysAgo] = useState<number | string | null>(

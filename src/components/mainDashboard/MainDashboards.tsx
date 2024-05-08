@@ -95,7 +95,6 @@ export default function MainDashboards() {
     },
   ];
 
-  //TODO: Add min width and height, generally prettify
   return (
     <div>
       <CardHeader className="flex w-full items-center pt-1">
@@ -111,7 +110,7 @@ export default function MainDashboards() {
         {locationInfo.map((locationInfo) => (
           <div
             key={locationInfo.location}
-            className="min-w-96 flex-shrink-0 basis-1/2 md:basis-1/4"
+            className="min-w-[590px] flex-shrink-0 basis-1/2 md:basis-1/4"
           >
             <DashboardChoice
               iconSrc={locationInfo.iconSrc}
