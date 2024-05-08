@@ -1,34 +1,31 @@
+import { capitalizeWord } from '@/lib/capitalizeWord';
 import { getLocationInfoType } from '@/lib/getLocationInfo';
 import { StatusType } from '@/types/dashboardTypes';
 import { useState } from 'react';
 import { Card } from '../ui/card';
-import {  } from './MainDashboards';
+import { } from './MainDashboards';
 import NetworkChoice from './NetworkChoice';
-import { capitalizeWord } from '@/lib/capitalizeWord';
 
 export interface IDashboardChoice {
   iconSrc: string;
-  locationName: LocationName;
+  locationName: string;
   networksInfo: getLocationInfoType[];
 }
 export default function DashboardChoice({
   iconSrc,
   locationName,
   networksInfo,
-  // This will be turned into an array i will map
-  // SocialNetworks,
-  // Agencies,
 }: IDashboardChoice) {
   // States used to track hovering of certain areas of the component
-  const [locationHovered, setLocationHovered] = useState(false);
+  // const [locationHovered, setLocationHovered] = useState(false);
 
   // Todo: extract to function
-  const statusVisualizer: Record<StatusType, string> = {
-    operational: '#22c55e',
-    unstable: '#f59e0b',
-    'no-connection': '#ef4444',
-  };
-  let statusIndicatorColor = '#22c55e';
+  // const statusVisualizer: Record<StatusType, string> = {
+  //   operational: '#22c55e',
+  //   unstable: '#f59e0b',
+  //   'no-connection': '#ef4444',
+  // };
+  // let statusIndicatorColor = '#22c55e';
 
   // if (
   //   Agencies?.status === 'no-connection' ||
@@ -46,13 +43,13 @@ export default function DashboardChoice({
     <div className="h-4/5">
       <Card
         className="flex-col p-2"
-        style={{
-          border: locationHovered
-            ? `1px solid ${statusIndicatorColor}`
-            : undefined,
-        }}
-        onMouseOver={() => setLocationHovered(true)}
-        onMouseOut={() => setLocationHovered(false)}
+        // style={{
+        //   border: locationHovered
+        //     ? `1px solid ${statusIndicatorColor}`
+        //     : undefined,
+        // }}
+        // onMouseOver={() => setLocationHovered(true)}
+        // onMouseOut={() => setLocationHovered(false)}
       >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
@@ -64,7 +61,7 @@ export default function DashboardChoice({
             networkInfo={networkInfo}
             // statusColor={statusVisualizer[SocialNetworks!.status]}
             // Todo: they should have each their own status
-            statusColor={statusVisualizer['unstable']}
+            // statusColor={statusVisualizer['unstable']}
           />
         ))}
       </Card>

@@ -58,13 +58,6 @@ import { useTheme } from '../theme-provider';
 //   },
 // ];
 
-// export type LocationName =
-//   | 'Gaza Strip'
-//   | 'Lebanon'
-//   | 'West Bank'
-//   | 'Inter-Arab'
-//   | 'International';
-
 const iconSrcMap: Record<string, { light: string; dark: string }> = {
   'Gaza Strip': { light: WhiteGaza, dark: Gaza },
   Lebanon: { light: WhiteLebanon, dark: Lebanon },
@@ -95,9 +88,9 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
       ...location,
       iconSrc:
         iconSrcMap[
-          Object.keys(iconSrcMap).includes(location.locationName)
-            ? location.locationName
-            : 'default'
+        Object.keys(iconSrcMap).includes(location.locationName)
+          ? location.locationName
+          : 'default'
         ][theme === 'dark' ? 'light' : 'dark'],
     };
   });

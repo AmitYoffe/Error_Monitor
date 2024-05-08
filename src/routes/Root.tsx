@@ -10,13 +10,6 @@ import { useLoaderData } from 'react-router-dom';
 export async function loader() {
   const data = await getData();
   const locations = Object.keys(data)
-  // const locations: LocationName[] = [
-  //   'Gaza Strip',
-  //   'Lebanon',
-  //   'West Bank',
-  //   'Inter-Arab',
-  //   // 'International',
-  // ];
 
   const locationInfo: formattedLocationInfo[] = locations.map((location) => {
     return {

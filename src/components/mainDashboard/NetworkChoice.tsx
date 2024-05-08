@@ -3,35 +3,33 @@ import moment from 'moment';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
-import { Skeleton } from '../ui/skeleton';
 
 interface NetworkChoiceProps {
   networkInfo: getLocationInfoType;
-  statusColor: string;
+  // statusColor: string;
   location: string;
 }
 
 export default function NetworkChoice({
   networkInfo,
-  statusColor,
+  // statusColor,
   location,
 }: NetworkChoiceProps) {
-  const [networkHovered, setNetworkHovered] = useState(false);
+  // const [networkHovered, setNetworkHovered] = useState(false);
 
   const urlArgument = networkInfo.networkType === 'article' ? 'ag' : 'sn';
   const networkBoxTitle =
     networkInfo.networkType === 'article' ? 'Agencies' : 'Social Networks';
-  // const networkTypeField = title === 'Agencies' ? 'article' : 'sn';
 
   return (
     <Link to={`${location}/${urlArgument}`}>
       <Card
         className="flex-col p-2"
-        style={{
-          border: networkHovered ? `1px solid ${statusColor}` : undefined,
-        }}
-        onMouseOver={() => setNetworkHovered(true)}
-        onMouseOut={() => setNetworkHovered(false)}
+      // style={{
+      //   border: networkHovered ? `1px solid ${statusColor}` : undefined,
+      // }}
+      // onMouseOver={() => setNetworkHovered(true)}
+      // onMouseOut={() => setNetworkHovered(false)}
       >
         <CardTitle className="p-2 text-center underline">
           {networkBoxTitle}
@@ -47,13 +45,9 @@ export default function NetworkChoice({
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
           Total Docs:
-          {/* Skeleton that is shown when the info takes time to load */}
-          <Skeleton className="my-auto h-2 w-[90px]" />
-          {/* <div>{networkInfo.docs_count}</div> */}
+          <div>{networkInfo.docs_count}</div>
         </CardDescription>
       </Card>
     </Link>
   );
 }
-
-// TODO: Add skeleton onload, because it takes a long time to load
