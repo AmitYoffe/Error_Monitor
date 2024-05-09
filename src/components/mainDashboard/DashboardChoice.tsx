@@ -56,16 +56,9 @@ export default function DashboardChoice({
         // onMouseOut={() => setLocationHovered(false)}
       >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
-          <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
+          <img src={iconSrc} alt={`${location} png`} className="mb-2 h-8 w-8" />
           {capitalizeWord(locationName)}
         </p>
-        {/* {networksInfo.map((networkInfo, index) => (
-          <NetworkChoice
-            location={locationName}
-            key={index}
-            networkInfo={networkInfo}
-          />
-        ))} */}
         {/* if the data doesn't exist in the db then bring an empty json for that missing object*/}
         <NetworkChoice
           location={locationName}

@@ -2,14 +2,20 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { StatusType } from '@/types/dashboardTypes';
 import { Label } from '@radix-ui/react-dropdown-menu';
+import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { PropsWithChildren } from 'react';
-import { statusIcons } from '../subDashboard/NetworksTable';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip';
+
+export const statusIcons: Record<StatusType, JSX.Element> = {
+  operational: <CheckCircle2 className="text-green-400" />,
+  unstable: <AlertCircle className="text-yellow-400" />,
+  'no-connection': <XCircle className="text-red-400" />,
+};
 
 interface StatusLinkProps extends PropsWithChildren {
   status: StatusType;

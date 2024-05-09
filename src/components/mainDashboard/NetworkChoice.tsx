@@ -20,20 +20,28 @@ export default function NetworkChoice({
   const networkBoxTitle =
     networkInfo?.networkType === 'article' ? 'Agencies' : 'Social Networks';
 
-  const noFollowUpLink = true
+  // Check for networkInfo objects that do not contain at least one relevant field,
+  // they should not be able to navigate you anywhere
+  const noFollowUpLink =
+    !networkInfo ||
+    (!networkInfo.last_time &&
+      !networkInfo.docs_count &&
+      !networkInfo.docs_count_3_days);
 
   return (
-    // TODO: make sure it doesn't send the user to an empty url when there is no location!
-    <Link to={`${location}/${urlArgument}`}>
+    <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}>
       <Card
-        className={`flex-col p-2 hover:bg-secondary${noFollowUpLink ? 'transition-colors duration-100 active:border-b-rose-400'
-          : ''}
+        className={`flex-col p-2 hover:bg-secondary${
+          noFollowUpLink
+            ? 'transition-colors duration-100 active:border-b-rose-400'
+            : ''
+        }
           `}
-      // style={{
-      //   border: networkHovered ? `1px solid ${statusColor}` : undefined,
-      // }}
-      // onMouseOver={() => setNetworkHovered(true)}
-      // onMouseOut={() => setNetworkHovered(false)}
+        // style={{
+        //   border: networkHovered ? `1px solid ${statusColor}` : undefined,
+        // }}
+        // onMouseOver={() => setNetworkHovered(true)}
+        // onMouseOut={() => setNetworkHovered(false)}
       >
         <CardTitle className="p-2 text-center underline">
           {networkBoxTitle}
@@ -41,11 +49,14 @@ export default function NetworkChoice({
         <CardDescription className="mx-12 flex justify-between">
           Last Time Recieved:
           <div>
-            {moment(networkInfo?.last_time).format('DD/MM/YYYY - HH:mm:ss') || '- no information -'}
+            {networkInfo?.last_time
+              ? moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
+              : '- no information -'}
           </div>
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
-          Docs from 3 days ago: <div>{networkInfo?.docs_count_3_days || '- no information -'}</div>
+          Docs from 3 days ago:{' '}
+          <div>{networkInfo?.docs_count_3_days || '- no information -'}</div>
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
           Total Docs:

@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/separator';
 import {
   Table,
   TableBody,
@@ -8,14 +9,11 @@ import {
 } from '@/components/ui/table';
 import { capitalizeWord } from '@/lib/capitalizeWord';
 import { ParsedNetwrokInfo } from '@/types/NetworkType';
-import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StatusType } from '@/types/dashboardTypes';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import { Separator } from '@/components/ui/separator';
 
 interface NetworksTableProps {
   data: ParsedNetwrokInfo[];
@@ -25,12 +23,6 @@ interface NetworksTableProps {
   ) => void;
   search: string;
 }
-
-export const statusIcons: Record<StatusType, JSX.Element> = {
-  operational: <CheckCircle2 className="text-green-400" />,
-  unstable: <AlertCircle className="text-yellow-400" />,
-  'no-connection': <XCircle className="text-red-400" />,
-};
 
 export function NetworksTable({
   data,
@@ -50,7 +42,7 @@ export function NetworksTable({
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{`${connection} Networks`}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{`${capitalizeWord(connection)} Networks`}</h2>
           <p className="text-muted-foreground">
             Here's a list of your network items!
           </p>
