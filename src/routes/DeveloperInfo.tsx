@@ -1,13 +1,12 @@
 import shyDuck from '@/assets/images/shy-duck.png';
 import TrafficLight from '@/components/DevInfo/TrafficLight';
 import Header from '@/components/Header';
-import StatusGradient from '@/components/StatusGradient';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function DeveloperInfo() {
   return (
     <>
-      <StatusGradient generalStatus={'unstable'} />
+      {/* <StatusGradient generalStatus={'operational'} /> */}
       <Header showBreadcrumbs={true} />
       <CardHeader className="flex w-full items-center pt-4">
         <img
