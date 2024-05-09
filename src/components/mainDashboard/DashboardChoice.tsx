@@ -8,6 +8,7 @@ export interface IDashboardChoice {
   locationName: string;
   networksInfo: getLocationInfoType[];
 }
+
 export default function DashboardChoice({
   iconSrc,
   locationName,
@@ -37,41 +38,43 @@ export default function DashboardChoice({
   // }
 
   // Ensure that the networksInfo array always contains 2 items
-  const filledNetworksInfo: getLocationInfoType[] = [
-    {
-      ...{ article: {}, sn: {} },
-      networkType: networksInfo[0]?.networkType || 'sn',
-      ...(networksInfo[0]?.networkType === 'sn' ? { article: {} } : {}),
-    },
-    {
-      ...{ article: {}, sn: {} },
-      networkType: networksInfo[1]?.networkType || 'article',
-      ...(networksInfo[1]?.networkType === 'article' ? { sn: {} } : {}),
-    },
-  ];
+  const snInfo = networksInfo.find((info) => info.networkType === 'sn');
+  const articleInfo = networksInfo.find(
+    (info) => info.networkType === 'article',
+  );
 
   return (
     <div className="h-4/5">
-      <Card className="flex-col p-2"
-      // style={{
-      //   border: locationHovered
-      //     ? `1px solid ${statusIndicatorColor}`
-      //     : undefined,
-      // }}
-      // onMouseOver={() => setLocationHovered(true)}
-      // onMouseOut={() => setLocationHovered(false)}
+      <Card
+        className="flex-col p-2"
+        // style={{
+        //   border: locationHovered
+        //     ? `1px solid ${statusIndicatorColor}`
+        //     : undefined,
+        // }}
+        // onMouseOver={() => setLocationHovered(true)}
+        // onMouseOut={() => setLocationHovered(false)}
       >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-3 h-6 w-6" />
           {capitalizeWord(locationName)}
         </p>
-        {filledNetworksInfo.map((networkInfo, index) => (
+        {/* {networksInfo.map((networkInfo, index) => (
           <NetworkChoice
             location={locationName}
             key={index}
             networkInfo={networkInfo}
           />
-        ))}
+        ))} */}
+        {/* if the data doesn't exist in the db then bring an empty json for that missing object*/}
+        <NetworkChoice
+          location={locationName}
+          networkInfo={snInfo || { networkType: 'sn' }}
+        />
+        <NetworkChoice
+          location={locationName}
+          networkInfo={articleInfo || { networkType: 'article' }}
+        />
       </Card>
     </div>
   );

@@ -4,6 +4,10 @@ import International from '@/assets/images/international.png';
 import Lebanon from '@/assets/images/lebanon.png';
 import InterArab from '@/assets/images/middleEast.png';
 import WestBank from '@/assets/images/westBank.png';
+import ProHezbollah from '@/assets/images/ProHezbollah.png';
+import AntiHezbollah from '@/assets/images/AntiHezbollah.png';
+import WhiteProHezbollah from '@/assets/images/WhiteProHezbollah.png';
+import WhiteAntiHezbollah from '@/assets/images/WhiteAntiHezbollah.png';
 import WhiteInternational from '@/assets/images/white-International.png';
 import WhiteConfusedDuck from '@/assets/images/white-confused-duck.png';
 import WhiteGaza from '@/assets/images/white-gaza.png';
@@ -25,8 +29,8 @@ const iconSrcMap: Record<string, { light: string; dark: string }> = {
   lebanon: { light: WhiteLebanon, dark: Lebanon },
   'west bank': { light: WhiteWestBank, dark: WestBank },
   'inter-arab': { light: WhiteInterArab, dark: InterArab },
-  // 'anti hezbollah': { light: , dark:  },
-  // 'pro hezbollah': { light: , dark:  },
+  'pro hezbollah': { light: WhiteProHezbollah, dark: ProHezbollah },
+  'anti hezbollah': { light: WhiteAntiHezbollah, dark: AntiHezbollah },
   default: {
     light: WhiteInternational,
     dark: International,
@@ -50,9 +54,9 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
       ...location,
       iconSrc:
         iconSrcMap[
-        Object.keys(iconSrcMap).includes(location.locationName)
-          ? location.locationName
-          : 'default'
+          Object.keys(iconSrcMap).includes(location.locationName)
+            ? location.locationName
+            : 'default'
         ][theme === 'dark' ? 'light' : 'dark'],
     };
   });
@@ -70,7 +74,8 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
       </CardHeader>
       <CardContent className="flex flex-wrap justify-center gap-4">
         {locationInfo.map((locationInfo) => (
-          <div key={locationInfo.locationName}
+          <div
+            key={locationInfo.locationName}
             className="min-w-[590px] flex-shrink-0 basis-1/2 md:basis-1/4"
           >
             <DashboardChoice
