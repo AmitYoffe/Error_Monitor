@@ -31,9 +31,9 @@ export default function NetworkChoice({
   return (
     <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}>
       <Card
-        className={`flex-col p-2 hover:bg-secondary${
+        className={`flex-col p-2 active:border-primary hover:bg-secondary${
           noFollowUpLink
-            ? 'transition-colors duration-100 active:border-b-rose-400'
+            ? 'transition-colors duration-100 active:border-b-rose-700'
             : ''
         }
           `}
