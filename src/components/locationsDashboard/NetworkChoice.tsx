@@ -1,4 +1,4 @@
-import { getLocationInfoType } from '@/lib/getLocationInfo';
+import { getLocationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';

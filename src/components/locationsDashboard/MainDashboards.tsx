@@ -1,14 +1,14 @@
 import confusedDuck from '@/assets/images/confused-duck.png';
 import WhiteConfusedDuck from '@/assets/images/white-confused-duck.png';
-import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
+import DashboardChoice from '@/components/locationsDashboard/DashboardChoice';
 import {
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import getLocationIcon from '@/lib/getLocationIcon';
-import { getLocationInfoType } from '@/lib/getLocationInfo';
+import getLocationIcon from '@/utils/getLocationIcon';
+import { getLocationInfoType } from '@/utils/getLocationInfo';
 import { useTheme } from '../theme-provider';
 
 export type formattedLocationInfo = {

@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { capitalizeWord } from '@/lib/capitalizeWord';
+import { capitalizeWord } from '@/utils/capitalizeWord';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 

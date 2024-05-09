@@ -12,7 +12,7 @@ import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import getLocationIcon from '@/lib/getLocationIcon';
+import getLocationIcon from '@/utils/getLocationIcon';
 import { useTheme } from '../theme-provider';
 
 interface SourcesTableProps {

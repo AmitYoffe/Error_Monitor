@@ -1,5 +1,5 @@
-import { capitalizeWord } from '@/lib/capitalizeWord';
-import { getLocationInfoType } from '@/lib/getLocationInfo';
+import { capitalizeWord } from '@/utils/capitalizeWord';
+import { getLocationInfoType } from '@/utils/getLocationInfo';
 import { Card } from '../ui/card';
 import NetworkChoice from './NetworkChoice';
 

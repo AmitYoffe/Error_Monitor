@@ -1,5 +1,5 @@
-import { NetworksTable } from '@/components/subDashboard/NetworksTable';
-import { getAgencyNames } from '@/lib/netwrokUtils';
+import { NetworksTable } from '@/components/networks/NetworksTable';
+import { getAgencyNames } from '@/utils/netwrokUtils';
 import { AsyncReturnType } from '@/types';
 import { ChangeEvent, useState } from 'react';
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';

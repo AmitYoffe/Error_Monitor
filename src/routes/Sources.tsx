@@ -1,5 +1,5 @@
-import SourcesTable from '@/components/secondSubDashboard/SourcesTable';
-import { getSourcesNames } from '@/lib/netwrokUtils';
+import SourcesTable from '@/components/sources/SourcesTable';
+import { getSourcesNames } from '@/utils/netwrokUtils';
 import { AsyncReturnType } from '@/types';
 import { ChangeEvent, useState } from 'react';
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';

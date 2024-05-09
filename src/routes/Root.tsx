@@ -1,9 +1,9 @@
 import Header from '@/components/Header';
 import MainDashboards, {
   formattedLocationInfo
-} from '@/components/mainDashboard/MainDashboards';
-import { getData } from '@/lib/getData';
-import { getLocationInfo } from '@/lib/getLocationInfo';
+} from '@/components/locationsDashboard/MainDashboards';
+import { getData } from '@/utils/getData';
+import { getLocationInfo } from '@/utils/getLocationInfo';
 import { AsyncReturnType } from '@/types';
 import { useLoaderData } from 'react-router-dom';
 
