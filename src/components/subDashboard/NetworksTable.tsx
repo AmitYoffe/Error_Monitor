@@ -8,10 +8,12 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { capitalizeWord } from '@/lib/capitalizeWord';
+import getLocationIcon from '@/lib/getLocationIcon';
 import { ParsedNetwrokInfo } from '@/types/NetworkType';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../theme-provider';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 
@@ -31,6 +33,7 @@ export function NetworksTable({
   search,
 }: NetworksTableProps) {
   const navigation = useNavigate();
+  const { theme } = useTheme();
 
   const filteredData = search
     ? data.filter(
@@ -42,7 +45,15 @@ export function NetworksTable({
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{`${capitalizeWord(connection)} Networks`}</h2>
+          <div className="flex">
+            <img
+              src={getLocationIcon(connection, theme)}
+              alt={`${connection} icon`}
+              className="h-8 w-8"
+            />
+            <Separator orientation="vertical" className="mx-3 h-7" />
+            <h2 className="text-2xl font-bold tracking-tight">{`${capitalizeWord(connection)} Networks`}</h2>
+          </div>
           <p className="text-muted-foreground">
             Here's a list of your network items!
           </p>

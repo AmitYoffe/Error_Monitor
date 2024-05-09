@@ -24,7 +24,7 @@ export default function Connection() {
   ): void {
     setSearch(event.target.value);
   }
-
+  
   return (
     <div className="flex justify-center gap-4 overflow-hidden p-9">
       <NetworksTable

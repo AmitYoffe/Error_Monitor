@@ -12,9 +12,12 @@ import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
+import getLocationIcon from '@/lib/getLocationIcon';
+import { useTheme } from '../theme-provider';
 
 interface SourcesTableProps {
   data: ParsedSource[];
+  connection: string;
   handleInputChange: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
@@ -23,9 +26,12 @@ interface SourcesTableProps {
 
 export default function SourcesTable({
   data,
+  connection,
   handleInputChange,
   search,
 }: SourcesTableProps) {
+  const { theme } = useTheme();
+
   const filteredData = search
     ? data.filter(
         (dataItem) =>
@@ -40,8 +46,20 @@ export default function SourcesTable({
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <h2 className="text-2xl font-bold tracking-tight">{'Sources'}</h2>
+          <div className="flex ">
+            <img
+              src={getLocationIcon(connection, theme)}
+              alt={`${connection} icon`}
+              className="h-8 w-8"
+            />
+            <Separator orientation="vertical" className="mx-3 h-7" />
+            <h2 className="text-2xl font-bold tracking-tight">{'Sources'}</h2>
+          </div>
+          <p className="text-muted-foreground">
+            Here's a list of your source items!
+          </p>
         </div>
+
         <Input
           placeholder="search..."
           value={search}
@@ -66,7 +84,7 @@ export default function SourcesTable({
               key={rowIndex}
               className="cursor-pointer hover:bg-accent active:border-b-slate-950"
             >
-              <TableCell className='max-w-60'>
+              <TableCell className="max-w-60">
                 {row.entity_names ? (
                   row.entity_names.map((entity, index) => (
                     <div key={index}>{entity.entity_name}</div>

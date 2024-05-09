@@ -10,10 +10,10 @@ import Root, { loader as rootLoader } from './routes/Root';
 import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
 import SecondSubDashboard, {
   loader as sourcesLoader,
-} from './routes/SecondSubDashboard';
+} from './routes/Sources';
 import SocialNetworks, {
   loader as SocialNetworksLoader,
-} from './routes/SocialNetworks';
+} from './routes/Networks';
 
 const router = createBrowserRouter([
   {

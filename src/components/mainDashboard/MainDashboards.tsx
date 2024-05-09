@@ -1,19 +1,5 @@
 import confusedDuck from '@/assets/images/confused-duck.png';
-import Gaza from '@/assets/images/gaza.png';
-import International from '@/assets/images/international.png';
-import Lebanon from '@/assets/images/lebanon.png';
-import InterArab from '@/assets/images/middleEast.png';
-import WestBank from '@/assets/images/westBank.png';
-import ProHezbollah from '@/assets/images/ProHezbollah.png';
-import AntiHezbollah from '@/assets/images/AntiHezbollah.png';
-import WhiteProHezbollah from '@/assets/images/WhiteProHezbollah.png';
-import WhiteAntiHezbollah from '@/assets/images/WhiteAntiHezbollah.png';
-import WhiteInternational from '@/assets/images/white-International.png';
 import WhiteConfusedDuck from '@/assets/images/white-confused-duck.png';
-import WhiteGaza from '@/assets/images/white-gaza.png';
-import WhiteLebanon from '@/assets/images/white-lebanon.png';
-import WhiteInterArab from '@/assets/images/white-middleEast.png';
-import WhiteWestBank from '@/assets/images/white-westBank.png';
 import DashboardChoice from '@/components/mainDashboard/DashboardChoice';
 import {
   CardContent,
@@ -21,21 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import getLocationIcon from '@/lib/getLocationIcon';
 import { getLocationInfoType } from '@/lib/getLocationInfo';
 import { useTheme } from '../theme-provider';
-
-const iconSrcMap: Record<string, { light: string; dark: string }> = {
-  'gaza strip': { light: WhiteGaza, dark: Gaza },
-  lebanon: { light: WhiteLebanon, dark: Lebanon },
-  'west bank': { light: WhiteWestBank, dark: WestBank },
-  'inter-arab': { light: WhiteInterArab, dark: InterArab },
-  'pro hezbollah': { light: WhiteProHezbollah, dark: ProHezbollah },
-  'anti hezbollah': { light: WhiteAntiHezbollah, dark: AntiHezbollah },
-  default: {
-    light: WhiteInternational,
-    dark: International,
-  },
-};
 
 export type formattedLocationInfo = {
   locationName: string;
@@ -49,18 +23,6 @@ interface IMainDashboards {
 export default function MainDashboards({ locationsInfo }: IMainDashboards) {
   const { theme } = useTheme();
 
-  const locationInfo = locationsInfo.map((location) => {
-    return {
-      ...location,
-      iconSrc:
-        iconSrcMap[
-          Object.keys(iconSrcMap).includes(location.locationName)
-            ? location.locationName
-            : 'default'
-        ][theme === 'dark' ? 'light' : 'dark'],
-    };
-  });
-
   return (
     <div>
       <CardHeader className="flex w-full items-center pt-1">
@@ -73,13 +35,13 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
         <CardDescription>Lead your quest to find the errors.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-wrap justify-center gap-4">
-        {locationInfo.map((locationInfo) => (
+        {locationsInfo.map((locationInfo) => (
           <div
             key={locationInfo.locationName}
             className="min-w-[590px] flex-shrink-0 basis-1/2 md:basis-1/4"
           >
             <DashboardChoice
-              iconSrc={locationInfo.iconSrc}
+              iconSrc={getLocationIcon(locationInfo.locationName, theme)}
               locationName={locationInfo.locationName}
               networksInfo={locationInfo.networksInfo}
             />

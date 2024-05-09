@@ -19,7 +19,9 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function SecondSubDashboard() {
-  const { sources } = useLoaderData() as AsyncReturnType<typeof loader>;
+  const { sources, connection } = useLoaderData() as AsyncReturnType<
+    typeof loader
+  >;
   const [search, setSearch] = useState('');
 
   function handleInputChange(
@@ -32,6 +34,7 @@ export default function SecondSubDashboard() {
     <div className="flex justify-center gap-4 overflow-hidden p-9">
       <SourcesTable
         data={sources}
+        connection={connection}
         handleInputChange={handleInputChange}
         search={search}
       />
