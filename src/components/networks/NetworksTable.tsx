@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/table';
 import { capitalizeWord } from '@/utils/capitalizeWord';
 import getLocationIcon from '@/utils/getLocationIcon';
-import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import { ParsedNetwrokInfo } from '@/types/networkType';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';

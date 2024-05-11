@@ -1,10 +1,10 @@
-import { getLocationInfoType } from '@/utils/getLocationInfo';
+import { locationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 
 interface NetworkChoiceProps {
-  networkInfo?: getLocationInfoType;
+  networkInfo?: locationInfoType;
   location?: string;
   // statusColor: string;
 }

@@ -1,6 +1,6 @@
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/utils/utils';
-import { StatusType } from '@/types/dashboardTypes';
+import { StatusType } from '@/types/statusType';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { PropsWithChildren } from 'react';

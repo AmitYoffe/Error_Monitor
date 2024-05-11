@@ -1,12 +1,12 @@
 import { capitalizeWord } from '@/utils/capitalizeWord';
-import { getLocationInfoType } from '@/utils/getLocationInfo';
+import { locationInfoType } from '@/utils/getLocationInfo';
 import { Card } from '../ui/card';
 import NetworkChoice from './NetworkChoice';
 
 export interface IDashboardChoice {
   iconSrc: string;
   locationName: string;
-  networksInfo: getLocationInfoType[];
+  networksInfo: locationInfoType[];
 }
 
 export default function DashboardChoice({
@@ -44,16 +44,16 @@ export default function DashboardChoice({
   );
 
   return (
-    <div className="h-4/5">
+    <div className="min-w-[585px] flex-shrink-0 basis-1/2 md:basis-1/4 h-4/5">
       <Card
         className="flex-col p-2"
-        // style={{
-        //   border: locationHovered
-        //     ? `1px solid ${statusIndicatorColor}`
-        //     : undefined,
-        // }}
-        // onMouseOver={() => setLocationHovered(true)}
-        // onMouseOut={() => setLocationHovered(false)}
+      // style={{
+      //   border: locationHovered
+      //     ? `1px solid ${statusIndicatorColor}`
+      //     : undefined,
+      // }}
+      // onMouseOver={() => setLocationHovered(true)}
+      // onMouseOut={() => setLocationHovered(false)}
       >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-2 h-8 w-8" />

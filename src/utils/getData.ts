@@ -1,3 +1,26 @@
+// Added a chrome extension called: "CORS Unblock" for this to work.
+import { Location } from '@/types/networkType';
+import axios from 'axios';
+import invariant from 'tiny-invariant';
+
+// Get env variable for network url
+const NetworkURL = import.meta.env.VITE_INFO_URL;
+
+export async function getData(): Promise<Location> {
+  invariant(NetworkURL, 'Network URL cannot be empty');
+  try {
+    const response = await axios.get(NetworkURL, {});
+    if (!response.data) {
+      throw new Error(`Failed to fetch data, status ${response.status}`);
+    }
+    const locations: Location = response.data;
+    return locations;
+  } catch (error) {
+    console.error('Error fetching location info:', error);
+    throw error; // Rethrow the error for the caller to handle
+  }
+}
+
 // export async function getData() {
 //   const locations: Location = {
 //     'west bank': {
@@ -8138,27 +8161,3 @@
 
 //   return locations;
 // }
-
-import { Location } from '@/types/NetworkType';
-import axios from 'axios';
-import invariant from 'tiny-invariant';
-
-// Get env variable for network url
-const NetworkURL = import.meta.env.VITE_INFO_URL;
-
-export async function getData(): Promise<Location> {
-  invariant(NetworkURL, 'Network URL cannot be empty');
-  try {
-    const response = await axios.get(NetworkURL, {});
-    if (!response.data) {
-      throw new Error(`Failed to fetch data, status ${response.status}`);
-    }
-    const locations: Location = response.data;
-    return locations;
-  } catch (error) {
-    console.error('Error fetching location info:', error);
-    throw error; // Rethrow the error for the caller to handle
-  }
-}
-
-// Added a chrome extension called: "CORS Unblock" for this to work.

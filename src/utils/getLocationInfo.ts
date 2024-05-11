@@ -1,41 +1,11 @@
-import { Location } from '@/types/NetworkType';
+import { Location } from '@/types/networkType';
 
 type docInfoType = 'docs_count' | 'docs_count_3_days' | 'last_time';
 type networkType = 'article' | 'sn';
 
-// interface getDashboardInfo {
-//   location: string;
-//   networkType: networkType;
-//   docInfoField: docInfoType;
-// }
-
-// export async function getDashboardInfo({
-//   location,
-//   networkType,
-//   docInfoField,
-// }: getDashboardInfo) {
-//   // Get all the info from the db
-//   const locationsInfo = await getData();
-//   const locationKey = location.toLocaleLowerCase();
-
-//   // Generic field allocation according to the given arguments
-//   const networkDocsInfo: string | number =
-//     locationsInfo[locationKey][networkType]![docInfoField];
-
-//   if (
-//     !networkDocsInfo ||
-//     !location ||
-//     !locationsInfo[locationKey][networkType]
-//   ) {
-//     throw new Error(
-//       `Networks data for location '${location}' and network type '${networkType}' not found.`,
-//     );
-//   }
-
-//   return networkDocsInfo;
-// }
-
-export type getLocationInfoType = Partial<Record<docInfoType, string>> & { networkType: networkType }
+export type locationInfoType = Partial<Record<docInfoType, string>> & {
+  networkType: networkType;
+};
 
 export function getLocationInfo({
   data,
@@ -47,19 +17,19 @@ export function getLocationInfo({
   location: string;
   networkType: networkType[];
   docInfoField: docInfoType[];
-}): getLocationInfoType[] {
+}): locationInfoType[] {
   // Get all the info from the db
   const locationKey = location.toLocaleLowerCase();
-  const locationInfo: getLocationInfoType[] = []
-  const locationNetworkDocsInfo =
-    data[locationKey];
+  const locationInfo: locationInfoType[] = [];
+  const locationNetworkDocsInfo = data[locationKey];
 
   for (const network of networkType) {
-    const networkInfoJson: getLocationInfoType = { networkType: network };
+    const networkInfoJson: locationInfoType = { networkType: network };
     const networkData = locationNetworkDocsInfo[network];
 
-    if (!networkData) continue; // move to next iteration if networkData is undefined
-
+    // move to next iteration if networkData is undefined
+    if (!networkData) continue;
+    
     for (const docInfo of docInfoField) {
       // Push the fields docs_count, docs_count_3_days, last_time into the json
       if (networkData[docInfo]) {

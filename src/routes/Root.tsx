@@ -2,9 +2,9 @@ import Header from '@/components/Header';
 import MainDashboards, {
   formattedLocationInfo
 } from '@/components/locationsDashboard/MainDashboards';
+import { AsyncReturnType } from '@/types';
 import { getData } from '@/utils/getData';
 import { getLocationInfo } from '@/utils/getLocationInfo';
-import { AsyncReturnType } from '@/types';
 import { useLoaderData } from 'react-router-dom';
 
 export async function loader() {

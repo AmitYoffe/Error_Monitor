@@ -8,12 +8,13 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import getLocationIcon from '@/utils/getLocationIcon';
-import { getLocationInfoType } from '@/utils/getLocationInfo';
+import { locationInfoType } from '@/utils/getLocationInfo';
 import { useTheme } from '../theme-provider';
 
+// locationInfo type with the added locationName field
 export type formattedLocationInfo = {
   locationName: string;
-  networksInfo: getLocationInfoType[];
+  networksInfo: locationInfoType[];
 };
 
 interface IMainDashboards {
@@ -25,7 +26,7 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
 
   return (
     <div>
-      <CardHeader className="flex w-full items-center pt-1">
+      <CardHeader className="flex w-full items-center pt-0">
         <img
           src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
           alt="confused duck"
@@ -34,18 +35,13 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
         <CardTitle>Error Monitor</CardTitle>
         <CardDescription>Lead your quest to find the errors.</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-wrap justify-center gap-4">
+      <CardContent className="flex flex-wrap justify-center gap-3">
         {locationsInfo.map((locationInfo) => (
-          <div
-            key={locationInfo.locationName}
-            className="min-w-[590px] flex-shrink-0 basis-1/2 md:basis-1/4"
-          >
-            <DashboardChoice
-              iconSrc={getLocationIcon(locationInfo.locationName, theme)}
-              locationName={locationInfo.locationName}
-              networksInfo={locationInfo.networksInfo}
-            />
-          </div>
+          <DashboardChoice key={locationInfo.locationName}
+            iconSrc={getLocationIcon(locationInfo.locationName, theme)}
+            locationName={locationInfo.locationName}
+            networksInfo={locationInfo.networksInfo}
+          />
         ))}
       </CardContent>
     </div>

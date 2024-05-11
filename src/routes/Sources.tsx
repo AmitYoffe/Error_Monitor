@@ -6,7 +6,6 @@ import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  // const connection = params.connection;
   const { connection, network: networkKey } = params;
   invariant(connection, 'connection parameter is required');
   invariant(networkKey, 'network parameter is required');
