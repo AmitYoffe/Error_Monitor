@@ -8,12 +8,13 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { ParsedSource } from '@/types/NetworkType';
+import { capitalizeWord } from '@/utils/capitalizeWord';
+import getLocationIcon from '@/utils/getLocationIcon';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
+import { useTheme } from '../theme-provider';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import getLocationIcon from '@/utils/getLocationIcon';
-import { useTheme } from '../theme-provider';
 
 interface SourcesTableProps {
   data: ParsedSource[];
@@ -34,12 +35,12 @@ export default function SourcesTable({
 
   const filteredData = search
     ? data.filter(
-        (dataItem) =>
-          dataItem.entity_names &&
-          dataItem.entity_names.some((entity) =>
-            entity.entity_name.includes(search.trim()),
-          ),
-      )
+      (dataItem) =>
+        dataItem.entity_names &&
+        dataItem.entity_names.some((entity) =>
+          entity.entity_name.includes(search.trim()),
+        ),
+    )
     : data;
 
   return (
@@ -53,7 +54,7 @@ export default function SourcesTable({
               className="h-8 w-8"
             />
             <Separator orientation="vertical" className="mx-3 h-7" />
-            <h2 className="text-2xl font-bold tracking-tight">{'Sources'}</h2>
+            <h2 className="text-2xl font-bold tracking-tight">{`${capitalizeWord(connection)} Sources`}</h2>
           </div>
           <p className="text-muted-foreground">
             Here's a list of your source items!
