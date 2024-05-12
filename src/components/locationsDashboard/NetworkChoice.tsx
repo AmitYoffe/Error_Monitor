@@ -2,6 +2,7 @@ import { locationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
+import { Skeleton } from '../ui/skeleton';
 
 interface NetworkChoiceProps {
   networkInfo?: locationInfoType;
@@ -55,12 +56,15 @@ export default function NetworkChoice({
           </div>
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
-          Docs from 3 days ago:{' '}
+          Docs from 3 days ago:
           <div>{networkInfo?.docs_count_3_days || '- no information -'}</div>
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
-          Total Docs:
-          <div>{networkInfo?.docs_count || '- no information -'}</div>
+          {/* Total Docs: */}
+          {/* <div>{networkInfo?.docs_count || '- no information -'}</div> */}
+          <Skeleton className="m-auto h-[10px] w-[150px]" />
+          <Skeleton className="m-auto h-[10px] w-[210px]" />
+
         </CardDescription>
       </Card>
     </Link>
