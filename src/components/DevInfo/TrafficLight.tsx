@@ -13,11 +13,12 @@ import StatusIndication from './StatusIndication';
 
 interface ITrafficLight {
   name: string;
+  children: React.ReactNode;
   // status color
   // error description
 }
 
-export default function TrafficLight({ name }: ITrafficLight) {
+export default function TrafficLight({ name, children }: ITrafficLight) {
   return (
     <Card className="flex justify-center">
       <Dialog>
@@ -28,16 +29,24 @@ export default function TrafficLight({ name }: ITrafficLight) {
           <DialogHeader>
             <DialogTitle>{name}</DialogTitle>
           </DialogHeader>
-          <DialogFooter className="flex sm:justify-start">
-            <DialogClose asChild>
+          <DialogFooter className="flex flex-col sm:justify-start">
+            {children}
+            {/* <DialogClose asChild>
               <Button type="button" variant="secondary">
                 Close
               </Button>
-            </DialogClose>
-            <StatusIndication status={'operational'} name={'intuview'} />
+            </DialogClose> */}
+            {/* <StatusIndication status={'operational'} name={'intuview'} /> */}
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </Card>
   );
 }
+
+// Todo:
+// 1) Prettify the dialog
+// 2) Add some sort of StatusIndication
+// 3) Find a way to add the big traffic cone somewhere near the other trafficCones.
+// 4) Add the footer
+// (i was thinking of adding the big one on the top left and moving the duck to the right...)

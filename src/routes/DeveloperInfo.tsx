@@ -1,9 +1,16 @@
 import shyDuck from '@/assets/images/shy-duck.png';
 import TrafficLight from '@/components/DevInfo/TrafficLight';
 import Header from '@/components/Header';
-import { CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function DeveloperInfo() {
+  const toolsCollectionJson = {
+    Analyzing: ['Ingestion', 'Intuview', 'Siren'],
+    Collecting: ['FB groups', 'FB pages', 'FB profiles', 'TG channels', 'TW users', 'Voyager'],
+    Enrichment: ['Translation', 'Embedding', 'Clustering', 'Relations'],
+    Databases: ['Mongo', 'Elastic'],
+  }
+
   return (
     <div>
       {/* <StatusGradient generalStatus={'operational'} /> */}
@@ -16,15 +23,19 @@ export default function DeveloperInfo() {
           className="h-20 w-16"
         />
         <CardTitle>Dev Error Monitor</CardTitle>
-        <CardContent>This area is still under construction...</CardContent>
-        {/* <CardDescription>Lead your quest to find the errors.</CardDescription> */}
+        <CardDescription>Lead your quest to find the errors.</CardDescription>
       </CardHeader>
-      {/* <div className="grid h-24 grid-cols-4 content-around gap-2 px-8">
-        <TrafficLight name={'Analyzing'} />
-        <TrafficLight name={'Collecting'} />
-        <TrafficLight name={'Enrichment'} />
-        <TrafficLight name={'Databases'} />
-      </div> */}
+      <div className="grid h-24 grid-cols-4 content-around gap-2 px-8">
+        {Object.entries(toolsCollectionJson).map(([category, tools]) => (
+          <TrafficLight key={category} name={category}>
+            <ul>
+              {tools.map(tool => (
+                <li key={tool}>{tool}</li>
+              ))}
+            </ul>
+          </TrafficLight>
+        ))}
+      </div>
     </div>
   );
 }
