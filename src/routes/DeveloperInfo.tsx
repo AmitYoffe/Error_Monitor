@@ -1,9 +1,7 @@
 import shyDuck from '@/assets/images/shy-duck.png';
-import StatusIndication from '@/components/DevInfo/StatusIndication';
-import TrafficLight from '@/components/DevInfo/TrafficLight';
+import TrafficLightsDisplay from '@/components/DevInfo/TrafficLightsDisplay';
 import Header from '@/components/Header';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import {
   DatabaseIcon,
   DownloadIcon,
@@ -14,11 +12,11 @@ import {
 export default function DeveloperInfo() {
   const toolsCollectionJson = {
     Analyzing: {
-      icon: <SearchIcon className="h-4 w-4" />,
+      icon: <SearchIcon className="mr-3 h-4 w-4" />,
       tools: ['Ingestion', 'Intuview', 'Siren'],
     },
     Collecting: {
-      icon: <DownloadIcon className="h-4 w-4" />,
+      icon: <DownloadIcon className="mr-3 h-4 w-4" />,
       tools: [
         'FB groups',
         'FB pages',
@@ -29,11 +27,11 @@ export default function DeveloperInfo() {
       ],
     },
     Enrichment: {
-      icon: <SparklesIcon className="h-4 w-4" />,
+      icon: <SparklesIcon className="mr-3 h-4 w-4" />,
       tools: ['Translation', 'Embedding', 'Clustering', 'Relations'],
     },
     Databases: {
-      icon: <DatabaseIcon className="h-4 w-4" />,
+      icon: <DatabaseIcon className="mr-3 h-4 w-4" />,
       tools: ['Mongo', 'Elastic'],
     },
   };
@@ -47,30 +45,9 @@ export default function DeveloperInfo() {
         <CardTitle>Dev Error Monitor</CardTitle>
         <CardDescription>Lead your quest to find the errors.</CardDescription>
       </CardHeader>
-      <div className="grid h-24 grid-cols-4 content-around gap-2 px-8">
-      <TrafficLightDisplay toolsCollectionJson={toolsCollectionJson}/>  
-        {/* {Object.entries(toolsCollectionJson).map(([category, toolsJson]) => (
-          // Make it so status indication is a part of the TrafficLight component, it will be shown by status
-          <TrafficLight key={category} toolsInfo={toolsJson} name={category}>
-            <ul className="w-full">
-              {toolsJson.tools.map((tool) => (
-                <>
-                  <Separator className="my-3" />
-                  <div className="flex justify-between">
-                    <li key={tool} className="my-auto">
-                      {tool}
-                    </li>
-                    <StatusIndication status={'operational'} />
-                  </div>
-                </>
-              ))}
-            </ul>
-          </TrafficLight>
-        ))} */}
-      </div>
+      <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} />
     </div>
   );
 }
 
-// TODO: make a developer information page according to sharon's planning
-// Todo: add icons for each category of tools and reuse it in the components
+// Todo: make some sort of status indication that looks like a traffiv light or something similar that
