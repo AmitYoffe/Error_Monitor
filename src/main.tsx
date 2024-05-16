@@ -23,11 +23,6 @@ const router = createBrowserRouter([
     loader: rootLoader,
   },
   {
-    path: '/info-dev',
-    element: <DeveloperInfo />,
-    errorElement: <ErrorPage />,
-  },
-  {
     // parent route component
     element: <Layout />,
     // child route components
@@ -51,6 +46,11 @@ const router = createBrowserRouter([
         path: '/:connection/ag/:network',
         element: <SecondSubDashboard />,
         loader: sourcesLoader,
+      },
+      {
+        path: '/info-dev',
+        element: <DeveloperInfo />,
+        errorElement: <ErrorPage />,
       },
     ],
     errorElement: <ErrorPage />,

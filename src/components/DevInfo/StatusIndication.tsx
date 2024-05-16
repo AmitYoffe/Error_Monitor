@@ -1,6 +1,6 @@
 import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/utils/utils';
 import { StatusType } from '@/types/statusType';
+import { cn } from '@/utils/utils';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { PropsWithChildren } from 'react';
@@ -19,13 +19,14 @@ export const statusIcons: Record<StatusType, JSX.Element> = {
 
 interface StatusLinkProps extends PropsWithChildren {
   status: StatusType;
-  name: string;
+  // children: React.ReactNode;
+  // name: string;
 }
 
 export default function StatusIndication({
   status,
-  children,
-  name,
+  // children,
+  // name,
 }: StatusLinkProps) {
   return (
     <div>
@@ -38,9 +39,9 @@ export default function StatusIndication({
                 'justify-center',
               )}
             >
-              <span className="p-1">{name}</span>
+              {/* <span className="p-1">{name}</span> */}
               {statusIcons[status]}
-              <p>{children}</p>
+              {/* <p>{children}</p> */}
             </Label>
           </TooltipTrigger>
           <TooltipContent>{status}</TooltipContent>

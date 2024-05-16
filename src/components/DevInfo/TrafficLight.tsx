@@ -1,46 +1,41 @@
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogFooter,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Card } from '../ui/card';
-import StatusIndication from './StatusIndication';
+import { Separator } from '@/components/ui/separator';
+import { AlertCircle } from 'lucide-react';
 
 interface ITrafficLight {
+  toolsInfo
   name: string;
   children: React.ReactNode;
   // status color
   // error description
 }
 
-export default function TrafficLight({ name, children }: ITrafficLight) {
+export default function TrafficLight({ tools }: ITrafficLight) {
   return (
-    <Card className="flex justify-center">
+    <div className="flex justify-center">
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">{name}</Button>
+          <Button variant="outline">{tools.name}</Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>{name}</DialogTitle>
-          </DialogHeader>
-          <DialogFooter className="flex flex-col sm:justify-start">
+        <DialogContent className="gap-0 sm:max-w-md">
+          <div className="flex justify-start">
+            {tools.icon}
+            <Separator orientation="vertical" className="mx-3" />
+            <DialogTitle className="my-auto">{tools.name}</DialogTitle>
+          </div>
+          <DialogFooter className="mx-4 flex flex-col sm:justify-start">
             {children}
-            {/* <DialogClose asChild>
-              <Button type="button" variant="secondary">
-                Close
-              </Button>
-            </DialogClose> */}
-            {/* <StatusIndication status={'operational'} name={'intuview'} /> */}
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </Card>
+    </div>
   );
 }
 
@@ -48,5 +43,4 @@ export default function TrafficLight({ name, children }: ITrafficLight) {
 // 1) Prettify the dialog
 // 2) Add some sort of StatusIndication
 // 3) Find a way to add the big traffic cone somewhere near the other trafficCones.
-// 4) Add the footer
 // (i was thinking of adding the big one on the top left and moving the duck to the right...)

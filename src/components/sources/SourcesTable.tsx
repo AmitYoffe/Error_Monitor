@@ -47,7 +47,7 @@ export default function SourcesTable({
     <Card className="container flex max-h-[820px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
-          <div className="flex ">
+          <div className="flex">
             <img
               src={getLocationIcon(connection, theme)}
               alt={`${connection} icon`}
