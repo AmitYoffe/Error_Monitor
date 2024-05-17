@@ -19,7 +19,7 @@ export default function TrafficLightsDisplay({
   toolsCollectionJson,
 }: TrafficLightsDisplayProps) {
   return (
-    <div className="grid h-24 grid-cols-4 content-around gap-2 px-8">
+    <div className="flex justify-evenly gap-2 px-8">
       {Object.entries(toolsCollectionJson).map(
         ([category, { icon, tools }]) => (
           <TrafficDialog
