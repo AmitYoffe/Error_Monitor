@@ -47,13 +47,13 @@ export default function DashboardChoice({
     <div className="h-4/5 min-w-[585px] flex-shrink-0 basis-1/2 md:basis-1/4">
       <Card
         className="flex-col p-2"
-        // style={{
-        //   border: locationHovered
-        //     ? `1px solid ${statusIndicatorColor}`
-        //     : undefined,
-        // }}
-        // onMouseOver={() => setLocationHovered(true)}
-        // onMouseOut={() => setLocationHovered(false)}
+      // style={{
+      //   border: locationHovered
+      //     ? `1px solid ${statusIndicatorColor}`
+      //     : undefined,
+      // }}
+      // onMouseOver={() => setLocationHovered(true)}
+      // onMouseOut={() => setLocationHovered(false)}
       >
         <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
           <img src={iconSrc} alt={`${location} png`} className="mb-2 h-8 w-8" />
@@ -73,7 +73,6 @@ export default function DashboardChoice({
   );
 }
 //TODO: Make snackbar on click of empty network of location
-//TODO: Skeletons for slow loading
 //TODO: Loading animations
 
 //TODO: Add some logic that will cause the parent dashboard statuses actually update

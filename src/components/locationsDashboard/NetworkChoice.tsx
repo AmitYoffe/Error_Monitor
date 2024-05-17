@@ -1,5 +1,6 @@
 import { locationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 import { Skeleton } from '../ui/skeleton';
@@ -29,20 +30,27 @@ export default function NetworkChoice({
       !networkInfo.docs_count &&
       !networkInfo.docs_count_3_days);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (networkInfo) {
+      setIsLoading(false);
+    }
+  }, [networkInfo]);
+
   return (
     <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}>
       <Card
-        className={`flex-col p-2 active:border-primary hover:bg-secondary${
-          noFollowUpLink
-            ? 'transition-colors duration-100 active:border-b-rose-700'
-            : ''
-        }
+        className={`flex-col p-2 active:border-primary hover:bg-secondary${noFollowUpLink
+          ? 'transition-colors duration-100 active:border-b-rose-700'
+          : ''
+          }
           `}
-        // style={{
-        //   border: networkHovered ? `1px solid ${statusColor}` : undefined,
-        // }}
-        // onMouseOver={() => setNetworkHovered(true)}
-        // onMouseOut={() => setNetworkHovered(false)}
+      // style={{
+      //   border: networkHovered ? `1px solid ${statusColor}` : undefined,
+      // }}
+      // onMouseOver={() => setNetworkHovered(true)}
+      // onMouseOut={() => setNetworkHovered(false)}
       >
         <CardTitle className="p-2 text-center underline">
           {networkBoxTitle}
@@ -50,21 +58,34 @@ export default function NetworkChoice({
         <CardDescription className="mx-12 flex justify-between">
           Last Time Recieved:
           <div>
-            {networkInfo?.last_time
-              ? moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
-              : '- no information -'}
+            {isLoading ? (
+              <Skeleton className="my-auto h-[9px] w-[170px]" />
+            ) : (
+              networkInfo?.last_time
+                ? moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
+                : '- no information -'
+            )}
           </div>
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
           Docs from 3 days ago:
-          <div>{networkInfo?.docs_count_3_days || '- no information -'}</div>
+          <div>
+            {isLoading ? (
+              <Skeleton className="my-auto h-[9px] w-[110px]" />
+            ) : (
+              networkInfo?.docs_count_3_days || '- no information -'
+            )}
+          </div>
         </CardDescription>
         <CardDescription className="mx-12 flex justify-between">
-          {/* Total Docs: */}
-          {/* <div>{networkInfo?.docs_count || '- no information -'}</div> */}
-          <Skeleton className="m-auto h-[10px] w-[150px]" />
-          <Skeleton className="m-auto h-[10px] w-[210px]" />
-
+          Total Docs:
+          <div>
+            {isLoading ? (
+              <Skeleton className="my-auto h-[9px] w-[132px]" />
+            ) : (
+              networkInfo?.docs_count || '- no information -'
+            )}
+          </div>
         </CardDescription>
       </Card>
     </Link>
