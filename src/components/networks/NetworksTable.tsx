@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../theme-provider';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
+import { toast } from 'sonner';
 
 interface NetworksTableProps {
   data: ParsedNetwrokInfo[];
@@ -37,8 +38,8 @@ export function NetworksTable({
 
   const filteredData = search
     ? data.filter(
-        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-      )
+      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+    )
     : data;
 
   return (
@@ -83,13 +84,19 @@ export function NetworksTable({
             return (
               <TableRow
                 key={rowIndex}
-                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
-                  noFollowUpLink
-                    ? 'transition-colors duration-100 active:border-red-500'
-                    : ''
-                }`}
+                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${noFollowUpLink
+                  ? 'transition-colors duration-100 active:border-red-500'
+                  : ''
+                  }`}
                 onClick={() =>
-                  noFollowUpLink ? null : navigation(`${row.name}`)
+                  noFollowUpLink ?
+                    toast(`This network has no sources`, {
+                      description: "try another network...",
+                      action: {
+                        label: "Close",
+                        onClick: () => console.log("Close"),
+                      },
+                    }) : navigation(`${row.name}`)
                 }
               >
                 <TableCell>{capitalizeWord(row.name)}</TableCell>
@@ -105,6 +112,6 @@ export function NetworksTable({
           <Separator className="max-w-fit" />
         </TableBody>
       </Table>
-    </Card>
+    </Card >
   );
 }

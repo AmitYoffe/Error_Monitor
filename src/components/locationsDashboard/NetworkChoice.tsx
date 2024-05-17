@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 import { Skeleton } from '../ui/skeleton';
+import { toast } from 'sonner';
+import { Button } from '../ui/button';
+import { capitalizeWord } from '@/utils/capitalizeWord';
 
 interface NetworkChoiceProps {
   networkInfo?: locationInfoType;
@@ -39,18 +42,23 @@ export default function NetworkChoice({
   }, [networkInfo]);
 
   return (
-    <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}>
+    <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}
+    >
       <Card
-        className={`flex-col p-2 active:border-primary hover:bg-secondary${noFollowUpLink
-          ? 'transition-colors duration-100 active:border-b-rose-700'
-          : ''
-          }
-          `}
-      // style={{
-      //   border: networkHovered ? `1px solid ${statusColor}` : undefined,
-      // }}
-      // onMouseOver={() => setNetworkHovered(true)}
-      // onMouseOut={() => setNetworkHovered(false)}
+        className={`flex-col p-2 active:border-primary hover:bg-secondary
+        ${noFollowUpLink ? 'transition-colors duration-100 active:border-b-rose-700' : ''}`}
+        // Shows a toast component when this component doesn't have information to show in the following page
+        onClick={() =>
+          noFollowUpLink && location ?
+            toast(`This network choice for '${capitalizeWord(location)}' has no information`, {
+              description: "try another network...",
+              action: {
+                label: "Close",
+                onClick: () => console.log("Close"),
+              },
+            })
+            : null
+        }
       >
         <CardTitle className="p-2 text-center underline">
           {networkBoxTitle}

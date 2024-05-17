@@ -72,7 +72,5 @@ export default function DashboardChoice({
     </div>
   );
 }
-//TODO: Make snackbar on click of empty network of location
 //TODO: Loading animations
-
 //TODO: Add some logic that will cause the parent dashboard statuses actually update

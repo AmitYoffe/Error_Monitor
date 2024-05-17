@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import MainDashboards, {
   formattedLocationInfo
 } from '@/components/locationsDashboard/MainDashboards';
+import { Toaster } from '@/components/ui/sonner';
 import { AsyncReturnType } from '@/types';
 import { getData } from '@/utils/getData';
 import { getLocationInfo } from '@/utils/getLocationInfo';
@@ -34,6 +35,7 @@ export default function Root() {
       <div className="space-y-3">
         <Header showBreadcrumbs={false} />
         <MainDashboards locationsInfo={locationInfo} />
+        <Toaster />
       </div>
     </div>
   );
