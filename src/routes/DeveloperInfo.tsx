@@ -50,4 +50,4 @@ export default function DeveloperInfo() {
   );
 }
 
-// Todo: make some sort of status indication that looks like a traffiv light or something similar that
+// Todo: make some sort of status indication that looks like a traffic light or something similar to that

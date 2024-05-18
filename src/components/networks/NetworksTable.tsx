@@ -90,7 +90,7 @@ export function NetworksTable({
                   }`}
                 onClick={() =>
                   noFollowUpLink ?
-                    toast(`This network has no sources`, {
+                    toast(`${capitalizeWord(row.name)} has no sources`, {
                       description: "try another network...",
                       action: {
                         label: "Close",
