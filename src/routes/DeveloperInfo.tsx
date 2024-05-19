@@ -43,9 +43,10 @@ export default function DeveloperInfo() {
       <CardHeader className="flex w-full items-center pt-3">
         <img src={shyDuck} alt="shy traffic cone duck" className="h-20 w-16" />
         <CardTitle>Dev Error Monitor</CardTitle>
-        <CardDescription>Lead your quest to find the errors.</CardDescription>
+        {/* <CardDescription>Lead your quest to find the errors.</CardDescription> */}
+        <CardDescription>This area is still under construction...</CardDescription>
       </CardHeader>
-      <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} />
+      {/* <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} /> */}
     </div>
   );
 }
