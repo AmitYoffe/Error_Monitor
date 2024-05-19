@@ -5,15 +5,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import ErrorPage from './error-page';
 import './index.css';
-import DeveloperInfo from './routes/DeveloperInfo';
-import Root, { loader as rootLoader } from './routes/Root';
 import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
-import SecondSubDashboard, {
-  loader as sourcesLoader,
-} from './routes/Sources';
+import DeveloperInfo from './routes/DeveloperInfo';
 import SocialNetworks, {
   loader as SocialNetworksLoader,
 } from './routes/Networks';
+import Root, { loader as rootLoader } from './routes/Root';
+import SecondSubDashboard, { loader as sourcesLoader } from './routes/Sources';
 
 const router = createBrowserRouter([
   {

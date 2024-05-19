@@ -1,12 +1,11 @@
+import { capitalizeWord } from '@/utils/capitalizeWord';
 import { locationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 import { Skeleton } from '../ui/skeleton';
-import { toast } from 'sonner';
-import { Button } from '../ui/button';
-import { capitalizeWord } from '@/utils/capitalizeWord';
 
 interface NetworkChoiceProps {
   networkInfo?: locationInfoType;
