@@ -20,7 +20,7 @@ export default function TrafficLightsDisplay({
 }: TrafficLightsDisplayProps) {
   return (
     <div className="mt-4 flex items-center justify-center gap-24 bg-secondary py-24">
-      <GeneralStatus />
+      <GeneralStatus toolsCollectionJson={toolsCollectionJson} />
       <div className="flex flex-col items-center justify-center gap-6">
         {Object.entries(toolsCollectionJson).map(
           ([category, { icon, tools }]) => (

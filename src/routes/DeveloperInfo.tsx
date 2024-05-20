@@ -18,8 +18,8 @@ export default function DeveloperInfo() {
       icon: <SearchIcon className="h-4 w-4" />,
       tools: {
         Ingestion: 'operational',
-        Intuview: 'unstable',
-        Siren: 'no-connection',
+        Intuview: 'operational',
+        Siren: 'operational',
       },
     },
     Collecting: {
@@ -29,7 +29,7 @@ export default function DeveloperInfo() {
         'FB pages': 'operational',
         'FB profiles': 'unstable',
         'TG channels': 'operational',
-        'TW users': 'no-connection',
+        'TW users': 'operational',
         Voyager: 'operational',
       },
     },
@@ -38,7 +38,7 @@ export default function DeveloperInfo() {
       tools: {
         Translation: 'operational',
         Embedding: 'operational',
-        Clustering: 'unstable',
+        Clustering: 'operational',
         Relations: 'operational',
       },
     },
@@ -57,10 +57,10 @@ export default function DeveloperInfo() {
       <CardHeader className="flex w-full items-center pt-3">
         <img src={shyDuck} alt="shy traffic cone duck" className="h-20 w-16" />
         <CardTitle>Dev Error Monitor</CardTitle>
-        {/* <CardDescription>Lead your quest to find the errors.</CardDescription> */}
-        <CardDescription>This area is still under construction...</CardDescription>
+        <CardDescription>Lead your quest to find the errors.</CardDescription>
+        {/* <CardDescription>This area is still under construction...</CardDescription> */}
       </CardHeader>
-      {/* <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} /> */}
+      <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} />
     </div>
   );
 }
