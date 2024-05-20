@@ -1,9 +1,10 @@
+import { StatusType } from '@/types/statusType';
 import GeneralStatus from './GeneralStatus';
 import TrafficDialog from './TrafficDialog';
 
-type ToolCategory = {
+export type ToolCategory = {
   icon: React.ReactNode;
-  tools: string[];
+  tools: { [toolName: string]: StatusType };
 };
 
 export type ToolsCollectionJson = {

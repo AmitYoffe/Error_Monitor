@@ -1,5 +1,5 @@
 import shyDuck from '@/assets/images/shy-duck.png';
-import TrafficLightsDisplay from '@/components/DevInfo/TrafficLightsDisplay';
+import TrafficLightsDisplay, { ToolCategory } from '@/components/DevInfo/TrafficLightsDisplay';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   DatabaseIcon,
@@ -8,30 +8,46 @@ import {
   SparklesIcon,
 } from 'lucide-react';
 
+interface IToolsCollectionJson {
+  [key: string]: ToolCategory
+}
+
 export default function DeveloperInfo() {
-  const toolsCollectionJson = {
+  const toolsCollectionJson: IToolsCollectionJson = {
     Analyzing: {
       icon: <SearchIcon className="h-4 w-4" />,
-      tools: ['Ingestion', 'Intuview', 'Siren'],
+      tools: {
+        Ingestion: 'operational',
+        Intuview: 'unstable',
+        Siren: 'no-connection',
+      },
     },
     Collecting: {
       icon: <DownloadIcon className="h-4 w-4" />,
-      tools: [
-        'FB groups',
-        'FB pages',
-        'FB profiles',
-        'TG channels',
-        'TW users',
-        'Voyager',
-      ],
+      tools: {
+        'FB groups': 'operational',
+        'FB pages': 'operational',
+        'FB profiles': 'unstable',
+        'TG channels': 'operational',
+        'TW users': 'no-connection',
+        Voyager: 'operational',
+      },
     },
     Enrichment: {
       icon: <SparklesIcon className="h-4 w-4" />,
-      tools: ['Translation', 'Embedding', 'Clustering', 'Relations'],
+      tools: {
+        Translation: 'operational',
+        Embedding: 'operational',
+        Clustering: 'unstable',
+        Relations: 'operational',
+      },
     },
     Databases: {
       icon: <DatabaseIcon className="h-4 w-4" />,
-      tools: ['Mongo', 'Elastic'],
+      tools: {
+        Mongo: 'operational',
+        Elastic: 'no-connection',
+      },
     },
   };
 
@@ -42,13 +58,9 @@ export default function DeveloperInfo() {
         <img src={shyDuck} alt="shy traffic cone duck" className="h-20 w-16" />
         <CardTitle>Dev Error Monitor</CardTitle>
         {/* <CardDescription>Lead your quest to find the errors.</CardDescription> */}
-        <CardDescription>
-          This area is still under construction...
-        </CardDescription>
+        <CardDescription>This area is still under construction...</CardDescription>
       </CardHeader>
       {/* <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} /> */}
     </div>
   );
 }
-
-// Todo: make some sort of status indication that looks like a traffic light or something similar to that

@@ -21,13 +21,9 @@ export const statusIcons: Record<StatusType, JSX.Element> = {
 
 interface StatusLinkProps {
   status: StatusType;
-  // name: string;
 }
 
-export default function StatusIndication({
-  status,
-  // name,
-}: StatusLinkProps) {
+export default function StatusIndication({ status }: StatusLinkProps) {
   return (
     <div>
       <TooltipProvider>
