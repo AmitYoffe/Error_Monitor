@@ -31,7 +31,6 @@ export default function BreadCrumbs() {
 
   return (
     <Breadcrumb
-      className="p-1"
       style={{ opacity: showBreadcrumb ? 1 : 0, transition: 'opacity 0.5s' }}
     >
       <BreadcrumbList>

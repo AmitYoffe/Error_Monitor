@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export default function Header({ showBreadcrumbs }: HeaderProps) {
   return (
-    <div className="flex justify-between h-0">
+      <div className="flex justify-between h-0 p-2">
       {showBreadcrumbs ? <BreadCrumbs /> : null}
       <div className="ml-auto flex gap-1">
         <PageToggle />
