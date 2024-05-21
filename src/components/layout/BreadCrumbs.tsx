@@ -31,7 +31,7 @@ export default function BreadCrumbs() {
 
   return (
     <>
-      {pathnames.length > 1 ? (
+      {pathnames.length >= 1 ? (
         <Breadcrumb
           style={{
             opacity: showBreadcrumb ? 1 : 0,
