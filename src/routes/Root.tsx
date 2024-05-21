@@ -1,6 +1,5 @@
-import Header from '@/components/Header';
 import MainDashboards, {
-  formattedLocationInfo
+  formattedLocationInfo,
 } from '@/components/locationsDashboard/MainDashboards';
 import { Toaster } from '@/components/ui/sonner';
 import { AsyncReturnType } from '@/types';
@@ -10,7 +9,7 @@ import { useLoaderData } from 'react-router-dom';
 
 export async function loader() {
   const data = await getData();
-  const locations = Object.keys(data)
+  const locations = Object.keys(data);
 
   const locationInfo: formattedLocationInfo[] = locations.map((location) => {
     return {
@@ -31,12 +30,9 @@ export default function Root() {
   const { locationInfo } = useLoaderData() as AsyncReturnType<typeof loader>;
 
   return (
-    <div className="h-screen">
-      <div className="space-y-3">
-        <Header showBreadcrumbs={false} />
-        <MainDashboards locationsInfo={locationInfo} />
-        <Toaster />
-      </div>
-    </div>
+    <>
+      <MainDashboards locationsInfo={locationInfo} />
+      <Toaster />
+    </>
   );
 }

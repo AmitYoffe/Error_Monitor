@@ -43,9 +43,9 @@ export default function TrafficDialog({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <div className="flex">
-            <div className="mx-1 flex items-center">{icon}</div>
-            <Separator orientation="vertical" className="mx-3 h-5" />
-            <DialogTitle>{`${category} Status`}</DialogTitle>
+            <div className="flex items-center">{icon}</div>
+            <Separator orientation="vertical" className="mx-2 h-7" />
+            <DialogTitle className='text-xl'>{`${category} Status`}</DialogTitle>
           </div>
           <DialogDescription>
             Here are the statuses of {category}.
@@ -54,7 +54,9 @@ export default function TrafficDialog({
         <Separator />
         <ul className="w-full space-y-2">
           {Object.entries(tools).map(([tool, status]) => {
-            const { description } = getCategoryStatusDetails({ [tool]: status });
+            const { description } = getCategoryStatusDetails({
+              [tool]: status,
+            });
             return (
               <div
                 key={tool}
@@ -63,9 +65,7 @@ export default function TrafficDialog({
                 <StatusIndication status={status} />
                 <div>
                   <h3 className="font-medium">{tool}</h3>
-                  <p className={"text-sm"}>
-                    {description}
-                  </p>
+                  <p className={'text-sm'}>{description}</p>
                 </div>
               </div>
             );
@@ -75,7 +75,3 @@ export default function TrafficDialog({
     </Dialog>
   );
 }
-function getStatusDetails(tools: { [toolName: string]: StatusType; }): { description: any; color: any; } {
-  throw new Error('Function not implemented.');
-}
-

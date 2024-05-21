@@ -1,8 +1,8 @@
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/layout/theme-provider';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import ErrorPage from './error-page';
 import './index.css';
 import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
@@ -15,16 +15,16 @@ import SecondSubDashboard, { loader as sourcesLoader } from './routes/Sources';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-  },
-  {
-    // parent route component
+    // parent component all routes will be passed through
     element: <Layout />,
-    // child route components
+    // and it's child route components
     children: [
+      {
+        path: '/',
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        loader: rootLoader,
+      },
       {
         path: '/:connection/sn/',
         element: <SocialNetworks />,

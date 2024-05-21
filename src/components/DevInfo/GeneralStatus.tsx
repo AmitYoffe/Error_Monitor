@@ -1,6 +1,6 @@
+import { ToolsCollectionJson } from '@/types/statusType';
 import { getOverallStatus } from '@/utils/getStatusDetails';
 import { AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
-import { ToolsCollectionJson } from './TrafficLightsDisplay'; // Ensure the path is correct
 
 interface IGeneralStatus {
   toolsCollectionJson: ToolsCollectionJson;
@@ -15,11 +15,13 @@ export default function GeneralStatus({ toolsCollectionJson }: IGeneralStatus) {
     'no-connection': { icon: XCircle, color: 'text-red-500' },
   };
 
-  const { icon: Icon } = iconProps[status];
+  const { icon: Icon, color } = iconProps[status];
 
   return (
     <div className="flex flex-col items-center justify-center gap-6">
-      <div className="flex h-32 w-32 items-center justify-center rounded-full bg-white shadow-lg transition duration-150 ease-in-out hover:scale-110 dark:bg-gray-950 ${color}">
+      <div
+        className={`flex h-32 w-32 items-center justify-center rounded-full bg-white shadow-lg transition duration-150 ease-in-out hover:scale-110 dark:bg-gray-950 ${color}`}
+      >
         <Icon className="h-16 w-16" />
       </div>
       <div className="space-y-2 text-center">

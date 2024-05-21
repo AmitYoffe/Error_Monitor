@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card';
 import getLocationIcon from '@/utils/getLocationIcon';
 import { locationInfoType } from '@/utils/getLocationInfo';
-import { useTheme } from '../theme-provider';
+import { useTheme } from '../layout/theme-provider';
 
 // locationInfo type with the added locationName field
 export type formattedLocationInfo = {

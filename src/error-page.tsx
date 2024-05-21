@@ -1,7 +1,7 @@
 import cofusedDuckGif from '@/assets/gifs/confused-duck.gif';
 import { Undo2 } from 'lucide-react';
 import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
-import { ModeToggle } from './components/mode-toggle';
+import { ModeToggle } from './components/layout/mode-toggle';
 
 export default function ErrorPage() {
   const error = useRouteError();

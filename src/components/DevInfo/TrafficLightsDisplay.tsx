@@ -1,15 +1,6 @@
-import { StatusType } from '@/types/statusType';
+import { ToolsCollectionJson } from '@/types/statusType';
 import GeneralStatus from './GeneralStatus';
 import TrafficDialog from './TrafficDialog';
-
-export type ToolCategory = {
-  icon: React.ReactNode;
-  tools: { [toolName: string]: StatusType };
-};
-
-export type ToolsCollectionJson = {
-  [category: string]: ToolCategory;
-};
 
 interface TrafficLightsDisplayProps {
   toolsCollectionJson: ToolsCollectionJson;

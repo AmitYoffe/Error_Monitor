@@ -13,7 +13,7 @@ import { ParsedNetwrokInfo } from '@/types/networkType';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../theme-provider';
+import { useTheme } from '../layout/theme-provider';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 import { toast } from 'sonner';

@@ -12,7 +12,7 @@ import { capitalizeWord } from '@/utils/capitalizeWord';
 import getLocationIcon from '@/utils/getLocationIcon';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
-import { useTheme } from '../theme-provider';
+import { useTheme } from '../layout/theme-provider';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
 

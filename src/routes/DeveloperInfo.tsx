@@ -1,6 +1,7 @@
 import shyDuck from '@/assets/images/shy-duck.png';
-import TrafficLightsDisplay, { ToolCategory } from '@/components/DevInfo/TrafficLightsDisplay';
+import TrafficLightsDisplay from '@/components/DevInfo/TrafficLightsDisplay';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ToolCategory } from '@/types/statusType';
 import {
   DatabaseIcon,
   DownloadIcon,
@@ -9,13 +10,13 @@ import {
 } from 'lucide-react';
 
 interface IToolsCollectionJson {
-  [key: string]: ToolCategory
+  [key: string]: ToolCategory;
 }
 
 export default function DeveloperInfo() {
   const toolsCollectionJson: IToolsCollectionJson = {
     Analyzing: {
-      icon: <SearchIcon className="h-4 w-4" />,
+      icon: <SearchIcon className="h-5 w-5" />,
       tools: {
         Ingestion: 'operational',
         Intuview: 'operational',
@@ -23,7 +24,7 @@ export default function DeveloperInfo() {
       },
     },
     Collecting: {
-      icon: <DownloadIcon className="h-4 w-4" />,
+      icon: <DownloadIcon className="h-5 w-5" />,
       tools: {
         'FB groups': 'operational',
         'FB pages': 'operational',
@@ -34,7 +35,7 @@ export default function DeveloperInfo() {
       },
     },
     Enrichment: {
-      icon: <SparklesIcon className="h-4 w-4" />,
+      icon: <SparklesIcon className="h-5 w-5" />,
       tools: {
         Translation: 'operational',
         Embedding: 'operational',
@@ -43,17 +44,16 @@ export default function DeveloperInfo() {
       },
     },
     Databases: {
-      icon: <DatabaseIcon className="h-4 w-4" />,
+      icon: <DatabaseIcon className="h-5 w-5" />,
       tools: {
         Mongo: 'operational',
-        Elastic: 'no-connection',
+        Elastic: 'operational',
       },
     },
   };
 
   return (
     <div>
-      {/* <StatusGradient generalStatus={'operational'} /> */}
       <CardHeader className="flex w-full items-center pt-3">
         <img src={shyDuck} alt="shy traffic cone duck" className="h-20 w-16" />
         <CardTitle>Dev Error Monitor</CardTitle>

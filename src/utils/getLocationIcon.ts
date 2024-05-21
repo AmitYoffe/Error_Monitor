@@ -14,19 +14,19 @@ import WhiteInterArab from '@/assets/images/white-middleEast.png';
 import WhiteWestBank from '@/assets/images/white-westBank.png';
 
 export default function getLocationIcon(location: string, theme: string) {
-    const iconSrcJson: Record<string, { light: string; dark: string }> = {
-        'gaza strip': { light: WhiteGaza, dark: Gaza },
-        lebanon: { light: WhiteLebanon, dark: Lebanon },
-        'west bank': { light: WhiteWestBank, dark: WestBank },
-        'inter-arab': { light: WhiteInterArab, dark: InterArab },
-        'pro hezbollah': { light: WhiteProHezbollah, dark: ProHezbollah },
-        'anti hezbollah': { light: WhiteAntiHezbollah, dark: AntiHezbollah },
-        default: {
-            light: WhiteInternational,
-            dark: International,
-        },
-    };
+  const iconSrcJson: Record<string, { light: string; dark: string }> = {
+    'gaza strip': { light: WhiteGaza, dark: Gaza },
+    lebanon: { light: WhiteLebanon, dark: Lebanon },
+    'west bank': { light: WhiteWestBank, dark: WestBank },
+    'inter-arab': { light: WhiteInterArab, dark: InterArab },
+    'pro hezbollah': { light: WhiteProHezbollah, dark: ProHezbollah },
+    'anti hezbollah': { light: WhiteAntiHezbollah, dark: AntiHezbollah },
+    default: {
+      light: WhiteInternational,
+      dark: International,
+    },
+  };
 
-    const icon = iconSrcJson[location.toLowerCase()] || iconSrcJson.default;
-    return theme === 'light' ? icon.dark : icon.light;
+  const icon = iconSrcJson[location.toLowerCase()] || iconSrcJson.default;
+  return theme === 'light' ? icon.dark : icon.light;
 }
