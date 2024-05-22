@@ -1,4 +1,4 @@
-import { Location } from '@/types/networkType';
+import { Location } from '@/types/NetworkType';
 
 type docInfoType = 'docs_count' | 'docs_count_3_days' | 'last_time';
 type networkType = 'article' | 'sn';
@@ -29,7 +29,7 @@ export function getLocationInfo({
 
     // move to next iteration if networkData is undefined
     if (!networkData) continue;
-    
+
     for (const docInfo of docInfoField) {
       // Push the fields docs_count, docs_count_3_days, last_time into the json
       if (networkData[docInfo]) {

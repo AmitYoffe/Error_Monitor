@@ -1,14 +1,16 @@
 import MainDashboards, {
   formattedLocationInfo,
 } from '@/components/locationsDashboard/MainDashboards';
+import MainDashboardsSkeleton from '@/components/skeletons/MainDashboardsSkeleton';
 import { Toaster } from '@/components/ui/sonner';
-import { AsyncReturnType } from '@/types';
+import ErrorPage from '@/error-page';
 import { getData } from '@/utils/getData';
 import { getLocationInfo } from '@/utils/getLocationInfo';
-import { useLoaderData } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Await, defer, useLoaderData } from 'react-router-dom';
 
 export async function loader() {
-  const data = await getData();
+  const data = getData();
   const locations = Object.keys(data);
 
   const locationInfo: formattedLocationInfo[] = locations.map((location) => {
@@ -23,16 +25,27 @@ export async function loader() {
     };
   });
 
-  return { locationInfo };
+  return defer({ locationInfo });
 }
 
 export default function Root() {
-  const { locationInfo } = useLoaderData() as AsyncReturnType<typeof loader>;
+  const { locationInfo } = useLoaderData() as {
+    locationInfo: Promise<formattedLocationInfo[]>;
+  };
 
   return (
-    <>
-      <MainDashboards locationsInfo={locationInfo} />
-      <Toaster />
-    </>
+    // <>
+    //   <Suspense fallback={<DashboardChoiceSkeleton />}>
+    //     <Await resolve={locationInfo} errorElement={<ErrorPage />}>
+    //       {(resolvedLocationInfo: formattedLocationInfo[]) => (
+    //         <MainDashboards locationsInfo={resolvedLocationInfo} />
+    //       )}
+    //     </Await>
+    //   </Suspense>
+    //   <Toaster />
+    // </>
+    <MainDashboardsSkeleton />
   );
 }
+
+// Todo: make this work when the site is up

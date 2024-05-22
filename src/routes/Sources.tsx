@@ -1,12 +1,13 @@
 import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import SourcesTable from '@/components/sources/SourcesTable';
+import ErrorPage from '@/error-page';
 import { ParsedSource } from '@/types/NetworkType';
 import { getSourcesNames } from '@/utils/netwrokUtils';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, Suspense, useState } from 'react';
 import {
   Await,
-  defer,
   LoaderFunctionArgs,
+  defer,
   useLoaderData,
 } from 'react-router-dom';
 import invariant from 'tiny-invariant';
@@ -39,8 +40,8 @@ export default function SecondSubDashboard() {
 
   return (
     <div className="flex justify-center gap-4 overflow-hidden p-9">
-      <React.Suspense fallback={<TableSkeleton />}>
-        <Await resolve={sources} errorElement={<p>Error!</p>}>
+      <Suspense fallback={<TableSkeleton />}>
+        <Await resolve={sources} errorElement={<ErrorPage />}>
           {(resolvedSources: ParsedSource[]) => (
             <SourcesTable
               data={resolvedSources}
@@ -50,7 +51,7 @@ export default function SecondSubDashboard() {
             />
           )}
         </Await>
-      </React.Suspense>
+      </Suspense>
     </div>
   );
 }

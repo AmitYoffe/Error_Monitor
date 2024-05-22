@@ -1,5 +1,4 @@
-import { ToolsCollectionJson } from '@/components/DevInfo/TrafficLightsDisplay';
-import { StatusType } from '@/types/statusType';
+import { StatusType, ToolsCollectionJson } from '@/types/statusType';
 
 export const getCategoryStatusDetails = (tools: {
   [toolName: string]: StatusType;

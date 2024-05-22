@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import { ParsedNetwrokInfo } from '@/types/networkType';
 import { capitalizeWord } from '@/utils/capitalizeWord';
 import getLocationIcon from '@/utils/getLocationIcon';
 import moment from 'moment';

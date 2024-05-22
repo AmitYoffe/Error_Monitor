@@ -72,5 +72,5 @@ export default function DashboardChoice({
     </div>
   );
 }
-//TODO: Loading animations
+
 //TODO: Add some logic that will cause the parent dashboard statuses actually update

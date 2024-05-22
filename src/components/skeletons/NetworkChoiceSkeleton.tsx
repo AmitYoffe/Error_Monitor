@@ -5,7 +5,7 @@ export default function NetworkChoiceSkeleton() {
   return (
     <Card className="flex-col p-2 hover:bg-secondary active:border-primary">
       <CardTitle className="p-2 text-center underline">
-      <Skeleton className="my-auto h-10 w-28" />
+      <Skeleton className="m-auto h-5 w-36" />
       </CardTitle>
       <CardDescription className="mx-12 flex justify-between">
         Last Time Recieved:
