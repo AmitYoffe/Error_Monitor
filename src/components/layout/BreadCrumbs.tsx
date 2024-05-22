@@ -40,13 +40,11 @@ export default function BreadCrumbs() {
         >
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink to="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink
-                href={pathnames.length >= 3 ? backPath : undefined}
-              >
+              <BreadcrumbLink to={pathnames.length >= 3 ? backPath : '#'}>
                 {formattedPathName}
               </BreadcrumbLink>
             </BreadcrumbItem>
@@ -54,7 +52,7 @@ export default function BreadCrumbs() {
               <>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink>
+                  <BreadcrumbLink to={'#'}>
                     {/* Take last item of pathnames */}
                     {capitalizedPathnames.slice(-1)}
                   </BreadcrumbLink>

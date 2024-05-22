@@ -43,6 +43,7 @@ const router = createBrowserRouter([
       {
         path: '/:connection/ag/:network',
         element: <SecondSubDashboard />,
+        // todo: rename these shits from SecondSubDashboard to a relevant name
         loader: sourcesLoader,
       },
       {

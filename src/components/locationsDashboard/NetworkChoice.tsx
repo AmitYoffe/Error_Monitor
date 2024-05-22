@@ -41,21 +41,23 @@ export default function NetworkChoice({
   }, [networkInfo]);
 
   return (
-    <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}
-    >
+    <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}>
       <Card
-        className={`flex-col p-2 active:border-primary hover:bg-secondary
-        ${noFollowUpLink ? 'transition-colors duration-100 active:border-b-rose-700' : ''}`}
+        className={`flex-col p-2 hover:bg-secondary active:border-primary
+        ${noFollowUpLink ? 'transition-colors duration-100 active:border-b-rose-700' : ''} `}
         // Shows a toast component when this component doesn't have information to show in the following page
         onClick={() =>
-          noFollowUpLink && location ?
-            toast(`This network choice for '${capitalizeWord(location)}' has no information`, {
-              description: "try another network...",
-              action: {
-                label: "Close",
-                onClick: () => console.log("Close"),
-              },
-            })
+          noFollowUpLink && location
+            ? toast(
+                `This network choice for '${capitalizeWord(location)}' has no information`,
+                {
+                  description: 'try another network...',
+                  action: {
+                    label: 'Close',
+                    onClick: () => console.log('Close'),
+                  },
+                },
+              )
             : null
         }
       >
@@ -67,10 +69,10 @@ export default function NetworkChoice({
           <div>
             {isLoading ? (
               <Skeleton className="my-auto h-[9px] w-[170px]" />
+            ) : networkInfo?.last_time ? (
+              moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
             ) : (
-              networkInfo?.last_time
-                ? moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
-                : '- no information -'
+              '- no information -'
             )}
           </div>
         </CardDescription>

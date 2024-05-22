@@ -1,8 +1,11 @@
 import { NetworksTable } from '@/components/networks/NetworksTable';
-import { getSocialNetworksNames } from '@/utils/netwrokUtils';
 import { AsyncReturnType } from '@/types';
+import { getSocialNetworksNames } from '@/utils/netwrokUtils';
 import { ChangeEvent, useState } from 'react';
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import {
+  LoaderFunctionArgs,
+  useLoaderData
+} from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -24,15 +27,15 @@ export default function Connection() {
   ): void {
     setSearch(event.target.value);
   }
-  
+
   return (
     <div className="flex justify-center gap-4 overflow-hidden p-9">
-      <NetworksTable
-        data={networks}
-        connection={connection}
-        handleInputChange={handleInputChange}
-        search={search}
-      />
+        <NetworksTable
+          data={networks}
+          connection={connection}
+          handleInputChange={handleInputChange}
+          search={search}
+        />
     </div>
   );
 }

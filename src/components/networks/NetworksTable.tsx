@@ -7,16 +7,16 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { ParsedNetwrokInfo } from '@/types/NetworkType';
 import { capitalizeWord } from '@/utils/capitalizeWord';
 import getLocationIcon from '@/utils/getLocationIcon';
-import { ParsedNetwrokInfo } from '@/types/networkType';
 import moment from 'moment';
 import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { useTheme } from '../layout/theme-provider';
 import { Card } from '../ui/card';
 import { Input } from '../ui/input';
-import { toast } from 'sonner';
 
 interface NetworksTableProps {
   data: ParsedNetwrokInfo[];
@@ -33,13 +33,14 @@ export function NetworksTable({
   handleInputChange,
   search,
 }: NetworksTableProps) {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
+
   const { theme } = useTheme();
 
   const filteredData = search
     ? data.filter(
-      (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
-    )
+        (dataItem) => dataItem.name && dataItem.name.includes(search.trim()),
+      )
     : data;
 
   return (
@@ -84,19 +85,21 @@ export function NetworksTable({
             return (
               <TableRow
                 key={rowIndex}
-                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${noFollowUpLink
-                  ? 'transition-colors duration-100 active:border-red-500'
-                  : ''
-                  }`}
+                className={`cursor-pointer hover:bg-accent active:border-slate-950 ${
+                  noFollowUpLink
+                    ? 'transition-colors duration-100 active:border-red-500'
+                    : ''
+                }`}
                 onClick={() =>
-                  noFollowUpLink ?
-                    toast(`${capitalizeWord(row.name)} has no sources`, {
-                      description: "try another network...",
-                      action: {
-                        label: "Close",
-                        onClick: () => console.log("Close"),
-                      },
-                    }) : navigation(`${row.name}`)
+                  noFollowUpLink
+                    ? toast(`${capitalizeWord(row.name)} has no sources`, {
+                        description: 'try another network...',
+                        action: {
+                          label: 'Close',
+                          onClick: () => console.log('Close'),
+                        },
+                      })
+                    : navigate(`${row.name}`)
                 }
               >
                 <TableCell>{capitalizeWord(row.name)}</TableCell>
@@ -112,6 +115,6 @@ export function NetworksTable({
           <Separator className="max-w-fit" />
         </TableBody>
       </Table>
-    </Card >
+    </Card>
   );
 }
