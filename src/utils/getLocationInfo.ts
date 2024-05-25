@@ -1,4 +1,4 @@
-import { Location } from '@/types/NetworkType';
+import { Location } from '@/types/networkType';
 
 type docInfoType = 'docs_count' | 'docs_count_3_days' | 'last_time';
 type networkType = 'article' | 'sn';

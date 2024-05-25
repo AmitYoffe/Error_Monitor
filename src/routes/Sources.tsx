@@ -1,7 +1,7 @@
 import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import SourcesTable from '@/components/sources/SourcesTable';
 import ErrorPage from '@/error-page';
-import { ParsedSource } from '@/types/NetworkType';
+import { ParsedSource } from '@/types/networkType';
 import { getSourcesNames } from '@/utils/netwrokUtils';
 import { ChangeEvent, Suspense, useState } from 'react';
 import {
@@ -24,7 +24,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   });
 }
 
-export default function SecondSubDashboard() {
+export default function SocialNetworkSources() {
   const data = useLoaderData() as {
     connection: string;
     sources: Promise<ParsedSource[]>;

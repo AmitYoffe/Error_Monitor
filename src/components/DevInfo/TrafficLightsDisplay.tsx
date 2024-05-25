@@ -1,6 +1,6 @@
 import { ToolsCollectionJson } from '@/types/statusType';
-import GeneralStatus from './GeneralStatus';
-import TrafficDialog from './TrafficDialog';
+import GeneralStatus from '../devInfo/GeneralStatus';
+import TrafficDialog from '../devInfo/TrafficDialog';
 
 interface TrafficLightsDisplayProps {
   toolsCollectionJson: ToolsCollectionJson;

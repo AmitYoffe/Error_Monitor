@@ -42,6 +42,9 @@ export default function TableSkeleton() {
             <TableHead>
               <Skeleton className="h-4 w-28" />
             </TableHead>
+            <TableHead>
+              <Skeleton className="h-4 w-18" />
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -58,6 +61,9 @@ export default function TableSkeleton() {
               </TableCell>
               <TableCell>
                 <Skeleton className="h-2 w-72" />
+              </TableCell>
+              <TableCell>
+                <Skeleton className="h-2 w-20" />
               </TableCell>
             </TableRow>
           ))}

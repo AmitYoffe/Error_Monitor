@@ -26,7 +26,7 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
 
   return (
       <>
-        <CardHeader className="flex w-full items-center pt-0">
+        <CardHeader className="flex w-full items-center pt-1">
           <img
             src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
             alt="confused duck"

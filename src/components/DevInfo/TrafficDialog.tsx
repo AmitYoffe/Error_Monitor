@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
 import { CircleIcon } from 'lucide-react';
-import StatusIndication from './StatusIndication';
+import StatusIndication from '../devInfo/StatusIndication';
 
 interface TrafficDialogProps {
   category: string;
@@ -45,7 +45,7 @@ export default function TrafficDialog({
           <div className="flex">
             <div className="flex items-center">{icon}</div>
             <Separator orientation="vertical" className="mx-2 h-7" />
-            <DialogTitle className='text-xl'>{`${category} Status`}</DialogTitle>
+            <DialogTitle className="text-xl">{`${category} Status`}</DialogTitle>
           </div>
           <DialogDescription>
             Here are the statuses of {category}.

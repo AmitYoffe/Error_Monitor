@@ -34,7 +34,6 @@ export function NetworksTable({
   search,
 }: NetworksTableProps) {
   const navigate = useNavigate();
-
   const { theme } = useTheme();
 
   const filteredData = search

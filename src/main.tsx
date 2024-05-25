@@ -11,12 +11,15 @@ import SocialNetworks, {
   loader as SocialNetworksLoader,
 } from './routes/Networks';
 import Root, { loader as rootLoader } from './routes/Root';
-import SecondSubDashboard, { loader as sourcesLoader } from './routes/Sources';
+import SocialNetworkSources, {
+  loader as sourcesLoader,
+} from './routes/Sources';
 
 const router = createBrowserRouter([
   {
-    // parent component all routes will be passed through
+    // parent components all routes will be passed through
     element: <Layout />,
+    errorElement: <ErrorPage />,
     // and it's child route components
     children: [
       {
@@ -36,14 +39,9 @@ const router = createBrowserRouter([
         loader: AgenciesLoader,
       },
       {
+        // Only sn has sources
         path: '/:connection/sn/:network',
-        element: <SecondSubDashboard />,
-        loader: sourcesLoader,
-      },
-      {
-        path: '/:connection/ag/:network',
-        element: <SecondSubDashboard />,
-        // todo: rename these shits from SecondSubDashboard to a relevant name
+        element: <SocialNetworkSources />,
         loader: sourcesLoader,
       },
       {
@@ -52,7 +50,6 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
     ],
-    errorElement: <ErrorPage />,
   },
 ]);
 

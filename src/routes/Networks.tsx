@@ -1,7 +1,7 @@
 import { NetworksTable } from '@/components/networks/NetworksTable';
 import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import ErrorPage from '@/error-page';
-import { ParsedNetwrokInfo } from '@/types/NetworkType';
+import { ParsedNetwrokInfo } from '@/types/networkType';
 import { getSocialNetworksNames } from '@/utils/netwrokUtils';
 import { ChangeEvent, Suspense, useState } from 'react';
 import {

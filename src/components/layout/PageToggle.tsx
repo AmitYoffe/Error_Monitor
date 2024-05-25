@@ -10,7 +10,7 @@ export default function PageToggle() {
 
   const navigation = useNavigate();
 
-  let navigateTo;
+  let navigateTo: string;
   let toggleIcon = <TrafficCone />;
 
   if (pathnames.includes('info-dev')) {

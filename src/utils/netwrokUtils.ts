@@ -1,4 +1,4 @@
-import { ParsedNetwrokInfo, ParsedSource } from '@/types/NetworkType';
+import { ParsedNetwrokInfo, ParsedSource } from '@/types/networkType';
 import { getData } from './getData';
 
 export async function getAgencyNames(location: string) {
