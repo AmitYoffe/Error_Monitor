@@ -9,8 +9,10 @@ import { Skeleton } from '../ui/skeleton';
 import NetworkChoiceSkeleton from './NetworkChoiceSkeleton';
 
 export default function MainDashboardsSkeleton() {
+  // Todo: add skeleton for the duck - A duck skeleton! (skeleDuck)
+  // And skeleton the words also 'totalDocs' and so on...
   return (
-    <>
+    <div className="mt-2">
       <CardHeader className="flex w-full items-center pt-0">
         <Skeleton className="h-20 w-20 rounded-full" />
         <CardTitle>Error Monitor</CardTitle>
@@ -31,6 +33,6 @@ export default function MainDashboardsSkeleton() {
           </Card>
         ))}
       </CardContent>
-    </>
+    </div>
   );
 }
