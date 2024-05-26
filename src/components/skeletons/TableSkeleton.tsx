@@ -1,4 +1,3 @@
-import { Separator } from '@/components/ui/separator';
 import {
   Table,
   TableBody,
@@ -20,10 +19,9 @@ export default function TableSkeleton() {
         <div className="flex flex-col p-2">
           <div className="flex">
             <Skeleton className="h-10 w-10 rounded-full" />
-            <Separator orientation="vertical" className="mx-3 h-10" />
-            <Skeleton className="mt-2 h-4 w-64" />
+            <Skeleton className="ml-5 mt-3 h-5 w-56" />
           </div>
-          <Skeleton className="mt-4 h-2 w-96" />
+          <Skeleton className="mt-2 h-2 w-64" />
         </div>
         <Skeleton className="mt-6 h-8 w-56" />
       </div>
@@ -43,7 +41,7 @@ export default function TableSkeleton() {
               <Skeleton className="h-4 w-28" />
             </TableHead>
             <TableHead>
-              <Skeleton className="h-4 w-18" />
+              <Skeleton className="w-18 h-4" />
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -67,7 +65,6 @@ export default function TableSkeleton() {
               </TableCell>
             </TableRow>
           ))}
-          <Separator className="max-w-fit" />
         </TableBody>
       </Table>
     </Card>
