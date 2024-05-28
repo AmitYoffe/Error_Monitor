@@ -117,3 +117,5 @@ export function NetworksTable({
     </Card>
   );
 }
+
+// Todo: fix request to same route here & in the breadcrumbs
