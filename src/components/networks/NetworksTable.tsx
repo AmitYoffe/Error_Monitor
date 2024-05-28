@@ -52,7 +52,7 @@ export function NetworksTable({
               alt={`${connection} icon`}
               className="h-8 w-8"
             />
-            <Separator orientation="vertical" className="mx-3 h-7" />
+            <Separator orientation="vertical" className="mx-3 h-8" />
             <h2 className="text-2xl font-bold tracking-tight">{`${capitalizeWord(connection)} Networks`}</h2>
           </div>
           <p className="text-muted-foreground">
