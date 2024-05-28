@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
 import { CircleIcon } from 'lucide-react';
-import StatusIndication from '../devInfo/StatusIndication';
+import StatusIndication from './StatusIndication';
 
 interface TrafficDialogProps {
   category: string;

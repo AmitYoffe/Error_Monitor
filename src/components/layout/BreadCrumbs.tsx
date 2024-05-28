@@ -1,6 +1,7 @@
 import { capitalizeWord } from '@/utils/capitalizeWord';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import ConditionalLink from '../ConditionalLink';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -40,22 +41,38 @@ export default function BreadCrumbs() {
         >
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink to="/">Home</BreadcrumbLink>
+              <BreadcrumbLink
+                to="/"
+                style={{
+                  cursor: pathnames.length >= 1 ? 'pointer' : 'default',
+                }}
+              >
+                Home
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink to={pathnames.length >= 3 ? backPath : '#'}>
-                {formattedPathName}
-              </BreadcrumbLink>
+              <ConditionalLink
+                to={pathnames.length >= 3 ? backPath : undefined}
+              >
+                <p
+                  className=" hover:text-slate-100"
+                  style={{
+                    cursor: pathnames.length >= 3 ? 'pointer' : 'default',
+                  }}
+                >
+                  {formattedPathName}
+                </p>
+              </ConditionalLink>
             </BreadcrumbItem>
             {pathnames.length >= 3 ? (
               <>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink to={'#'}>
+                  <p className="cursor-default hover:text-slate-100">
                     {/* Take last item of pathnames */}
                     {capitalizedPathnames.slice(-1)}
-                  </BreadcrumbLink>
+                  </p>
                 </BreadcrumbItem>
               </>
             ) : null}

@@ -2,8 +2,8 @@ import { capitalizeWord } from '@/utils/capitalizeWord';
 import { locationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import ConditionalLink from '../ConditionalLink';
 import { Card, CardDescription, CardTitle } from '../ui/card';
 import { Skeleton } from '../ui/skeleton';
 
@@ -41,7 +41,9 @@ export default function NetworkChoice({
   }, [networkInfo]);
 
   return (
-    <Link to={noFollowUpLink ? '/' : `${location}/${urlArgument}`}>
+    <ConditionalLink
+      to={!noFollowUpLink ? `${location}/${urlArgument}` : undefined}
+    >
       <Card
         className={`flex-col p-2 hover:bg-secondary active:border-primary
         ${noFollowUpLink ? 'transition-colors duration-100 active:border-b-rose-700' : ''} `}
@@ -97,6 +99,6 @@ export default function NetworkChoice({
           </div>
         </CardDescription>
       </Card>
-    </Link>
+    </ConditionalLink>
   );
 }
