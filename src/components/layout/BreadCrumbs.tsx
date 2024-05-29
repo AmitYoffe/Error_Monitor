@@ -54,9 +54,9 @@ export default function BreadCrumbs() {
             <BreadcrumbItem>
               <ConditionalLink
                 to={pathnames.length >= 3 ? backPath : undefined}
+                className="transition-colors hover:text-foreground"
               >
                 <p
-                  className=" hover:text-slate-100"
                   style={{
                     cursor: pathnames.length >= 3 ? 'pointer' : 'default',
                   }}
@@ -68,8 +68,8 @@ export default function BreadCrumbs() {
             {pathnames.length >= 3 ? (
               <>
                 <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <p className="cursor-default hover:text-slate-100">
+                <BreadcrumbItem className="cursor-default transition-colors hover:text-foreground">
+                  <p>
                     {/* Take last item of pathnames */}
                     {capitalizedPathnames.slice(-1)}
                   </p>
