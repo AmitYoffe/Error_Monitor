@@ -7,6 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Card } from '../ui/card';
+import { Separator } from '../ui/separator';
 import { Skeleton } from '../ui/skeleton';
 
 export default function TableSkeleton() {
@@ -14,7 +15,7 @@ export default function TableSkeleton() {
   const skeletonRows = Array.from({ length: 10 });
 
   return (
-    <Card className="container flex max-h-[820px] flex-col justify-center p-2 mt-8">
+    <Card className="container flex max-h-[830px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
           <div className="flex">
@@ -65,6 +66,7 @@ export default function TableSkeleton() {
               </TableCell>
             </TableRow>
           ))}
+          <Separator className="max-w-fit" />
         </TableBody>
       </Table>
     </Card>

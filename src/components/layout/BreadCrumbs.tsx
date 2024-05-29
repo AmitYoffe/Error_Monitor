@@ -51,10 +51,9 @@ export default function BreadCrumbs() {
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            <BreadcrumbItem>
+            <BreadcrumbItem className="transition-colors hover:text-foreground">
               <ConditionalLink
                 to={pathnames.length >= 3 ? backPath : undefined}
-                className="transition-colors hover:text-foreground"
               >
                 <p
                   style={{

@@ -44,7 +44,7 @@ export default function SourcesTable({
     : data;
 
   return (
-    <Card className="container flex max-h-[820px] flex-col justify-center p-2 mt-8">
+    <Card className="container flex max-h-[800px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
           <div className="flex">

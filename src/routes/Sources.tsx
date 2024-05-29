@@ -39,7 +39,7 @@ export default function SocialNetworkSources() {
   }
 
   return (
-    <div className="flex justify-center gap-4 overflow-hidden p-9">
+    <div className="flex justify-center gap-4 overflow-hidden p-9 mt-8">
       <Suspense fallback={<TableSkeleton />}>
         <Await resolve={sources} errorElement={<ErrorPage />}>
           {(resolvedSources: ParsedSource[]) => (
