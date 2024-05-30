@@ -1,7 +1,7 @@
 import shyDuck from '@/assets/images/shy-duck.png';
+import TrafficLightsDisplay from '@/components/DevInfo/TrafficLightsDisplay';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ToolCategory } from '@/types/statusType';
-import TrafficLightsDisplay from '@/components/devInfo/TrafficLightsDisplay';
 import {
   DatabaseIcon,
   DownloadIcon,

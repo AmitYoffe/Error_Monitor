@@ -9,26 +9,29 @@ import {
   LoaderFunctionArgs,
   defer,
   useLoaderData,
+  useOutletContext,
 } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const connection = params.connection;
-  invariant(connection, 'connection parameter is required');
-  const networks = getSocialNetworksNames(connection);
+// export async function loader({ params }: LoaderFunctionArgs) {
+//   const connection = params.connection;
+//   invariant(connection, 'connection parameter is required');
+//   const networks = getSocialNetworksNames(connection);
 
-  return defer({
-    connection,
-    networks,
-  });
-}
+//   return defer({
+//     connection,
+//     networks,
+//   });
+// }
 
 export default function Connection() {
-  const data = useLoaderData() as {
-    connection: string;
-    networks: Promise<ParsedNetwrokInfo[]>;
-  };
-  const { networks, connection } = data;
+  // const data = useLoaderData() as {
+  //   connection: string;
+  //   networks: Promise<ParsedNetwrokInfo[]>;
+  // };
+  // const { networks, connection } = data;
+  const data = useOutletContext();
+
   const [search, setSearch] = useState('');
 
   function handleInputChange(
@@ -39,7 +42,8 @@ export default function Connection() {
 
   return (
     <div className="flex justify-center gap-4 overflow-hidden p-9 mt-8">
-      <Suspense fallback={<TableSkeleton />}>
+      {JSON.stringify(data)}
+      {/* <Suspense fallback={<TableSkeleton />}>
         <Await resolve={networks} errorElement={<ErrorPage />}>
           {(resolvedNetworks: ParsedNetwrokInfo[]) => (
             <NetworksTable
@@ -50,7 +54,7 @@ export default function Connection() {
             />
           )}
         </Await>
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }
