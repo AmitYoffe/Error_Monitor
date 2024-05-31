@@ -1,5 +1,6 @@
 import { ParsedNetwrokInfo, ParsedSource } from '@/types/networkType';
 import { getData } from './getData';
+import { Location } from '@/types/networkType';
 
 export async function getAgencyNames(location: string) {
   // Get all the info from the db
@@ -22,9 +23,12 @@ export async function getAgencyNames(location: string) {
   return networkJsonArray;
 }
 
-export async function getSocialNetworksNames(location: string) {
+export async function extarctSocialNetworkNames(
+  location: string,
+  data: Promise<Location>,
+) {
   // Get all the info from the db
-  const locationsInfo = await getData();
+  const locationsInfo = await data;
   const locationKey = location.toLocaleLowerCase();
   // The object inside of the locationsInfo object where it's field matches the 'location' value
   const networkJson = locationsInfo[locationKey].sn.networks;
@@ -42,9 +46,13 @@ export async function getSocialNetworksNames(location: string) {
   return networkJsonArray;
 }
 
-export async function getSourcesNames(location: string, networkKey: string) {
+export async function extractSourcesNames(
+  location: string,
+  networkKey: string,
+  data: Promise<Location>,
+) {
   // Get all the info from the db
-  const locationsInfo = await getData();
+  const locationsInfo = await data;
   // The object inside of the locationsInfo object where it's field matches the 'location' value
   const locationKey = location.toLocaleLowerCase();
   // The object inside of a specific network object where it's field matches the 'network' value from the url

@@ -1,38 +1,40 @@
 import { NetworksTable } from '@/components/networks/NetworksTable';
 import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import ErrorPage from '@/error-page';
+import { ContextType } from '@/types/contextType';
 import { ParsedNetwrokInfo } from '@/types/networkType';
-import { getSocialNetworksNames } from '@/utils/netwrokUtils';
-import { ChangeEvent, Suspense, useState } from 'react';
-import {
-  Await,
-  LoaderFunctionArgs,
-  defer,
-  useLoaderData,
-  useOutletContext,
-} from 'react-router-dom';
+import { extarctSocialNetworkNames } from '@/utils/netwrokUtils';
+import { ChangeEvent, Suspense, useEffect, useState } from 'react';
+import { useLocation, useOutletContext } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
-// export async function loader({ params }: LoaderFunctionArgs) {
-//   const connection = params.connection;
-//   invariant(connection, 'connection parameter is required');
-//   const networks = getSocialNetworksNames(connection);
-
-//   return defer({
-//     connection,
-//     networks,
-//   });
-// }
-
 export default function Connection() {
-  // const data = useLoaderData() as {
-  //   connection: string;
-  //   networks: Promise<ParsedNetwrokInfo[]>;
-  // };
-  // const { networks, connection } = data;
-  const data = useOutletContext();
+  const { pathname } = useLocation();
+  invariant(pathname, 'pathname parameter is required');
+  const pathnames = pathname.split('/').filter((x) => x);
+  const currentLocation = pathnames[0];
+
+  const { data } = useOutletContext<ContextType>();
 
   const [search, setSearch] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [networks, setNetworks] = useState<ParsedNetwrokInfo[] | null>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await extarctSocialNetworkNames(currentLocation, data);
+        setNetworks(result);
+      } catch (error) {
+        setError('Error fetching social networks');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [currentLocation, data]);
 
   function handleInputChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -41,20 +43,31 @@ export default function Connection() {
   }
 
   return (
-    <div className="flex justify-center gap-4 overflow-hidden p-9 mt-8">
-      {JSON.stringify(data)}
-      {/* <Suspense fallback={<TableSkeleton />}>
-        <Await resolve={networks} errorElement={<ErrorPage />}>
+    <div className="mt-8 flex justify-center gap-4 overflow-hidden p-9">
+      <Suspense fallback={<TableSkeleton />}>
+        {isLoading ? (
+          <TableSkeleton />
+        ) : error ? (
+          <ErrorPage />
+        ) : (
+          <NetworksTable
+            data={networks || []}
+            connection={currentLocation}
+            handleInputChange={handleInputChange}
+            search={search}
+          />
+        )}
+        {/* <Await resolve={networks} errorElement={<ErrorPage />}>
           {(resolvedNetworks: ParsedNetwrokInfo[]) => (
             <NetworksTable
-              data={resolvedNetworks}
-              connection={connection}
+              data={resolvedNetworks} // Ensure data is an array, even if null
+              connection={currentLocation}
               handleInputChange={handleInputChange}
               search={search}
             />
           )}
-        </Await>
-      </Suspense> */}
+        </Await> */}
+      </Suspense>
     </div>
   );
 }
