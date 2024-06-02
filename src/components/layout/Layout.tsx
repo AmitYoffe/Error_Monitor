@@ -1,22 +1,25 @@
 import { getData } from '@/utils/getData';
-import { defer, Outlet, useLoaderData } from 'react-router-dom';
+import { defer, LoaderFunction, Outlet, useLoaderData } from 'react-router-dom';
 import { Toaster } from '../ui/sonner';
 import Footer from './Footer';
 import Header from './Header';
 
-export async function loader() {
-  const data = getData();
+type LoaderData<TLoaderFn extends LoaderFunction> =
+  Awaited<ReturnType<TLoaderFn>> extends Response | infer D ? D : never;
 
-  return defer({ data });
+export async function loader() {
+  const dataPromise = getData();
+
+  return defer({ dataPromise });
 }
 
 export default function Layout() {
-  const data = useLoaderData();
+  const data = useLoaderData() as LoaderData<typeof loader>;
 
   return (
     <div className="h-screen">
       <Header />
-      <Outlet context={{ data }} />
+      <Outlet context={data} />
       <Toaster />
       <Footer />
     </div>

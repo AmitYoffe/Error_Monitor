@@ -5,17 +5,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout, { loader as layoutLoader } from './components/layout/Layout';
 import ErrorPage from './error-page';
 import './index.css';
-import Agencies, { loader as AgenciesLoader } from './routes/Agencies';
+import Agencies from './routes/Agencies';
 import DeveloperInfo from './routes/DeveloperInfo';
-import SocialNetworks, {
-  loader as SocialNetworksLoader,
-} from './routes/Networks';
-import Root 
-// ,{ loader as rootLoader }
- from './routes/Root';
-import SocialNetworkSources, {
-  loader as sourcesLoader,
-} from './routes/Sources';
+import SocialNetworks from './routes/Networks';
+import Root from './routes/Root';
+import SocialNetworkSources from './routes/Sources';
 
 const router = createBrowserRouter([
   {
@@ -29,24 +23,19 @@ const router = createBrowserRouter([
         path: '/',
         element: <Root />,
         errorElement: <ErrorPage />,
-        // loader: rootLoader,
-        children: [],
       },
       {
         path: '/:connection/sn/',
         element: <SocialNetworks />,
-        // loader: SocialNetworksLoader,
       },
       {
         path: '/:connection/ag/',
         element: <Agencies />,
-        loader: AgenciesLoader,
       },
       {
-        // Only sn has sources
+        // Only social networks (sn) have sources
         path: '/:connection/sn/:network',
         element: <SocialNetworkSources />,
-        loader: sourcesLoader,
       },
       {
         path: '/info-dev',
