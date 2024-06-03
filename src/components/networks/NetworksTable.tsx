@@ -43,7 +43,7 @@ export function NetworksTable({
     : data;
 
   return (
-    <Card className="container flex max-h-[820px] flex-col justify-center p-2">
+    <Card className="container flex max-h-[800px] flex-col justify-center p-2">
       <div className="flex items-start justify-between p-2">
         <div className="flex flex-col p-2">
           <div className="flex">
@@ -117,5 +117,3 @@ export function NetworksTable({
     </Card>
   );
 }
-
-// Todo: fix request to same route here & in the breadcrumbs

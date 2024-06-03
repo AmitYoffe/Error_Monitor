@@ -9,7 +9,8 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
-import { CircleIcon } from 'lucide-react';
+import { CircleIcon, Clipboard } from 'lucide-react';
+import { Button } from '../ui/button';
 import StatusIndication from './StatusIndication';
 
 interface TrafficDialogProps {
@@ -63,9 +64,15 @@ export default function TrafficDialog({
                 className="flex items-center justify-start gap-4 rounded-lg p-4 shadow-lg duration-150 ease-in-out hover:scale-105"
               >
                 <StatusIndication status={status} />
-                <div>
-                  <h3 className="font-medium">{tool}</h3>
-                  <p className={'text-sm'}>{description}</p>
+                <div className="flex flex-1 justify-between">
+                  <div>
+                    <h3 className="font-medium">{tool}</h3>
+                    <p className={'text-sm'}>{description}</p>
+                  </div>
+                  {/* Todo: add tooltip ('Copy') + add functionality for copying something (in the future it will be the json) */}
+                  <Button variant={'outline'} className="px-2">
+                    <Clipboard className="size-3.5" />
+                  </Button>
                 </div>
               </div>
             );

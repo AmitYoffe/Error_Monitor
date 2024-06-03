@@ -1,3 +1,4 @@
+import { formattedLocationInfo } from '@/components/locationsDashboard/MainDashboards';
 import { Location } from '@/types/networkType';
 
 type docInfoType = 'docs_count' | 'docs_count_3_days' | 'last_time';
@@ -38,5 +39,23 @@ export function getLocationInfo({
     }
     locationInfo.push(networkInfoJson); // push the network info JSON into the locationInfo array
   }
+  return locationInfo;
+}
+
+export function extractLocationInfoFromData({ data }: { data: Location }) {
+  const locations = Object.keys(data);
+
+  const locationInfo: formattedLocationInfo[] = locations.map((location) => {
+    return {
+      locationName: location,
+      networksInfo: getLocationInfo({
+        data,
+        location,
+        networkType: ['article', 'sn'],
+        docInfoField: ['docs_count', 'docs_count_3_days', 'last_time'],
+      }),
+    };
+  });
+
   return locationInfo;
 }

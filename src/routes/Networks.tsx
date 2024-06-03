@@ -1,35 +1,22 @@
 import { NetworksTable } from '@/components/networks/NetworksTable';
 import TableSkeleton from '@/components/skeletons/TableSkeleton';
 import ErrorPage from '@/error-page';
-import { ParsedNetwrokInfo } from '@/types/networkType';
-import { getSocialNetworksNames } from '@/utils/netwrokUtils';
+import { Location, ParsedNetwrokInfo } from '@/types/networkType';
+import { extarctSocialNetworkNames } from '@/utils/netwrokUtils';
 import { ChangeEvent, Suspense, useState } from 'react';
-import {
-  Await,
-  LoaderFunctionArgs,
-  defer,
-  useLoaderData,
-} from 'react-router-dom';
+import { Await, useLocation, useOutletContext } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const connection = params.connection;
-  invariant(connection, 'connection parameter is required');
-  const networks = getSocialNetworksNames(connection);
-
-  return defer({
-    connection,
-    networks,
-  });
-}
-
 export default function Connection() {
-  const data = useLoaderData() as {
-    connection: string;
-    networks: Promise<ParsedNetwrokInfo[]>;
-  };
-  const { networks, connection } = data;
   const [search, setSearch] = useState('');
+  const { dataPromise } = useOutletContext() as {
+    dataPromise: Promise<Location>;
+  };
+
+  const { pathname } = useLocation();
+  invariant(pathname, 'pathname parameter is required');
+  const pathnames = pathname.split('/').filter((x) => x);
+  const formattedCurrentLocation = pathnames[0]?.split('%20').join(' ');
 
   function handleInputChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -38,13 +25,18 @@ export default function Connection() {
   }
 
   return (
-    <div className="flex justify-center gap-4 overflow-hidden p-9">
+    <div className="mt-8 flex justify-center gap-4 overflow-hidden p-9">
       <Suspense fallback={<TableSkeleton />}>
-        <Await resolve={networks} errorElement={<ErrorPage />}>
-          {(resolvedNetworks: ParsedNetwrokInfo[]) => (
+        <Await
+          resolve={dataPromise.then((resolvedData) =>
+            extarctSocialNetworkNames(formattedCurrentLocation, resolvedData),
+          )}
+          errorElement={<ErrorPage />}
+        >
+          {(networksData: ParsedNetwrokInfo[]) => (
             <NetworksTable
-              data={resolvedNetworks}
-              connection={connection}
+              data={networksData}
+              connection={formattedCurrentLocation}
               handleInputChange={handleInputChange}
               search={search}
             />
