@@ -30,7 +30,11 @@ export default function Connection() {
       <Suspense fallback={<TableSkeleton />}>
         <Await
           resolve={dataPromise.then((resolvedData) =>
-            extractSourcesNames(formattedCurrentLocation, networkKey, resolvedData),
+            extractSourcesNames(
+              formattedCurrentLocation,
+              networkKey,
+              resolvedData,
+            ),
           )}
           errorElement={<ErrorPage />}
         >
