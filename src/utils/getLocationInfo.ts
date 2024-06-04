@@ -1,8 +1,12 @@
 import { formattedLocationInfo } from '@/components/locationsDashboard/MainDashboards';
-import { Location } from '@/types/networkType';
+import { Location, Network } from '@/types/networkType';
 
-type docInfoType = 'docs_count' | 'docs_count_3_days' | 'last_time';
 type networkType = 'article' | 'sn';
+type docInfoType = keyof Omit<Network, 'networks'>;
+// | 'docs_count'
+// | 'docs_count_3_days'
+// | 'last_time'
+// | 'timestamp';
 
 export type locationInfoType = Partial<Record<docInfoType, string>> & {
   networkType: networkType;
@@ -32,19 +36,18 @@ export function getLocationInfo({
     if (!networkData) continue;
 
     for (const docInfo of docInfoField) {
-      // Push the fields docs_count, docs_count_3_days, last_time into the json
-      if (networkData[docInfo]) {
+      if (networkData[docInfo] || networkData[docInfo] !== undefined) {
         networkInfoJson[docInfo] = networkData[docInfo] as string;
       }
     }
     locationInfo.push(networkInfoJson); // push the network info JSON into the locationInfo array
   }
+
   return locationInfo;
 }
 
 export function extractLocationInfoFromData({ data }: { data: Location }) {
   const locations = Object.keys(data);
-
   const locationInfo: formattedLocationInfo[] = locations.map((location) => {
     return {
       locationName: location,
@@ -52,7 +55,12 @@ export function extractLocationInfoFromData({ data }: { data: Location }) {
         data,
         location,
         networkType: ['article', 'sn'],
-        docInfoField: ['docs_count', 'docs_count_3_days', 'last_time'],
+        docInfoField: [
+          'docs_count',
+          'docs_count_3_days',
+          'last_time',
+          'timestamp',
+        ],
       }),
     };
   });

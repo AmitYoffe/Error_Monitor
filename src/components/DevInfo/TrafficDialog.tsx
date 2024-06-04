@@ -9,9 +9,9 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
-import { CircleIcon, Clipboard } from 'lucide-react';
-import { Button } from '../ui/button';
+import { CircleIcon } from 'lucide-react';
 import StatusIndication from './StatusIndication';
+import CopyButton from './CopyButton';
 
 interface TrafficDialogProps {
   category: string;
@@ -69,10 +69,7 @@ export default function TrafficDialog({
                     <h3 className="font-medium">{tool}</h3>
                     <p className={'text-sm'}>{description}</p>
                   </div>
-                  {/* Todo: add tooltip ('Copy') + add functionality for copying something (in the future it will be the json) */}
-                  <Button variant={'outline'} className="px-2">
-                    <Clipboard className="size-3.5" />
-                  </Button>
+                  <CopyButton text={JSON.stringify({ message: 214 })} />
                 </div>
               </div>
             );

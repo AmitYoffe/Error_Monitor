@@ -25,26 +25,26 @@ export default function MainDashboards({ locationsInfo }: IMainDashboards) {
   const { theme } = useTheme();
 
   return (
-      <>
-        <CardHeader className="flex w-full items-center pt-1">
-          <img
-            src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
-            alt="confused duck"
-            className="h-20 w-16"
+    <>
+      <CardHeader className="flex w-full items-center pt-1">
+        <img
+          src={theme === 'dark' ? WhiteConfusedDuck : confusedDuck}
+          alt="confused duck"
+          className="h-20 w-16"
+        />
+        <CardTitle>Error Monitor</CardTitle>
+        <CardDescription>Lead your quest to find the errors.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-wrap justify-center gap-3">
+        {locationsInfo.map((locationInfo) => (
+          <DashboardChoice
+            key={locationInfo.locationName}
+            iconSrc={getLocationIcon(locationInfo.locationName, theme)}
+            locationName={locationInfo.locationName}
+            networksInfo={locationInfo.networksInfo}
           />
-          <CardTitle>Error Monitor</CardTitle>
-          <CardDescription>Lead your quest to find the errors.</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap justify-center gap-3">
-          {locationsInfo.map((locationInfo) => (
-            <DashboardChoice
-              key={locationInfo.locationName}
-              iconSrc={getLocationIcon(locationInfo.locationName, theme)}
-              locationName={locationInfo.locationName}
-              networksInfo={locationInfo.networksInfo}
-            />
-          ))}
-        </CardContent>
-      </>
+        ))}
+      </CardContent>
+    </>
   );
 }
