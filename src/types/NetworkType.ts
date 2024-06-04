@@ -5,10 +5,11 @@ export type Location = {
   };
 };
 
-type Network = {
+export type Network = {
   docs_count: number;
   docs_count_3_days: number;
   last_time: string;
+  timestamp: string;
   networks: { [networkId: string]: NetworkInfo };
 };
 
@@ -16,6 +17,7 @@ type NetworkInfo = {
   docs_count: number;
   docs_count_3_days: number;
   last_time: string;
+  timestamp: string;
   sources?: { [sourceId: string]: Source };
 };
 
@@ -27,6 +29,7 @@ export type Source = {
   docs_count: number;
   docs_count_3_days: number;
   last_time: string;
+  timestamp: string;
   entity_names?: EntityName[];
 };
 
@@ -38,4 +41,3 @@ type EntityName = {
   entity_name: string;
   doc_count: number;
 };
-

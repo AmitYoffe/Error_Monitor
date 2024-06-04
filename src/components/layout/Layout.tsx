@@ -9,7 +9,6 @@ type LoaderData<TLoaderFn extends LoaderFunction> =
 
 export async function loader() {
   const dataPromise = getData();
-
   return defer({ dataPromise });
 }
 

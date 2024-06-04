@@ -1,11 +1,9 @@
 import { capitalizeWord } from '@/utils/capitalizeWord';
 import { locationInfoType } from '@/utils/getLocationInfo';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import ConditionalLink from '../ConditionalLink';
 import { Card, CardDescription, CardTitle } from '../ui/card';
-import { Skeleton } from '../ui/skeleton';
 
 interface NetworkChoiceProps {
   networkInfo?: locationInfoType;
@@ -19,26 +17,41 @@ export default function NetworkChoice({
   // statusColor,
 }: NetworkChoiceProps) {
   // const [networkHovered, setNetworkHovered] = useState(false);
-
   const urlArgument = networkInfo?.networkType === 'article' ? 'ag' : 'sn';
   const networkBoxTitle =
     networkInfo?.networkType === 'article' ? 'Agencies' : 'Social Networks';
 
-  // Check for networkInfo objects that do not contain at least one relevant field,
+  // Check for networkInfo objects that do not contain at least one relevant field or is empty,
   // they should not be able to navigate you anywhere
-  const noFollowUpLink =
-    !networkInfo ||
-    (!networkInfo.last_time &&
-      !networkInfo.docs_count &&
-      !networkInfo.docs_count_3_days);
+  const noFollowUpLink = !networkInfo || 
+  // Object.keys(networkInfo).length === 0;
+  (!networkInfo.last_time &&
+    !networkInfo.docs_count &&
+    !networkInfo.timestamp &&
+    !networkInfo.docs_count_3_days);
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (networkInfo) {
-      setIsLoading(false);
-    }
-  }, [networkInfo]);
+  const info: { title: string; description: string }[] = [
+    {
+      title: 'Last Time Received',
+      description: networkInfo?.last_time
+        ? moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
+        : '- no information -',
+    },
+    {
+      title: 'Docs from 3 days ago',
+      description: networkInfo?.docs_count_3_days ?? '- no information -',
+    },
+    {
+      title: 'Total Docs',
+      description: networkInfo?.docs_count ?? '- no information -',
+    },
+    {
+      title: 'Last Time Updated',
+      description: networkInfo?.timestamp
+        ? moment(networkInfo.timestamp).format('DD/MM/YYYY - HH:mm')
+        : '- no information -',
+    },
+  ];
 
   return (
     <ConditionalLink
@@ -66,38 +79,14 @@ export default function NetworkChoice({
         <CardTitle className="p-2 text-center underline">
           {networkBoxTitle}
         </CardTitle>
-        <CardDescription className="mx-12 flex justify-between">
-          Last Time Recieved:
-          <div>
-            {isLoading ? (
-              <Skeleton className="my-auto h-[9px] w-[170px]" />
-            ) : networkInfo?.last_time ? (
-              moment(networkInfo.last_time).format('DD/MM/YYYY - HH:mm')
-            ) : (
-              '- no information -'
-            )}
-          </div>
-        </CardDescription>
-        <CardDescription className="mx-12 flex justify-between">
-          Docs from 3 days ago:
-          <div>
-            {isLoading ? (
-              <Skeleton className="my-auto h-[9px] w-[110px]" />
-            ) : (
-              networkInfo?.docs_count_3_days || '- no information -'
-            )}
-          </div>
-        </CardDescription>
-        <CardDescription className="mx-12 flex justify-between">
-          Total Docs:
-          <div>
-            {isLoading ? (
-              <Skeleton className="my-auto h-[9px] w-[132px]" />
-            ) : (
-              networkInfo?.docs_count || '- no information -'
-            )}
-          </div>
-        </CardDescription>
+        {info.map((info) => (
+          <CardDescription
+            className="mx-12 flex justify-between"
+            key={info.title}
+          >
+            {info.title}:<div>{info.description}</div>
+          </CardDescription>
+        ))}
       </Card>
     </ConditionalLink>
   );

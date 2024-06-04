@@ -35,12 +35,12 @@ export default function SourcesTable({
 
   const filteredData = search
     ? data.filter(
-      (dataItem) =>
-        dataItem.entity_names &&
-        dataItem.entity_names.some((entity) =>
-          entity.entity_name.includes(search.trim()),
-        ),
-    )
+        (dataItem) =>
+          dataItem.entity_names &&
+          dataItem.entity_names.some((entity) =>
+            entity.entity_name.includes(search.trim()),
+          ),
+      )
     : data;
 
   return (
@@ -75,6 +75,7 @@ export default function SourcesTable({
             <TableHead>Last Time Recieved</TableHead>
             <TableHead>Total Docs 3 Days</TableHead>
             <TableHead>Total Docs</TableHead>
+            {/* <TableHead>Last Time Updated</TableHead> */}
             {/* <TableHead>Status</TableHead> */}
           </TableRow>
         </TableHeader>
@@ -99,6 +100,9 @@ export default function SourcesTable({
               </TableCell>
               <TableCell>{row.docs_count_3_days}</TableCell>
               <TableCell>{row.docs_count}</TableCell>
+              {/* <TableCell>
+                {moment(row.timestamp).format('DD/MM/YYYY - HH:mm:ss')}
+              </TableCell> */}
               {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
             </TableRow>
           ))}
