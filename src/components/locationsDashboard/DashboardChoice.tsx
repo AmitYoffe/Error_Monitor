@@ -55,7 +55,7 @@ export default function DashboardChoice({
         // onMouseOver={() => setLocationHovered(true)}
         // onMouseOut={() => setLocationHovered(false)}
       >
-        <p className="flex flex-col items-center justify-between rounded-md border-2 p-4">
+        <p className="flex flex-col items-center justify-between rounded-md border-2 p-3">
           <img src={iconSrc} alt={`${location} png`} className="mb-2 h-8 w-8" />
           {capitalizeWord(locationName)}
         </p>

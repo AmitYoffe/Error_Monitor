@@ -73,6 +73,7 @@ export function NetworksTable({
             <TableHead>Last Time Recieved</TableHead>
             <TableHead>Total Docs</TableHead>
             <TableHead>Total Docs 3 Days</TableHead>
+            {/* <TableHead>Time Stamp</TableHead> */}
             {/* <TableHead>Status</TableHead> */}
           </TableRow>
         </TableHeader>
@@ -107,6 +108,9 @@ export function NetworksTable({
                 </TableCell>
                 <TableCell>{row.docs_count}</TableCell>
                 <TableCell>{row.docs_count_3_days}</TableCell>
+                {/* <TableCell>
+                  {moment(row.timestamp).format('DD/MM/YYYY - HH:mm:ss')}
+                </TableCell> */}
                 {/* <TableCell>{statusIcons[row.status]}</TableCell> */}
               </TableRow>
             );

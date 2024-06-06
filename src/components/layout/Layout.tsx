@@ -9,7 +9,6 @@ type LoaderData<TLoaderFn extends LoaderFunction> =
 
 export async function loader() {
   const dataPromise = getData();
-
   return defer({ dataPromise });
 }
 
@@ -17,7 +16,7 @@ export default function Layout() {
   const data = useLoaderData() as LoaderData<typeof loader>;
 
   return (
-    <div className="h-screen">
+    <div className="h-screen overflow-hidden">
       <Header />
       <Outlet context={data} />
       <Toaster />
