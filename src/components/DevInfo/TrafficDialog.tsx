@@ -10,8 +10,8 @@ import { Separator } from '@/components/ui/separator';
 import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
 import { CircleIcon } from 'lucide-react';
+import InfoJson from './InfoJson';
 import StatusIndication from './StatusIndication';
-import CopyButton from './CopyButton';
 
 interface TrafficDialogProps {
   category: string;
@@ -41,7 +41,7 @@ export default function TrafficDialog({
           {icon}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[1025px]">
         <DialogHeader>
           <div className="flex">
             <div className="flex items-center">{icon}</div>
@@ -53,29 +53,33 @@ export default function TrafficDialog({
           </DialogDescription>
         </DialogHeader>
         <Separator />
-        <ul className="w-full space-y-2">
-          {Object.entries(tools).map(([tool, status]) => {
-            const { description } = getCategoryStatusDetails({
-              [tool]: status,
-            });
-            return (
-              <div
-                key={tool}
-                className="flex items-center justify-start gap-4 rounded-lg p-4 shadow-lg duration-150 ease-in-out hover:scale-105"
-              >
-                <StatusIndication status={status} />
-                <div className="flex flex-1 justify-between">
-                  <div>
+        <div className="flex gap-8 p-2">
+          <ul className="w-full flex-1 space-y-2">
+            {Object.entries(tools).map(([tool, status]) => {
+              const { description } = getCategoryStatusDetails({
+                [tool]: status,
+              });
+              return (
+                <div
+                  key={tool}
+                  className="flex items-center justify-start gap-4 rounded-lg p-4 shadow-lg duration-150 ease-in-out hover:scale-105"
+                >
+                  <StatusIndication status={status} />
+                  <div className="flex flex-1 flex-col justify-between">
                     <h3 className="font-medium">{tool}</h3>
                     <p className={'text-sm'}>{description}</p>
                   </div>
-                  <CopyButton text={JSON.stringify({ message: 214 })} />
                 </div>
-              </div>
-            );
-          })}
-        </ul>
+              );
+            })}
+          </ul>
+          <InfoJson />
+        </div>
       </DialogContent>
     </Dialog>
   );
 }
+
+// Todo:
+// 1) Prettify the code, move some code to an independent component
+// 2) Make the infoJson show data according to the selected option

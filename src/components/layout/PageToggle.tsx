@@ -21,7 +21,7 @@ export default function PageToggle() {
   };
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={60}>
       <Tooltip>
         <TooltipTrigger>
           <Button variant="outline" size="icon" onClick={handleClick}>
