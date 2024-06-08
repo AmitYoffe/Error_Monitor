@@ -58,8 +58,8 @@ export default function DeveloperInfo() {
         <img src={shyDuck} alt="shy traffic cone duck" className="h-20 w-16" />
         <CardTitle>Dev Error Monitor</CardTitle>
         <CardDescription>
-          Lead your quest to find the errors.
-          {/* This area is still under construction... */}
+          {/* Lead your quest to find the errors. */}
+          This area is still under construction...
         </CardDescription>
       </CardHeader>
       <SystemStatusDisplay toolsCollectionJson={toolsCollectionJson} />
