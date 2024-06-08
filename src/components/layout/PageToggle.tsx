@@ -1,33 +1,37 @@
-import { TrafficCone } from 'lucide-react';
-import { ScrollText } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { ScrollText, TrafficCone } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip';
 
 export default function PageToggle() {
-  const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
-  const navigation = useNavigate();
-
-  let navigateTo: string;
-  let toggleIcon = <TrafficCone />;
-
-  if (pathnames.includes('info-dev')) {
-    toggleIcon = <ScrollText />;
-    navigateTo = '/';
-  } else {
-    toggleIcon = <TrafficCone />;
-    navigateTo = '/info-dev';
-  }
+  const isInfoDev = pathname.includes('info-dev');
+  const toggleIcon = isInfoDev ? <ScrollText /> : <TrafficCone />;
+  const navigateTo = isInfoDev ? '/' : '/info-dev';
 
   const handleClick = () => {
-    navigation(navigateTo);
+    navigate(navigateTo);
   };
 
   return (
-    <Button variant="outline" size="icon" onClick={handleClick}>
-      {toggleIcon}
-    </Button>
+    <TooltipProvider delayDuration={60}>
+      <Tooltip>
+        <TooltipTrigger>
+          <Button variant="outline" size="icon" onClick={handleClick}>
+            {toggleIcon}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{isInfoDev ? 'Client Monitoring' : 'Technical Monitoring'}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

@@ -10,19 +10,20 @@ import { Separator } from '@/components/ui/separator';
 import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
 import { CircleIcon } from 'lucide-react';
-import StatusIndication from './StatusIndication';
+import InfoJson from './InfoJson';
+import ToolsList from './SystemToolList';
 
-interface TrafficDialogProps {
+interface SystemDialogProps {
   category: string;
   icon: React.ReactNode;
   tools: { [toolName: string]: StatusType };
 }
 
-export default function TrafficDialog({
+export default function SystemDialog({
   category,
   icon,
   tools,
-}: TrafficDialogProps) {
+}: SystemDialogProps) {
   const { description, color } = getCategoryStatusDetails(tools);
 
   return (
@@ -40,7 +41,7 @@ export default function TrafficDialog({
           {icon}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[1025px] h-3/4">
         <DialogHeader>
           <div className="flex">
             <div className="flex items-center">{icon}</div>
@@ -52,26 +53,13 @@ export default function TrafficDialog({
           </DialogDescription>
         </DialogHeader>
         <Separator />
-        <ul className="w-full space-y-2">
-          {Object.entries(tools).map(([tool, status]) => {
-            const { description } = getCategoryStatusDetails({
-              [tool]: status,
-            });
-            return (
-              <div
-                key={tool}
-                className="flex items-center justify-start gap-4 rounded-lg p-4 shadow-lg duration-150 ease-in-out hover:scale-105"
-              >
-                <StatusIndication status={status} />
-                <div>
-                  <h3 className="font-medium">{tool}</h3>
-                  <p className={'text-sm'}>{description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </ul>
+        <div className="flex gap-8 p-2">
+          <ToolsList tools={tools} />
+          <InfoJson />
+        </div>
       </DialogContent>
     </Dialog>
   );
 }
+
+// Todo: Make the infoJson show data according to the selected option
