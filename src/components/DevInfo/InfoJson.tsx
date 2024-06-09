@@ -95,10 +95,10 @@ export default function InfoJson() {
 
   return (
     <Card className="flex-2 relative h-[calc(100vh-390px)] overflow-y-scroll">
-      <div className="absolute right-2 top-2">
+      <div className="sticky top-1 ml-[95%]">
         <CopyButton text={`${JSON.stringify(infoJson)}`} />
       </div>
-      <pre className="m-2">{JSON.stringify(infoJson, null, 2)}</pre>
+      <pre className="m-2 -mt-6">{JSON.stringify(infoJson, null, 2)}</pre>
     </Card>
   );
 }
