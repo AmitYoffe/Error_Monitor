@@ -11,7 +11,7 @@ import { StatusType } from '@/types/statusType';
 import { getCategoryStatusDetails } from '@/utils/getStatusDetails';
 import { CircleIcon } from 'lucide-react';
 import InfoJson from './InfoJson';
-import ToolsList from './SystemToolList';
+import SystemToolsList from './SystemToolList';
 
 interface SystemDialogProps {
   category: string;
@@ -41,7 +41,7 @@ export default function SystemDialog({
           {icon}
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[1025px] h-3/4">
+      <DialogContent className="h-3/4 sm:max-w-[1025px]">
         <DialogHeader>
           <div className="flex">
             <div className="flex items-center">{icon}</div>
@@ -54,7 +54,7 @@ export default function SystemDialog({
         </DialogHeader>
         <Separator />
         <div className="flex gap-8 p-2">
-          <ToolsList tools={tools} />
+          <SystemToolsList tools={tools} />
           <InfoJson />
         </div>
       </DialogContent>
