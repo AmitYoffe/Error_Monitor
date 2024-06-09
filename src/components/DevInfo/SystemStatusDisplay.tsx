@@ -5,6 +5,7 @@ import SystemDialog from './SystemDialog';
 interface SystemStatusDisplayProps {
   toolsCollectionJson: ToolsCollectionJson;
 }
+// Todo: for each returned value of console.log(extractSystemStatuses()); i need to show a SystemDialog component
 
 export default function SystemStatusDisplay({
   toolsCollectionJson,

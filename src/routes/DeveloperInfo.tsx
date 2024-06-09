@@ -52,8 +52,20 @@ export default function DeveloperInfo() {
     },
   };
 
+  // const { dataPromise } = useOutletContext() as {
+  //   dataPromise: Promise<Location>;
+  // };
+
   return (
-    <div>
+    // <Suspense fallback={<DeveloperInfoSkeleton />}>
+    //   <Await
+    //     resolve={dataPromise.then((resolvedData) =>
+    //       extractSystemStatuses(resolvedData),
+    //     )}
+    //     errorElement={<ErrorPage />}
+    //   >
+    // {(soucresData: ParsedSource[]) => (
+    <>
       <CardHeader className="flex w-full items-center pt-1">
         <img src={shyDuck} alt="shy traffic cone duck" className="h-20 w-16" />
         <CardTitle>Dev Error Monitor</CardTitle>
@@ -63,31 +75,11 @@ export default function DeveloperInfo() {
         </CardDescription>
       </CardHeader>
       <SystemStatusDisplay toolsCollectionJson={toolsCollectionJson} />
-    </div>
+    </>
+    //     )}
+    //   </Await>
+    // </Suspense>
   );
 }
-// Todo: Apply the DeveloperInfoSkeleton
-// Todo: Manage the data flow of the each category, need to also fetch the data only here. (useOutletConext?)
 
-// {
-//   "total_system_color": "green",
-//   "high_level_apps": {
-//     "collecting": {
-//       "color": "green",
-//       "apps": [
-//         {
-//           "name": "Twitter Collecting",
-//           "color": "green",
-//           "reasons": [""],
-//           "raw_data": {}
-//         }
-//       ]
-//     },
-//     "analyzing": {
-//       "color": "green"
-//     }
-//   },
-//   "data_graphs": {
-
-//   }
-// }
+// Todo: Manage the data flow of the each category, need to also fetch the data only here.
