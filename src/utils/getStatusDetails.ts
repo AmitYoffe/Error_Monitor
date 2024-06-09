@@ -39,5 +39,3 @@ export const getOverallStatus = (toolsCollectionJson: ToolsCollectionJson) => {
 
   return { status, description };
 };
-
-//Todo: ideally use one function for all status indications, tools, their categories & the location dashboards

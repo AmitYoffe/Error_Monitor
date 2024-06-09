@@ -40,7 +40,6 @@ const router = createBrowserRouter([
       {
         path: '/info-dev',
         element: <DeveloperInfo />,
-        errorElement: <ErrorPage />,
       },
     ],
   },

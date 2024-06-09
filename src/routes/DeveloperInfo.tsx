@@ -1,6 +1,6 @@
 import shyDuck from '@/assets/images/shy-duck.png';
+import SystemStatusDisplay from '@/components/DevInfo/SystemStatusDisplay';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import TrafficLightsDisplay from '@/components/DevInfo/TrafficLightsDisplay';
 import { ToolCategory } from '@/types/statusType';
 import {
   DatabaseIcon,
@@ -62,11 +62,11 @@ export default function DeveloperInfo() {
           {/* This area is still under construction... */}
         </CardDescription>
       </CardHeader>
-      <TrafficLightsDisplay toolsCollectionJson={toolsCollectionJson} />
+      <SystemStatusDisplay toolsCollectionJson={toolsCollectionJson} />
     </div>
   );
 }
-
+// Todo: Apply the DeveloperInfoSkeleton
 // Todo: Manage the data flow of the each category, need to also fetch the data only here. (useOutletConext?)
 
 // {
