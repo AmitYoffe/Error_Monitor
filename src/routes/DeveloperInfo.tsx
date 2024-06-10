@@ -2,12 +2,6 @@ import shyDuck from '@/assets/images/shy-duck.png';
 import SystemStatusDisplay from '@/components/DevInfo/SystemStatusDisplay';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ToolCategory } from '@/types/statusType';
-import {
-  DatabaseIcon,
-  DownloadIcon,
-  SearchIcon,
-  SparklesIcon,
-} from 'lucide-react';
 
 interface IToolsCollectionJson {
   [key: string]: ToolCategory;
@@ -16,7 +10,6 @@ interface IToolsCollectionJson {
 export default function DeveloperInfo() {
   const toolsCollectionJson: IToolsCollectionJson = {
     Analyzing: {
-      icon: <SearchIcon className="h-5 w-5" />,
       tools: {
         Ingestion: 'operational',
         Intuview: 'operational',
@@ -24,7 +17,6 @@ export default function DeveloperInfo() {
       },
     },
     Collecting: {
-      icon: <DownloadIcon className="h-5 w-5" />,
       tools: {
         'FB groups': 'operational',
         'FB pages': 'operational',
@@ -35,7 +27,6 @@ export default function DeveloperInfo() {
       },
     },
     Enrichment: {
-      icon: <SparklesIcon className="h-5 w-5" />,
       tools: {
         Translation: 'operational',
         Embedding: 'operational',
@@ -44,7 +35,6 @@ export default function DeveloperInfo() {
       },
     },
     Databases: {
-      icon: <DatabaseIcon className="h-5 w-5" />,
       tools: {
         Mongo: 'operational',
         Elastic: 'operational',

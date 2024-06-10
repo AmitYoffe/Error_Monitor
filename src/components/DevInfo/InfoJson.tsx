@@ -94,13 +94,13 @@ export default function InfoJson() {
   };
 
   return (
-    <Card className="flex-2 relative h-[calc(100vh-390px)] overflow-y-scroll">
+    <Card className="flex-2 relative h-full overflow-x-hidden">
       <div className="sticky top-1 ml-[95%]">
-        <CopyButton text={`${JSON.stringify(infoJson)}`} />
+        <CopyButton text={`${JSON.stringify(infoJson.raw_data)}`} />
       </div>
-      <pre className="m-2 -mt-6">{JSON.stringify(infoJson, null, 2)}</pre>
+      <pre className="m-2 -mt-6">
+        {JSON.stringify(infoJson.raw_data, null, 2)}
+      </pre>
     </Card>
   );
 }
-
-//Todo: fix this height so it's dynamic according to the dialogs height

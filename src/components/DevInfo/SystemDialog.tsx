@@ -53,7 +53,7 @@ export default function SystemDialog({
           </DialogDescription>
         </DialogHeader>
         <Separator />
-        <div className="flex gap-8 p-2">
+        <div className="flex h-full gap-8 overflow-y-hidden p-2">
           <SystemToolsList tools={tools} />
           <InfoJson />
         </div>

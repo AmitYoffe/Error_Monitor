@@ -2,12 +2,10 @@
 //   locationsInfo: Location;
 // }
 
-export default function extractSystemStatuses(
+export default function extractSystemStatuses() {
 //     {
 //   locationsInfo,
 // }: extractSystemStatusesProps
-)
- {
   const extractedSystemInfo = {
     total_system_color: 'green',
     high_level_apps: {
@@ -33,3 +31,4 @@ export default function extractSystemStatuses(
 }
 
 // Todo: function that will take the big getData json and return the relevant information about the statuses of different systems
+// && create and manage new types of these new info structures

@@ -1,6 +1,7 @@
 import { ToolsCollectionJson } from '@/types/statusType';
 import GeneralStatus from './GeneralStatus';
 import SystemDialog from './SystemDialog';
+import getSystemIcon from '@/utils/getSystemIcon';
 
 interface SystemStatusDisplayProps {
   toolsCollectionJson: ToolsCollectionJson;
@@ -14,16 +15,14 @@ export default function SystemStatusDisplay({
     <div className="mt-4 flex items-center justify-center gap-24 bg-secondary py-24">
       <GeneralStatus toolsCollectionJson={toolsCollectionJson} />
       <div className="flex flex-col items-center justify-center gap-6">
-        {Object.entries(toolsCollectionJson).map(
-          ([category, { icon, tools }]) => (
-            <SystemDialog
-              key={category}
-              category={category}
-              icon={icon}
-              tools={tools}
-            />
-          ),
-        )}
+        {Object.entries(toolsCollectionJson).map(([category, { tools }]) => (
+          <SystemDialog
+            key={category}
+            category={category}
+            icon={getSystemIcon(category)}
+            tools={tools}
+          />
+        ))}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 export type StatusType = 'operational' | 'unstable' | 'no-connection';
 
 export type ToolCategory = {
-    icon: React.ReactNode;
+    // icon: React.ReactNode;
     tools: { [toolName: string]: StatusType };
   };
   
