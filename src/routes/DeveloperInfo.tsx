@@ -1,50 +1,14 @@
 import shyDuck from '@/assets/images/shy-duck.png';
 import SystemStatusDisplay from '@/components/DevInfo/SystemStatusDisplay';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ToolCategory } from '@/types/statusType';
-
-interface IToolsCollectionJson {
-  [key: string]: ToolCategory;
-}
+import getSystemsInfo from '@/utils/getSystemsInfo';
 
 export default function DeveloperInfo() {
-  const toolsCollectionJson: IToolsCollectionJson = {
-    Analyzing: {
-      tools: {
-        Ingestion: 'operational',
-        Intuview: 'operational',
-        Siren: 'operational',
-      },
-    },
-    Collecting: {
-      tools: {
-        'FB groups': 'operational',
-        'FB pages': 'operational',
-        'FB profiles': 'unstable',
-        'TG channels': 'operational',
-        'TW users': 'operational',
-        Voyager: 'operational',
-      },
-    },
-    Enrichment: {
-      tools: {
-        Translation: 'operational',
-        Embedding: 'operational',
-        Clustering: 'operational',
-        Relations: 'operational',
-      },
-    },
-    Databases: {
-      tools: {
-        Mongo: 'operational',
-        Elastic: 'operational',
-      },
-    },
-  };
-
   // const { dataPromise } = useOutletContext() as {
   //   dataPromise: Promise<Location>;
   // };
+
+  const toolsCollectionJson = getSystemsInfo();
 
   return (
     // <Suspense fallback={<DeveloperInfoSkeleton />}>
@@ -64,7 +28,7 @@ export default function DeveloperInfo() {
           {/* This area is still under construction... */}
         </CardDescription>
       </CardHeader>
-      <SystemStatusDisplay toolsCollectionJson={toolsCollectionJson} />
+      <SystemStatusDisplay systemsInfo={toolsCollectionJson} />
     </>
     //     )}
     //   </Await>

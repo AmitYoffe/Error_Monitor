@@ -1,28 +1,29 @@
-import { ToolsCollectionJson } from '@/types/statusType';
+import { SystemsInfo } from '@/utils/getSystemsInfo';
 import GeneralStatus from './GeneralStatus';
-import SystemDialog from './SystemDialog';
 import getSystemIcon from '@/utils/getSystemIcon';
+import SystemDialog from './SystemDialog';
 
 interface SystemStatusDisplayProps {
-  toolsCollectionJson: ToolsCollectionJson;
+  systemsInfo: SystemsInfo;
 }
-// Todo: for each returned value of console.log(extractSystemStatuses()); i need to show a SystemDialog component
 
 export default function SystemStatusDisplay({
-  toolsCollectionJson,
+  systemsInfo,
 }: SystemStatusDisplayProps) {
   return (
     <div className="mt-4 flex items-center justify-center gap-24 bg-secondary py-24">
-      <GeneralStatus toolsCollectionJson={toolsCollectionJson} />
+      <GeneralStatus systemsInfo={systemsInfo} />
       <div className="flex flex-col items-center justify-center gap-6">
-        {Object.entries(toolsCollectionJson).map(([category, { tools }]) => (
-          <SystemDialog
-            key={category}
-            category={category}
-            icon={getSystemIcon(category)}
-            tools={tools}
-          />
-        ))}
+        {Object.entries(systemsInfo.high_level_apps).map(
+          ([category, { apps }]) => (
+            <SystemDialog
+              key={category}
+              category={category}
+              icon={getSystemIcon(category)}
+              tools={apps}
+            />
+          ),
+        )}
       </div>
     </div>
   );
